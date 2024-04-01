@@ -25,9 +25,9 @@ export interface ItemType {
     id: number;
     category: Category;
     name: string;
-    tags: Array<Tag>;
+    tags: Tag[];
     description: string;
-    options: Array<OptionType>;
+    options: OptionType[];
     basePrice: number;
     salePercent: number;
 }
@@ -35,7 +35,7 @@ export interface ItemType {
 export interface OrderedItem {
     id: number;
     itemType: ItemType;
-    appliedOptions: Array<OptionItem>;
+    appliedOptions: OptionItem[];
     amount: number;
 }
 
@@ -48,7 +48,7 @@ export enum OrderStatus {
 
 export interface Order {
     id: number;
-    items: Array<OrderedItem>;
+    items: OrderedItem[];
     totalPrice: number;
     number: string;
     status: OrderStatus;
