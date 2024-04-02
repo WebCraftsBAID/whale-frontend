@@ -13,5 +13,5 @@ export default function ComponentHomeStatus() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
