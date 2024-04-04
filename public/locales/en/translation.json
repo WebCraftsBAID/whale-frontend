@@ -1,1 +1,20 @@
-{}
+{
+  "home": {
+    "pickUp": {
+      "name": "Pick Up",
+      "description": "Order without queues"
+    },
+    "check": {
+      "name": "Check",
+      "description": "Check order status"
+    },
+    "currentOrderCard": {
+      "name": "Current Order",
+      "notStarted_one": "Waiting in line, <1>~{{count}} minute remaining.</1>",
+      "notStarted_other": "Waiting in line, <1>~{{count}} minutes remaining.</1>",
+      "inProgress_one": "Making your drink, <1>~{{count}} minute remaining.</1>",
+      "inProgress_other": "Making your drink, <1>~{{count}} minutes remaining.</1>",
+      "ready": "Ready for pick up! <1>Bring your tablet to pay.</1>"
+    }
+  }
+}

@@ -1,1 +1,12 @@
-{}
+{
+  "home": {
+    "pickUp": {
+      "name": "自取",
+      "description": "免排队点单"
+    },
+    "check": {
+      "name": "查询",
+      "description": "查询订单状态"
+    }
+  }
+}

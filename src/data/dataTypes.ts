@@ -40,10 +40,10 @@ export interface OrderedItem {
 }
 
 export enum OrderStatus {
-    notStarted,
-    inProgress,
-    ready,
-    pickedUp
+    notStarted = 'notStarted',
+    inProgress = 'inProgress',
+    ready = 'ready',
+    pickedUp = 'pickedUp'
 }
 
 export interface Order {
