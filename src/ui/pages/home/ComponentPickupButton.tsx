@@ -1,9 +1,9 @@
-import { useTranslation } from "react-i18next";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMugHot } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from 'react-i18next'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMugHot } from '@fortawesome/free-solid-svg-icons'
 
-export default function ComponentPickupButton() {
-    const { t } = useTranslation();
+export default function ComponentPickupButton (): JSX.Element {
+    const { t } = useTranslation()
 
     return (
         <button className='flex justify-center items-center flex-col rounded-3xl w-full h-full
@@ -18,5 +18,5 @@ export default function ComponentPickupButton() {
                 {t('home.pickUp.description')}
             </p>
         </button>
-    );
+    )
 }

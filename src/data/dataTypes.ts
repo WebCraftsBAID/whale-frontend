@@ -1,42 +1,42 @@
 export interface Category {
-    id: number;
-    name: string;
+    id: number
+    name: string
 }
 
 export interface Tag {
-    id: number;
-    name: string;
-    color: string;
+    id: number
+    name: string
+    color: string
 }
 
 export interface OptionType {
-    id: number;
-    name: string;
+    id: number
+    name: string
 }
 
 export interface OptionItem {
-    id: number;
-    name: string;
-    type: OptionType;
-    priceChange: number;
+    id: number
+    name: string
+    type: OptionType
+    priceChange: number
 }
 
 export interface ItemType {
-    id: number;
-    category: Category;
-    name: string;
-    tags: Tag[];
-    description: string;
-    options: OptionType[];
-    basePrice: number;
-    salePercent: number;
+    id: number
+    category: Category
+    name: string
+    tags: Tag[]
+    description: string
+    options: OptionType[]
+    basePrice: number
+    salePercent: number
 }
 
 export interface OrderedItem {
-    id: number;
-    itemType: ItemType;
-    appliedOptions: OptionItem[];
-    amount: number;
+    id: number
+    itemType: ItemType
+    appliedOptions: OptionItem[]
+    amount: number
 }
 
 export enum OrderStatus {
@@ -47,12 +47,12 @@ export enum OrderStatus {
 }
 
 export interface Order {
-    id: number;
-    items: OrderedItem[];
-    totalPrice: number;
-    number: string;
-    status: OrderStatus;
-    createdTime: string;
-    contactName: string;
-    contactRoom: string;
+    id: number
+    items: OrderedItem[]
+    totalPrice: number
+    number: string
+    status: OrderStatus
+    createdTime: string
+    contactName: string
+    contactRoom: string
 }

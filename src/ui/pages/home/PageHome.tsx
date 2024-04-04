@@ -1,18 +1,18 @@
-import desktopDeco from './assets/desktop-decoration.webp';
-import mobileDeco from './assets/mobile-decoration.webp';
-import ComponentPickupButton from "./ComponentPickupButton.tsx";
-import ComponentCheckButton from "./ComponentCheckButton.tsx";
-import ComponentHomeStatus from "./ComponentHomeStatus.tsx";
-import { Trans, useTranslation } from "react-i18next";
+import desktopDeco from './assets/desktop-decoration.webp'
+import mobileDeco from './assets/mobile-decoration.webp'
+import ComponentPickupButton from './ComponentPickupButton.tsx'
+import ComponentCheckButton from './ComponentCheckButton.tsx'
+import ComponentHomeStatus from './ComponentHomeStatus.tsx'
+import { Trans, useTranslation } from 'react-i18next'
 
-export default function PageHome() {
-    const { t } = useTranslation();
+export default function PageHome (): JSX.Element {
+    const { t } = useTranslation()
 
     return (
         <div>
             <div className='block lg:hidden'>
                 <div className='top-0 left-0 absolute h-[50vh] bg-cover -z-10 w-full'
-                     style={{ backgroundImage: `url(${mobileDeco})` }}></div>
+                    style={{ backgroundImage: `url(${mobileDeco})` }}></div>
                 <div className='w-full px-3 translate-y-[40vh] flex justify-center items-center flex-col'>
                     <div
                         className='grid grid-cols-2 grid-rows-1 place-content-center w-full bg-white rounded-3xl shadow-xl p-8 mb-5'>
@@ -66,5 +66,5 @@ export default function PageHome() {
                 </div>
             </div>
         </div>
-    );
+    )
 }
