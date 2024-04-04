@@ -1,5 +1,9 @@
 {
   "home": {
+    "title": "每分每刻 <1/> 皆享受.",
+    "description": "Lorem ipsum sit dolor amit, consectetur adipiscing elit. <1/> Lorem ipsum sit dolor amit, consectetur adipiscing elit.",
+    "backgroundText": "Whale Cafe",
+    "startOrdering": "开始点单",
     "pickUp": {
       "name": "自取",
       "description": "免排队点单"
@@ -7,6 +11,14 @@
     "check": {
       "name": "查询",
       "description": "查询订单状态"
+    },
+    "currentOrderCard": {
+      "name": "当前订单",
+      "notStarted_one": "正在等待开始制作，<1>大约需等待 {{count}} 分钟。<1>",
+      "notStarted_other": "正在等待开始制作，<1>大约需等待 {{count}} 分钟。<1>",
+      "inProgress_one": "正在制作，<1>大约需等待 {{count}} 分钟。<1>",
+      "inProgress_other": "正在制作，<1>大约需等待 {{count}} 分钟。<1>",
+      "ready": "制作完成，请尽快取餐。<1>请携带平板现场付款。</1>"
     }
   }
 }
