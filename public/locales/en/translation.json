@@ -6,7 +6,7 @@
     "startOrdering": "Start Ordering",
     "pickUp": {
       "name": "Pick Up",
-      "description": "Order without queues"
+      "description": "Order w/o queues"
     },
     "check": {
       "name": "Check",
