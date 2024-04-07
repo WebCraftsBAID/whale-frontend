@@ -3,7 +3,7 @@ import { faCircleCheck, faHourglass, faHourglassHalf } from '@fortawesome/free-s
 import { type Order, OrderStatus } from '../../../data/dataTypes.ts'
 import { Trans, useTranslation } from 'react-i18next'
 
-export default function ComponentHomeStatus (): JSX.Element {
+export default function ComponentHomeStatus(): JSX.Element {
     const { t } = useTranslation()
 
     const order: Order = {
@@ -28,7 +28,7 @@ export default function ComponentHomeStatus (): JSX.Element {
                     </p>
                     <p className='text-xs lg:text-sm'>
                         <Trans i18nKey={'home.currentOrderCard.' + order.status} count={5}
-                            components={{ 1: <strong></strong> }} />
+                               components={{ 1: <strong></strong> }} />
                     </p>
                 </div>
                 <div className='flex-shrink'>
@@ -36,13 +36,13 @@ export default function ComponentHomeStatus (): JSX.Element {
                         new Map<OrderStatus, JSX.Element>([
                             [OrderStatus.ready,
                                 <FontAwesomeIcon icon={faCircleCheck}
-                                    className='text-5xl lg:text-7xl text-green-400' />],
+                                                 className='text-5xl lg:text-7xl text-green-400' />],
                             [OrderStatus.inProgress,
                                 <FontAwesomeIcon icon={faHourglassHalf}
-                                    className='text-5xl lg:text-7xl text-accent-orange' />],
+                                                 className='text-5xl lg:text-7xl text-accent-orange' />],
                             [OrderStatus.notStarted,
                                 <FontAwesomeIcon icon={faHourglass}
-                                    className='text-5xl lg:text-7xl text-accent-orange' />]
+                                                 className='text-5xl lg:text-7xl text-accent-orange' />]
                         ]).get(order.status)
                     }
                 </div>

@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock } from '@fortawesome/free-solid-svg-icons'
 
-export default function ComponentCheckButton (): JSX.Element {
+export default function ComponentCheckButton(): JSX.Element {
     const { t } = useTranslation()
 
     return (

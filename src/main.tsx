@@ -4,14 +4,14 @@ import './index.css'
 
 import './i18n'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import PageHome from './ui/pages/home/PageHome.tsx'
+import App from './App.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <Suspense fallback='Loading languages...'>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' element={<PageHome />} />
+                    <Route path='/*' element={<App />} />
                 </Routes>
             </BrowserRouter>
         </Suspense>
