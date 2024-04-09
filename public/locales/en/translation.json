@@ -21,5 +21,10 @@
       "inProgress_other": "Making your drink, <1>~{{count}} minutes remaining.</1>",
       "ready": "Ready for pick up! <1>Bring your tablet to pay.</1>"
     }
+  },
+  "order": {
+    "item": {
+      "pick": "Pick"
+    }
   }
 }

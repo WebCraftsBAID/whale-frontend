@@ -8,7 +8,7 @@ export default function ComponentTopBar(): JSX.Element {
     const { t } = useTranslation()
 
     return (
-        <div className='p-2 bg-gray-100 flex w-full items-center'>
+        <div className='p-2 lg:p-4 bg-gray-100 border-b border-gray-300 border-solid flex w-full items-center'>
             <div className='flex-shrink mr-2'>
                 <button onClick={() => {
                     navigate(-1)

@@ -12,6 +12,7 @@ export interface Tag {
 export interface OptionType {
     id: number
     name: string
+    default: number
 }
 
 export interface OptionItem {
@@ -25,7 +26,9 @@ export interface ItemType {
     id: number
     category: Category
     name: string
+    image: string
     tags: Tag[]
+    shortDescription: string
     description: string
     options: OptionType[]
     basePrice: number
