@@ -3,6 +3,7 @@ import AnimatedPage from '../../../AnimatedPage.tsx'
 import ComponentCategories from './ComponentCategories.tsx'
 import { type InViewHookResponse, useInView } from 'react-intersection-observer'
 import ComponentCategory from './ComponentCategory.tsx'
+import ComponentAd from './ComponentAd.tsx'
 
 export default function PageOrder(): JSX.Element {
     const categories: Category[] = [{
@@ -38,8 +39,10 @@ export default function PageOrder(): JSX.Element {
                             <ComponentCategory category={category} />
                         </div>)}
                     </div>
-                    <div className='w-1/2 h-full'>
-                        ...
+                    <div className='w-1/2 h-full p-8 xl:p-12 2xl:px-24 2xl:py-16'>
+                        <div className='flex flex-col h-full'>
+                            <ComponentAd />
+                        </div>
                     </div>
                 </div>
             </div>
