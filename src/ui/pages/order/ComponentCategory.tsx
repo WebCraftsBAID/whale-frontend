@@ -106,7 +106,7 @@ export default function ComponentCategory({ category }: { category: Category }):
         <div>
             <p className='text-lg font-display mb-3'>{category.name}</p>
 
-            <div className='grid grid-cols-1 lg:grid-cols-2'>
+            <div className='grid grid-cols-1 2xl:grid-cols-2'>
                 {items.map(item => <ComponentItemType key={item.id} item={item} />)}
             </div>
         </div>
