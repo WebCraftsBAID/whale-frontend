@@ -25,6 +25,8 @@
   "order": {
     "item": {
       "pick": "Pick"
-    }
+    },
+    "shoppingCart": "Shopping Cart",
+    "order": "Order"
   }
 }

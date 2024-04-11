@@ -4,6 +4,7 @@ import ComponentCategories from './ComponentCategories.tsx'
 import { type InViewHookResponse, useInView } from 'react-intersection-observer'
 import ComponentCategory from './ComponentCategory.tsx'
 import ComponentAd from './ComponentAd.tsx'
+import ComponentShoppingCart from './ComponentShoppingCart.tsx'
 
 export default function PageOrder(): JSX.Element {
     const categories: Category[] = [{
@@ -41,7 +42,12 @@ export default function PageOrder(): JSX.Element {
                     </div>
                     <div className='w-1/2 h-full p-8 xl:p-12 2xl:px-24 2xl:py-16'>
                         <div className='flex flex-col h-full'>
-                            <ComponentAd />
+                            <div className='h-64 lg:h-2/5 mb-5'>
+                                <ComponentAd />
+                            </div>
+                            <div className='lg:h-3/5'>
+                                <ComponentShoppingCart />
+                            </div>
                         </div>
                     </div>
                 </div>

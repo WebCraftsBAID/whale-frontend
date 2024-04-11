@@ -25,6 +25,8 @@
   "order": {
     "item": {
       "pick": "选规格"
-    }
+    },
+    "shoppingCart": "购物车",
+    "order": "下单"
   }
 }

@@ -25,7 +25,7 @@ export default function ComponentAd(): JSX.Element {
     }, [index])
 
     return (
-        <div className='w-full h-64 lg:h-2/5 rounded-3xl relative overflow-clip'>
+        <div className='w-full h-full rounded-3xl relative overflow-clip'>
             <div className='whitespace-nowrap transition-all duration-500 ease-in-out h-full'
                  style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}>
                 {ads.map((src, index) =>
