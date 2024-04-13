@@ -38,7 +38,7 @@ export default function ComponentAd(): JSX.Element {
                     <button key={current} onClick={() => {
                         setIndex(current)
                     }}
-                            className={'inline-block h-3 w-3 mx-1 rounded-full transition-colors duration-100 ' +
+                            className={'inline-block lg:h-3 lg:w-3 w-2 h-2 mx-1 rounded-full transition-colors duration-100 ' +
                                 ((current === index) ? 'bg-white/50' : 'bg-gray-300/50')}>
                         <p className='text-[0]'>Advertisement {current}</p>
                     </button>

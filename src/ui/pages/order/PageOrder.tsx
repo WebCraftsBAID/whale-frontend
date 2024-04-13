@@ -5,6 +5,7 @@ import { type InViewHookResponse, useInView } from 'react-intersection-observer'
 import ComponentCategory from './ComponentCategory.tsx'
 import ComponentAd from './ComponentAd.tsx'
 import ComponentShoppingCart from './ComponentShoppingCart.tsx'
+import ComponentTopBar from '../../common/ComponentTopBar.tsx'
 
 export default function PageOrder(): JSX.Element {
     const categories: Category[] = [{
@@ -18,9 +19,15 @@ export default function PageOrder(): JSX.Element {
         name: 'Milk 🥛'
     }]
 
-    const categoryRefs: InViewHookResponse[] = []
+    const categoryRefsLarge: InViewHookResponse[] = []
+    const categoryRefsSmall: InViewHookResponse[] = []
     for (let i = 0; i < categories.length; i++) {
-        categoryRefs.push(useInView({
+        categoryRefsLarge.push(useInView({
+            trackVisibility: true,
+            delay: 100
+        }))
+
+        categoryRefsSmall.push(useInView({
             trackVisibility: true,
             delay: 100
         }))
@@ -28,15 +35,44 @@ export default function PageOrder(): JSX.Element {
 
     return (
         <AnimatedPage>
-            <div className='flex h-screen flex-col'>
+            <div className='lg:hidden flex flex-col h-screen'>
                 <div className='flex-shrink'>
-                    <ComponentCategories categories={categories} refs={categoryRefs} />
+                    <ComponentTopBar />
+                </div>
+
+                <div className='flex flex-grow min-h-0'>
+                    <div className='h-full' style={{ flexShrink: '0' }}>
+                        <ComponentCategories categories={categories} refs={categoryRefsSmall}
+                                             ids={categories.map(category => `category-m-${category.id}`)} />
+                    </div>
+                    <div className='flex-grow h-full overflow-y-auto p-5'>
+                        <div className='h-40 mb-8'>
+                            <ComponentAd />
+                        </div>
+
+                        {categories.map((category, index) => <div key={category.id} ref={categoryRefsSmall[index].ref}
+                                                                  className='mb-8'
+                                                                  id={`category-m-${category.id}`}>
+                            <ComponentCategory category={category} />
+                        </div>)}
+                    </div>
+                </div>
+
+                <div className='flex-shrink w-full'>
+                    <ComponentShoppingCart />
+                </div>
+            </div>
+
+            <div className='hidden lg:flex h-screen flex-col'>
+                <div className='flex-shrink'>
+                    <ComponentCategories categories={categories} refs={categoryRefsLarge}
+                                         ids={categories.map(category => `category-d-${category.id}`)} />
                 </div>
                 <div className='flex flex-grow min-h-0'>
                     <div className='w-1/2 border-r border-gray-300 border-solid p-16 h-full overflow-y-auto'>
-                        {categories.map((category, index) => <div key={category.id} ref={categoryRefs[index].ref}
+                        {categories.map((category, index) => <div key={category.id} ref={categoryRefsLarge[index].ref}
                                                                   className='mb-8'
-                                                                  id={`category-${category.id}`}>
+                                                                  id={`category-d-${category.id}`}>
                             <ComponentCategory category={category} />
                         </div>)}
                     </div>

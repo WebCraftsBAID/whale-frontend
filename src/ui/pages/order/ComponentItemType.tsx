@@ -10,10 +10,10 @@ export default function ComponentItemType({ item }: { item: ItemType }): JSX.Ele
             className='cursor-pointer hover:bg-gray-50 transition-colors duration-100 flex items-center p-4 rounded-xl'>
             <div className='mr-5 flex-shrink'>
                 <img src={item.image} alt={`Picture of ${item.name}`}
-                     className='rounded-full w-24 aspect-square object-cover' />
+                     className='rounded-full w-36 aspect-square object-cover' />
             </div>
             <div className='flex-grow'>
-                <div className='w-full mb-1'>
+                <div className='w-full mb-2'>
                     <p className='font-bold lg:text-lg font-display mb-1'>{item.name}</p>
                     <p className='text-xs text-gray-400'>{item.shortDescription}</p>
                 </div>

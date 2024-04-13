@@ -10,7 +10,7 @@ export default function ComponentOrderedItem({
             className='flex items-center p-4 rounded-xl'>
             <div className='mr-5 flex-shrink'>
                 <img src={item.itemType.image} alt={`Picture of ${item.itemType.name}`}
-                     className='rounded-full w-24 aspect-square object-cover' />
+                     className='rounded-full w-16 lg:w-24 aspect-square object-cover' />
             </div>
             <div className='flex-grow'>
                 <div className='w-full mb-1'>
