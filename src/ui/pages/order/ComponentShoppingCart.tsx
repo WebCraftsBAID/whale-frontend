@@ -50,7 +50,7 @@ export default function ComponentShoppingCart(): JSX.Element {
             }}
                  className={`lg:hidden w-screen h-screen absolute top-0 left-0 z-30 transition-colors duration-200 ${modalOpen ? 'bg-gray-500/30' : 'pointer-events-none'}`}></div>
 
-            <div className={`lg:hidden absolute w-screen bottom-0 left-0 bg-white z-40 p-5 rounded-t-2xl 
+            <div className={`lg:hidden fixed w-screen bottom-0 left-0 bg-white z-40 p-5 rounded-t-2xl 
                             transition-transform transform-gpu duration-200 ${modalOpen ? '-translate-y-16' : 'translate-y-full'}`}>
                 <div className='flex items-center mb-5'>
                     <p className='font-display flex-grow'>{t('order.shoppingCart')}</p>
