@@ -4,7 +4,7 @@ import { frontendCalculate, moneyRound } from '../../../utils.ts'
 export default function ComponentOrderedItem({
     item,
     changeAmount
-}: { item: OrderedItem, changeAmount: (amount: number) => void }): JSX.Element {
+}: { item: OrderedItem, changeAmount: ((amount: number) => void) | null }): JSX.Element {
     return (
         <div
             className='flex items-center p-4 rounded-xl'>
@@ -19,28 +19,36 @@ export default function ComponentOrderedItem({
                 </div>
                 <div className='flex'>
                     <p className='flex-grow text-sm lg:text-base'>¥{moneyRound(frontendCalculate(item))}</p>
-                    <div className='flex-shrink flex items-center'>
-                        <button className='bg-black p-1 aspect-square w-6 h-6 mr-2 font-bold hover:bg-gray-900 text-lg rounded-full
-                                        transition-colors duration-100 font-display text-white flex justify-center items-center'
-                                onClick={() => {
-                                    changeAmount(-1)
-                                }}>
-                            -
-                        </button>
-                        <div
-                            className='bg-white rounded-full w-6 h-6 flex justify-center items-center p-1 font-display'>
-                            {item.amount}
+                    {changeAmount == null
+                        ? <div className='flex-shrink'>
+                            <p>x{item.amount}</p>
                         </div>
-                        <button className='bg-black p-1 aspect-square w-6 h-6 ml-2 font-bold hover:bg-gray-900 text-lg rounded-full
+                        : <div className='flex-shrink flex items-center'>
+                            <button className='bg-black p-1 aspect-square w-6 h-6 mr-2 font-bold hover:bg-gray-900 text-lg rounded-full
                                         transition-colors duration-100 font-display text-white flex justify-center items-center'
-                                onClick={() => {
-                                    changeAmount(1)
-                                }}>
-                            +
-                        </button>
-                    </div>
+                                    onClick={() => {
+                                        changeAmount(-1)
+                                    }}>
+                                -
+                            </button>
+                            <div
+                            className='bg-white rounded-full w-6 h-6 flex justify-center items-center p-1 font-display'>
+                                {item.amount}
+                            </div>
+                            <button className='bg-black p-1 aspect-square w-6 h-6 ml-2 font-bold hover:bg-gray-900 text-lg rounded-full
+                                        transition-colors duration-100 font-display text-white flex justify-center items-center'
+                                    onClick={() => {
+                                        changeAmount(1)
+                                    }}>
+                                +
+                            </button>
+                        </div>}
                 </div>
             </div>
         </div>
     )
+}
+
+ComponentOrderedItem.defaultProps = {
+    changeAmount: null
 }

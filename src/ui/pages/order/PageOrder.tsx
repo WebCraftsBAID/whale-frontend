@@ -6,8 +6,12 @@ import ComponentCategory from './ComponentCategory.tsx'
 import ComponentAd from './ComponentAd.tsx'
 import ComponentShoppingCart from './ComponentShoppingCart.tsx'
 import ComponentTopBar from '../../common/ComponentTopBar.tsx'
+import { useState } from 'react'
+import ComponentOrderConfirmModal from './ComponentOrderConfirmModal.tsx'
 
 export default function PageOrder(): JSX.Element {
+    const [confirmModalOpen, setConfirmModalOpen] = useState(false)
+
     const categories: Category[] = [{
         id: 1,
         name: 'Coffee ☕'
@@ -35,6 +39,10 @@ export default function PageOrder(): JSX.Element {
 
     return (
         <AnimatedPage>
+            <ComponentOrderConfirmModal open={confirmModalOpen} close={() => {
+                setConfirmModalOpen(false)
+            }} />
+
             <div className='lg:hidden flex flex-col h-screen'>
                 <div className='flex-shrink'>
                     <ComponentTopBar />
@@ -59,7 +67,9 @@ export default function PageOrder(): JSX.Element {
                 </div>
 
                 <div className='flex-shrink w-full'>
-                    <ComponentShoppingCart />
+                    <ComponentShoppingCart order={() => {
+                        setConfirmModalOpen(true)
+                    }} />
                 </div>
             </div>
 
@@ -82,7 +92,9 @@ export default function PageOrder(): JSX.Element {
                                 <ComponentAd />
                             </div>
                             <div className='lg:h-3/5'>
-                                <ComponentShoppingCart />
+                                <ComponentShoppingCart order={() => {
+                                    setConfirmModalOpen(true)
+                                }} />
                             </div>
                         </div>
                     </div>

@@ -10,6 +10,7 @@ export default {
                 'accent-red': '#d93427',
                 'accent-orange': '#f6894f',
                 'accent-orange-bg': '#ffead3',
+                'accent-yellow-bg': '#fff6ec',
                 'accent-latte': '#fff3e5',
                 'accent-brown': '#401f10'
             },

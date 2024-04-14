@@ -6,7 +6,7 @@ import { frontendCalculate } from '../../../utils.ts'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClose } from '@fortawesome/free-solid-svg-icons'
 
-export default function ComponentShoppingCart(): JSX.Element {
+export default function ComponentShoppingCart({ order }: { order: () => void }): JSX.Element {
     const [amount, setAmount] = useState(3)
     const [modalOpen, setModalOpen] = useState(false)
     const { t } = useTranslation()
@@ -82,7 +82,8 @@ export default function ComponentShoppingCart(): JSX.Element {
                     <p className='font-display'>¥{frontendCalculate(mockOrderedItem)}</p>
                 </div>
                 <button className='flex-shrink transition-colors duration-100
-                     flex bg-accent-orange-bg hover:bg-amber-100 py-3 px-8 justify-center items-center'>
+                     flex bg-accent-orange-bg hover:bg-amber-100 py-3 px-8 justify-center items-center'
+                        onClick={order}>
                     <p className='font-display'>{t('order.order')}</p>
                 </button>
             </div>
@@ -107,7 +108,8 @@ export default function ComponentShoppingCart(): JSX.Element {
                             <p className='font-display'>¥{frontendCalculate(mockOrderedItem)}</p>
                         </div>
                         <button className='flex-shrink rounded-br-3xl transition-colors duration-100
-                     flex h-full bg-accent-orange-bg hover:bg-amber-100 py-3 px-8 justify-center items-center'>
+                     flex h-full bg-accent-orange-bg hover:bg-amber-100 py-3 px-8 justify-center items-center'
+                                onClick={order}>
                             <p className='font-display'>{t('order.order')}</p>
                         </button>
                     </div>
