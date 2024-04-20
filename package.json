@@ -15,6 +15,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@tanstack/react-query": "^5.29.2",
     "decimal.js": "^10.4.3",
     "framer-motion": "^11.0.25",
     "i18next": "^23.10.1",
@@ -23,10 +24,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^14.1.0",
-    "react-intersection-observer": "^9.8.2",
     "react-router-dom": "^6.22.3"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.28.11",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^6.21.0",

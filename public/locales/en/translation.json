@@ -1,5 +1,8 @@
 {
   "name": "Whale Cafe",
+  "error": {
+    "message": "An error occurred."
+  },
   "home": {
     "title": "Enjoyment in <1/> every sip.",
     "description": "Lorem ipsum sit dolor amit, consectetur adipiscing elit. <1/> Lorem ipsum sit dolor amit, consectetur adipiscing elit.",

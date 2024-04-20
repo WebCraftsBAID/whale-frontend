@@ -1,5 +1,8 @@
 {
   "name": "白鲸咖啡馆",
+  "error": {
+    "message": "发生了一个错误."
+  },
   "home": {
     "title": "每分每刻 <1/> 皆享受.",
     "description": "Lorem ipsum sit dolor amit, consectetur adipiscing elit. <1/> Lorem ipsum sit dolor amit, consectetur adipiscing elit.",
