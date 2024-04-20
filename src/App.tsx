@@ -4,6 +4,7 @@ import PageOrder from './ui/pages/order/PageOrder.tsx'
 import { AnimatePresence } from 'framer-motion'
 import PreventWeChatBrowser from './ui/pages/wechat/PreventWeChatBrowser.tsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ShoppingCartProvider } from './data/shoppingCart.tsx'
 
 const queryClient = new QueryClient()
 
@@ -13,12 +14,14 @@ export default function App(): JSX.Element {
     return (
         <AnimatePresence mode='wait'>
             <QueryClientProvider client={queryClient}>
-                {/MicroMessenger/i.test(window.navigator.userAgent)
-                    ? <PreventWeChatBrowser />
-                    : <Routes location={location} key={location.pathname}>
-                        <Route index element={<PageHome />} />
-                        <Route path='order' element={<PageOrder />} />
-                    </Routes>}
+                <ShoppingCartProvider>
+                    {/MicroMessenger/i.test(window.navigator.userAgent)
+                        ? <PreventWeChatBrowser />
+                        : <Routes location={location} key={location.pathname}>
+                            <Route index element={<PageHome />} />
+                            <Route path='order' element={<PageOrder />} />
+                        </Routes>}
+                </ShoppingCartProvider>
             </QueryClientProvider>
         </AnimatePresence>
     )
