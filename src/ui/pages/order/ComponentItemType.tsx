@@ -3,12 +3,16 @@ import { moneyRound } from '../../../utils.ts'
 import { useTranslation } from 'react-i18next'
 import Decimal from 'decimal.js'
 
-export default function ComponentItemType({ item }: { item: ItemTypeSchema }): JSX.Element {
+export default function ComponentItemType({
+    item,
+    pickItem
+}: { item: ItemTypeSchema, pickItem: () => void }): JSX.Element {
     const { t } = useTranslation()
 
     return (
         <div
-            className='cursor-pointer hover:bg-gray-50 transition-colors duration-100 flex items-center p-4 rounded-xl'>
+            className='cursor-pointer hover:bg-gray-50 transition-colors duration-100 flex items-center p-4 rounded-xl'
+            onClick={pickItem}>
             <div className='mr-5 flex-shrink'>
                 <img src={item.image} alt={`Picture of ${item.name}`}
                      className='rounded-full w-24 aspect-square object-cover' />

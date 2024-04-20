@@ -12,13 +12,14 @@ export interface TagSchema {
 export interface OptionTypeSchema {
     id: number
     name: string
-    defaultId: number
+    items: OptionItemSchema[]
+    defaultId: number | null
 }
 
 export interface OptionItemSchema {
     id: number
     name: string
-    type: OptionTypeSchema
+    typeId: number
     priceChange: string
 }
 

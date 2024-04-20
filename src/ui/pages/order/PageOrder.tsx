@@ -10,10 +10,12 @@ import { useQuery } from '@tanstack/react-query'
 import { getCategories } from '../../../data/api.ts'
 import ComponentError from '../../common/ComponentError.tsx'
 import ComponentLoading from '../../common/ComponentLoading.tsx'
-import { type CategorySchema } from '../../../data/dataTypes.ts'
+import { type CategorySchema, type ItemTypeSchema } from '../../../data/dataTypes.ts'
+import ComponentItemDetails from './ComponentItemDetails.tsx'
 
 export default function PageOrder(): JSX.Element {
     const [confirmModalOpen, setConfirmModalOpen] = useState(false)
+    const [pickItem, setPickItem] = useState<ItemTypeSchema | null>(null)
 
     const categories = useQuery({
         queryKey: ['categories'],
@@ -41,7 +43,14 @@ export default function PageOrder(): JSX.Element {
                     <ComponentTopBar />
                 </div>
 
-                <div className='flex flex-grow min-h-0'>
+                <div className='flex flex-grow min-h-0 relative'>
+                    <div
+                        className={`absolute z-[200] top-0 left-0 w-full h-full transition-opacity duration-100 ${pickItem == null ? 'opacity-0 pointer-events-none' : ''}`}>
+                        <ComponentItemDetails item={pickItem} close={() => {
+                            setPickItem(null)
+                        }} />
+                    </div>
+
                     <div className='h-full' style={{ flexShrink: '0' }}>
                         <ComponentCategories categories={resultedCategories}
                                              ids={resultedCategories.map(category => `category-m-${category.id}`)} />
@@ -53,7 +62,9 @@ export default function PageOrder(): JSX.Element {
 
                         {resultedCategories.map(category =>
                             <div key={category.id} className='mb-8' id={`category-m-${category.id}`}>
-                                <ComponentCategory category={category} />
+                                <ComponentCategory category={category} pickItem={(item) => {
+                                    setPickItem(item)
+                                }} />
                             </div>)}
                     </div>
                 </div>
@@ -71,11 +82,20 @@ export default function PageOrder(): JSX.Element {
                                          ids={resultedCategories.map(category => `category-d-${category.id}`)} />
                 </div>
                 <div className='flex flex-grow min-h-0'>
-                    <div className='w-1/2 border-r border-gray-300 border-solid p-16 h-full overflow-y-auto'>
+                    <div className='w-1/2 border-r border-gray-300 border-solid p-16 h-full overflow-y-auto relative'>
+                        <div
+                            className={`absolute top-0 left-0 w-full h-full transition-opacity duration-100 ${pickItem == null ? 'opacity-0 pointer-events-none' : ''}`}>
+                            <ComponentItemDetails item={pickItem} close={() => {
+                                setPickItem(null)
+                            }} />
+                        </div>
+
                         {resultedCategories.map(category => <div key={category.id}
                                                                  className='mb-8'
                                                                  id={`category-d-${category.id}`}>
-                            <ComponentCategory category={category} />
+                            <ComponentCategory category={category} pickItem={(item) => {
+                                setPickItem(item)
+                            }} />
                         </div>)}
                     </div>
                     <div className='w-1/2 h-full p-8 xl:p-12 2xl:px-24 2xl:py-16'>
