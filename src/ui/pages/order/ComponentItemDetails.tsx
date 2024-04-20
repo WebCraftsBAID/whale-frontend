@@ -97,7 +97,7 @@ export default function ComponentItemDetails({
         <div className='w-screen h-screen lg:h-full lg:w-full bg-white relative'>
             <div className='p-8 lg:p-12 xl:p-24'>
                 <button
-                    className='absolute right-12 top-12
+                    className='absolute right-12 top-12 bg-white
                     rounded-full w-10 h-10 hover:bg-gray-50 transition-colors duration-100'
                     onClick={() => {
                         close()
