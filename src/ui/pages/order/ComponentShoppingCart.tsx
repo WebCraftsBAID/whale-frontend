@@ -39,7 +39,7 @@ export default function ComponentShoppingCart({ order }: { order: () => void }):
                 {items.length > 0
                     ? items.map((item: OrderedItemSchema) => <ComponentOrderedItem key={item.id} item={item}
                                                                                    changeAmount={(change) => {
-                                                                                       setItemAmount(getItemAmount(item.id) + change)
+                                                                                       setItemAmount(item.id, getItemAmount(item.id) + change)
                                                                                    }} />)
                     : <div className='h-full w-full flex flex-col justify-center items-center'>
                         <FontAwesomeIcon icon={faMugSaucer} className='text-4xl text-gray-400 mb-3' />
@@ -75,7 +75,7 @@ export default function ComponentShoppingCart({ order }: { order: () => void }):
                         {items.length > 0
                             ? items.map((item: OrderedItemSchema) => <ComponentOrderedItem key={item.id} item={item}
                                                                                            changeAmount={(change) => {
-                                                                                               setItemAmount(getItemAmount(item.id) + change)
+                                                                                               setItemAmount(item.id, getItemAmount(item.id) + change)
                                                                                            }} />)
                             : <div className='h-full w-full flex flex-col justify-center items-center'>
                                 <FontAwesomeIcon icon={faMugSaucer} className='text-4xl text-gray-400 mb-3' />

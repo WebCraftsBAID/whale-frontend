@@ -27,7 +27,7 @@ export function ShoppingCartProvider({ children }: { children: ReactNode }): JSX
         }
         setItems(prevItems => {
             prevItems.push(item)
-            return prevItems
+            return Array.from(prevItems)
         })
         return item
     }
@@ -52,7 +52,7 @@ export function ShoppingCartProvider({ children }: { children: ReactNode }): JSX
                 }
                 setItems(prevItems => {
                     prevItems[i].amount = newAmount
-                    return prevItems
+                    return Array.from(prevItems)
                 })
                 return true
             }
@@ -61,7 +61,7 @@ export function ShoppingCartProvider({ children }: { children: ReactNode }): JSX
         if (flagRemove !== -1) {
             setItems(prevItems => {
                 prevItems.splice(flagRemove, 1)
-                return prevItems
+                return Array.from(prevItems)
             })
             return true
         }
