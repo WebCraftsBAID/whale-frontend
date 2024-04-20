@@ -18,7 +18,7 @@ export default function ComponentOrderedItem({
                     <p className='text-xs text-gray-400'>{item.appliedOptions.map(option => option.name).join(' / ')}</p>
                 </div>
                 <div className='flex'>
-                    <p className='flex-grow text-sm lg:text-base'>¥{moneyRound(frontendCalculate(item))}</p>
+                    <p className='flex-grow text-sm lg:text-base'>¥{moneyRound(frontendCalculate(item)).toString()}</p>
                     {changeAmount == null
                         ? <div className='flex-shrink'>
                             <p>x{item.amount}</p>

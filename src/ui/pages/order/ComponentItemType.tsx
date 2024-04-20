@@ -18,8 +18,10 @@ export default function ComponentItemType({ item }: { item: ItemTypeSchema }): J
                     <p className='text-xs text-gray-400'>{item.shortDescription}</p>
                 </div>
                 <div className='flex'>
-                    <p className='flex-grow text-sm lg:text-base'>¥{moneyRound(item.basePrice * item.salePercent)} {
-                        item.salePercent !== 1 ? <span className='ml-1 line-through'>{item.basePrice}</span> : null}</p>
+                    <p className='flex-grow text-sm lg:text-base'>¥{moneyRound(item.basePrice.mul(item.salePercent)).toString()} {
+                        item.salePercent !== 1
+                            ? <span className='ml-1 line-through'>{item.basePrice.toString()}</span>
+                            : null}</p>
                     <button className='bg-black px-3 py-1 font-bold hover:bg-gray-900 lg:text-sm rounded-full
                                         transition-colors duration-100 font-display text-xs text-white'>
                         {t('order.item.pick')}

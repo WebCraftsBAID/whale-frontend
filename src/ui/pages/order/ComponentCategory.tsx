@@ -1,103 +1,104 @@
 import { type CategorySchema, type ItemTypeSchema } from '../../../data/dataTypes.ts'
 import ComponentItemType from './ComponentItemType.tsx'
+import Decimal from 'decimal.js'
 
 export default function ComponentCategory({ category }: { category: CategorySchema }): JSX.Element {
     // DATA: ItemType[s] are to be requested here. Mock data is used.
     const items: ItemTypeSchema[] = [
         {
             id: 1,
-            categoryId: category.id,
+            category,
             name: 'Test',
             image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
             tags: [],
             shortDescription: 'Lorem ipsum sit dolor amit. Lorem ipsum sit dolor amit.',
             description: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
             options: [],
-            basePrice: 10,
+            basePrice: new Decimal(10),
             salePercent: 0.8
         },
         {
             id: 2,
-            categoryId: category.id,
+            category,
             name: 'Test2',
             image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
             tags: [],
             shortDescription: 'Lorem ipsum sit dolor amit. Lorem ipsum sit dolor amit.',
             description: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
             options: [],
-            basePrice: 10,
+            basePrice: new Decimal(10),
             salePercent: 0.8
         },
         {
             id: 3,
-            categoryId: category.id,
+            category,
             name: 'Test3',
             image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
             tags: [],
             shortDescription: 'Lorem ipsum sit dolor amit. Lorem ipsum sit dolor amit.',
             description: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
             options: [],
-            basePrice: 10,
+            basePrice: new Decimal(10),
             salePercent: 0.8
         },
         {
             id: 4,
-            categoryId: category.id,
+            category,
             name: 'Test3',
             image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
             tags: [],
             shortDescription: 'Lorem ipsum sit dolor amit. Lorem ipsum sit dolor amit.',
             description: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
             options: [],
-            basePrice: 10,
+            basePrice: new Decimal(10),
             salePercent: 0.8
         },
         {
             id: 5,
-            categoryId: category.id,
+            category,
             name: 'Test3',
             image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
             tags: [],
             shortDescription: 'Lorem ipsum sit dolor amit. Lorem ipsum sit dolor amit.',
             description: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
             options: [],
-            basePrice: 10,
+            basePrice: new Decimal(10),
             salePercent: 0.8
         },
         {
             id: 6,
-            categoryId: category.id,
+            category,
             name: 'Test3',
             image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
             tags: [],
             shortDescription: 'Lorem ipsum sit dolor amit. Lorem ipsum sit dolor amit.',
             description: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
             options: [],
-            basePrice: 10,
+            basePrice: new Decimal(10),
             salePercent: 0.8
         },
         {
             id: 7,
-            categoryId: category.id,
+            category,
             name: 'Test3',
             image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
             tags: [],
             shortDescription: 'Lorem ipsum sit dolor amit. Lorem ipsum sit dolor amit.',
             description: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
             options: [],
-            basePrice: 10,
+            basePrice: new Decimal(10),
             salePercent: 0.8
         },
         {
             id: 8,
-            categoryId: category.id,
+            category,
             name: 'Test3',
             image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
             tags: [],
             shortDescription: 'Lorem ipsum sit dolor amit. Lorem ipsum sit dolor amit.',
             description: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
             options: [],
-            basePrice: 10,
+            basePrice: new Decimal(10),
             salePercent: 0.8
         }
     ]

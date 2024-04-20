@@ -1,12 +1,16 @@
 import { type OrderedItemSchema } from './data/dataTypes.ts'
+import Decimal from 'decimal.js'
 
-export function moneyRound(n: number): string {
-    const multipli = Math.pow(10, 2)
-    n = parseFloat((n * multipli).toFixed(11))
-    return (+(Math.round(n) / multipli).toFixed(2)).toString()
+export function moneyRound(n: Decimal): Decimal {
+    return n.mul(100).round().div(100)
 }
 
 // Frontend money calculation is for display only -- real money calculation is done on the backend with Decimals
-export function frontendCalculate(item: OrderedItemSchema): number {
-    return (item.itemType.basePrice * item.itemType.salePercent + item.appliedOptions.map(option => option.priceChange).reduce((partialSum, a) => partialSum + a, 0)) * item.amount
+export function frontendCalculate(item: OrderedItemSchema): Decimal {
+    return item.itemType.basePrice
+        .mul(item.itemType.salePercent)
+        .add(item.appliedOptions
+            .map(option => option.priceChange)
+            .reduce((partialSum, current) => partialSum.add(current), new Decimal(0))
+        ).mul(item.amount)
 }
