@@ -13,11 +13,8 @@ function shouldUseWhiteText(hexColor: string): boolean {
     const g = hexToDecimal(hexColor.slice(3, 5))
     const b = hexToDecimal(hexColor.slice(5, 7))
 
-    const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b
-
-    const threshold = 128 * 255 / 2
-
-    return luminance < threshold
+    const luminance = 0.299 * r + 0.587 * g + 0.114 * b
+    return luminance < 186
 }
 
 function ComponentOption({
