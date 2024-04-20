@@ -16,5 +16,5 @@ export interface OrderEstimateSchema {
 }
 
 export interface GenericError {
-    message: string
+    detail: string
 }
