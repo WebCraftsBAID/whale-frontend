@@ -7,7 +7,7 @@ export function moneyRound(n: Decimal): Decimal {
 
 // Frontend money calculation is for display only -- real money calculation is done on the backend with Decimals
 export function frontendCalculate(item: OrderedItemSchema): Decimal {
-    return item.itemType.basePrice
+    return new Decimal(item.itemType.basePrice)
         .mul(item.itemType.salePercent)
         .add(item.appliedOptions
             .map(option => option.priceChange)

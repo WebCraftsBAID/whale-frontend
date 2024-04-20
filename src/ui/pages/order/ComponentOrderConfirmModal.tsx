@@ -5,7 +5,6 @@ import { faCircleExclamation, faClock, faClose } from '@fortawesome/free-solid-s
 import { useState } from 'react'
 import type { OrderedItemSchema } from '../../../data/dataTypes.ts'
 import ComponentOrderedItem from './ComponentOrderedItem.tsx'
-import Decimal from 'decimal.js'
 
 export default function ComponentOrderConfirmModal({
     open,
@@ -31,7 +30,7 @@ export default function ComponentOrderConfirmModal({
             shortDescription: 'Lorem ipsum sit dolor amit. Lorem ipsum sit dolor amit.',
             description: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
             options: [],
-            basePrice: new Decimal(10),
+            basePrice: '10',
             salePercent: 0.8
         },
         appliedOptions: [
@@ -43,7 +42,7 @@ export default function ComponentOrderConfirmModal({
                     name: 'Added Fruits',
                     defaultId: 1
                 },
-                priceChange: new Decimal(1)
+                priceChange: '1'
             }
         ],
         amount: 3

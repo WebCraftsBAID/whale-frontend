@@ -1,5 +1,3 @@
-import type Decimal from 'decimal.js'
-
 export interface CategorySchema {
     id: number
     name: string
@@ -21,7 +19,7 @@ export interface OptionItemSchema {
     id: number
     name: string
     type: OptionTypeSchema
-    priceChange: Decimal
+    priceChange: string
 }
 
 export interface ItemTypeSchema {
@@ -33,7 +31,7 @@ export interface ItemTypeSchema {
     description: string
     shortDescription: string
     options: OptionTypeSchema[]
-    basePrice: Decimal
+    basePrice: string
     salePercent: number
 }
 
@@ -54,7 +52,7 @@ export enum OrderStatus {
 
 export interface OrderSchema {
     id: number
-    totalPrice: Decimal
+    totalPrice: string
     number: string
     status: OrderStatus
     createdTime: string

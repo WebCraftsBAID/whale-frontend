@@ -1,6 +1,7 @@
 import { type ItemTypeSchema } from '../../../data/dataTypes.ts'
 import { moneyRound } from '../../../utils.ts'
 import { useTranslation } from 'react-i18next'
+import Decimal from 'decimal.js'
 
 export default function ComponentItemType({ item }: { item: ItemTypeSchema }): JSX.Element {
     const { t } = useTranslation()
@@ -18,7 +19,7 @@ export default function ComponentItemType({ item }: { item: ItemTypeSchema }): J
                     <p className='text-xs text-gray-400'>{item.shortDescription}</p>
                 </div>
                 <div className='flex'>
-                    <p className='flex-grow text-sm lg:text-base'>¥{moneyRound(item.basePrice.mul(item.salePercent)).toString()} {
+                    <p className='flex-grow text-sm lg:text-base'>¥{moneyRound(new Decimal(item.basePrice).mul(item.salePercent)).toString()} {
                         item.salePercent !== 1
                             ? <span className='ml-1 line-through'>{item.basePrice.toString()}</span>
                             : null}</p>

@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next'
 import { frontendCalculate } from '../../../utils.ts'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClose } from '@fortawesome/free-solid-svg-icons'
-import Decimal from 'decimal.js'
 
 export default function ComponentShoppingCart({ order }: { order: () => void }): JSX.Element {
     const [amount, setAmount] = useState(3)
@@ -27,7 +26,7 @@ export default function ComponentShoppingCart({ order }: { order: () => void }):
             shortDescription: 'Lorem ipsum sit dolor amit. Lorem ipsum sit dolor amit.',
             description: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
             options: [],
-            basePrice: new Decimal(10),
+            basePrice: '10',
             salePercent: 0.8
         },
         appliedOptions: [
@@ -39,7 +38,7 @@ export default function ComponentShoppingCart({ order }: { order: () => void }):
                     name: 'Added Fruits',
                     defaultId: 1
                 },
-                priceChange: new Decimal(1)
+                priceChange: '1'
             }
         ],
         amount

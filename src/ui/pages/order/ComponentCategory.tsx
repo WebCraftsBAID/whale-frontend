@@ -1,115 +1,28 @@
 import { type CategorySchema, type ItemTypeSchema } from '../../../data/dataTypes.ts'
 import ComponentItemType from './ComponentItemType.tsx'
-import Decimal from 'decimal.js'
+import { useQuery } from '@tanstack/react-query'
+import { getItemTypesByCategory } from '../../../data/api.ts'
+import ComponentError from '../../common/ComponentError.tsx'
+import ComponentLoading from '../../common/ComponentLoading.tsx'
 
 export default function ComponentCategory({ category }: { category: CategorySchema }): JSX.Element {
     // DATA: ItemType[s] are to be requested here. Mock data is used.
-    const items: ItemTypeSchema[] = [
-        {
-            id: 1,
-            category,
-            name: 'Test',
-            image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
-            tags: [],
-            shortDescription: 'Lorem ipsum sit dolor amit. Lorem ipsum sit dolor amit.',
-            description: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-            options: [],
-            basePrice: new Decimal(10),
-            salePercent: 0.8
-        },
-        {
-            id: 2,
-            category,
-            name: 'Test2',
-            image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
-            tags: [],
-            shortDescription: 'Lorem ipsum sit dolor amit. Lorem ipsum sit dolor amit.',
-            description: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-            options: [],
-            basePrice: new Decimal(10),
-            salePercent: 0.8
-        },
-        {
-            id: 3,
-            category,
-            name: 'Test3',
-            image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
-            tags: [],
-            shortDescription: 'Lorem ipsum sit dolor amit. Lorem ipsum sit dolor amit.',
-            description: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-            options: [],
-            basePrice: new Decimal(10),
-            salePercent: 0.8
-        },
-        {
-            id: 4,
-            category,
-            name: 'Test3',
-            image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
-            tags: [],
-            shortDescription: 'Lorem ipsum sit dolor amit. Lorem ipsum sit dolor amit.',
-            description: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-            options: [],
-            basePrice: new Decimal(10),
-            salePercent: 0.8
-        },
-        {
-            id: 5,
-            category,
-            name: 'Test3',
-            image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
-            tags: [],
-            shortDescription: 'Lorem ipsum sit dolor amit. Lorem ipsum sit dolor amit.',
-            description: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-            options: [],
-            basePrice: new Decimal(10),
-            salePercent: 0.8
-        },
-        {
-            id: 6,
-            category,
-            name: 'Test3',
-            image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
-            tags: [],
-            shortDescription: 'Lorem ipsum sit dolor amit. Lorem ipsum sit dolor amit.',
-            description: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-            options: [],
-            basePrice: new Decimal(10),
-            salePercent: 0.8
-        },
-        {
-            id: 7,
-            category,
-            name: 'Test3',
-            image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
-            tags: [],
-            shortDescription: 'Lorem ipsum sit dolor amit. Lorem ipsum sit dolor amit.',
-            description: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-            options: [],
-            basePrice: new Decimal(10),
-            salePercent: 0.8
-        },
-        {
-            id: 8,
-            category,
-            name: 'Test3',
-            image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
-            tags: [],
-            shortDescription: 'Lorem ipsum sit dolor amit. Lorem ipsum sit dolor amit.',
-            description: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-            options: [],
-            basePrice: new Decimal(10),
-            salePercent: 0.8
-        }
-    ]
+    const items = useQuery({
+        queryKey: ['categoryItems'],
+        queryFn: async () => await getItemTypesByCategory(category.id)
+    })
 
     return (
         <div>
             <p className='text-lg font-display mb-3'>{category.name}</p>
 
-            <div className='grid grid-cols-1 2xl:grid-cols-2'>
-                {items.map(item => <ComponentItemType key={item.id} item={item} />)}
-            </div>
+            {items.isError ? <div className='h-96'><ComponentError detail={items} /></div> : null}
+            {items.isPending ? <div className='h-96'><ComponentLoading /></div> : null}
+            {items.data != null
+                ? <div className='grid grid-cols-1 2xl:grid-cols-2'>
+                    {(items.data as ItemTypeSchema[]).map(item => <ComponentItemType key={item.id} item={item} />)}
+                </div>
+                : null}
         </div>
     )
 }

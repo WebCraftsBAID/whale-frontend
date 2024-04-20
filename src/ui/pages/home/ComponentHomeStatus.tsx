@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faHourglass, faHourglassHalf } from '@fortawesome/free-solid-svg-icons'
 import { type OrderSchema, OrderStatus } from '../../../data/dataTypes.ts'
 import { Trans, useTranslation } from 'react-i18next'
-import Decimal from 'decimal.js'
 
 export default function ComponentHomeStatus(): JSX.Element {
     const { t } = useTranslation()
@@ -10,7 +9,7 @@ export default function ComponentHomeStatus(): JSX.Element {
     const order: OrderSchema = {
         id: 0,
         items: [],
-        totalPrice: new Decimal(0),
+        totalPrice: '0',
         number: '013',
         status: OrderStatus.ready,
         createdTime: '',
