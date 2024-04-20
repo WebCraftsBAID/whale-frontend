@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 import ComponentIconText from '../../common/ComponentIconText.tsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleExclamation, faClock, faClose } from '@fortawesome/free-solid-svg-icons'
+import { faCircleExclamation, faClock, faClose, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
 import type { OrderedItemSchema } from '../../../data/dataTypes.ts'
 import ComponentOrderedItem from './ComponentOrderedItem.tsx'
@@ -58,6 +58,12 @@ export default function ComponentOrderConfirmModal({
                                              count={(estimate.data as OrderEstimateSchema).time + getTotalItems() * 2}
                                              components={{ 1: <strong></strong> }} />
                                     : null}
+                            </ComponentIconText>
+                        </div>
+                        <div className='mb-3'>
+                            <ComponentIconText
+                                icon={<FontAwesomeIcon icon={faTriangleExclamation} className='text-yellow-400' />}>
+                                {t('order.confirm.abuse')}
                             </ComponentIconText>
                         </div>
                         <div className='mb-5'>
