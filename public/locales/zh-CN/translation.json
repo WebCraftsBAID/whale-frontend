@@ -45,7 +45,7 @@
       "name": "您的姓名*",
       "room": "您的班级房间号*",
       "orders": "已点产品",
-      "total": "¥{{price}} 共需付款",
+      "total": "需付款 ¥{{count}}",
       "confirm": "确认"
     }
   }
