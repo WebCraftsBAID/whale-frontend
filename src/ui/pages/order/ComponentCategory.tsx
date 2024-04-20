@@ -6,9 +6,8 @@ import ComponentError from '../../common/ComponentError.tsx'
 import ComponentLoading from '../../common/ComponentLoading.tsx'
 
 export default function ComponentCategory({ category }: { category: CategorySchema }): JSX.Element {
-    // DATA: ItemType[s] are to be requested here. Mock data is used.
     const items = useQuery({
-        queryKey: ['categoryItems'],
+        queryKey: ['categoryItems', `category-${category.id}`],
         queryFn: async () => await getItemTypesByCategory(category.id)
     })
 
