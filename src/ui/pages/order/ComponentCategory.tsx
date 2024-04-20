@@ -1,12 +1,12 @@
-import { type Category, type ItemType } from '../../../data/dataTypes.ts'
+import { type CategorySchema, type ItemTypeSchema } from '../../../data/dataTypes.ts'
 import ComponentItemType from './ComponentItemType.tsx'
 
-export default function ComponentCategory({ category }: { category: Category }): JSX.Element {
+export default function ComponentCategory({ category }: { category: CategorySchema }): JSX.Element {
     // DATA: ItemType[s] are to be requested here. Mock data is used.
-    const items: ItemType[] = [
+    const items: ItemTypeSchema[] = [
         {
             id: 1,
-            category,
+            categoryId: category.id,
             name: 'Test',
             image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
             tags: [],
@@ -18,7 +18,7 @@ export default function ComponentCategory({ category }: { category: Category }):
         },
         {
             id: 2,
-            category,
+            categoryId: category.id,
             name: 'Test2',
             image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
             tags: [],
@@ -30,7 +30,7 @@ export default function ComponentCategory({ category }: { category: Category }):
         },
         {
             id: 3,
-            category,
+            categoryId: category.id,
             name: 'Test3',
             image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
             tags: [],
@@ -42,7 +42,7 @@ export default function ComponentCategory({ category }: { category: Category }):
         },
         {
             id: 4,
-            category,
+            categoryId: category.id,
             name: 'Test3',
             image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
             tags: [],
@@ -54,7 +54,7 @@ export default function ComponentCategory({ category }: { category: Category }):
         },
         {
             id: 5,
-            category,
+            categoryId: category.id,
             name: 'Test3',
             image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
             tags: [],
@@ -66,7 +66,7 @@ export default function ComponentCategory({ category }: { category: Category }):
         },
         {
             id: 6,
-            category,
+            categoryId: category.id,
             name: 'Test3',
             image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
             tags: [],
@@ -78,7 +78,7 @@ export default function ComponentCategory({ category }: { category: Category }):
         },
         {
             id: 7,
-            category,
+            categoryId: category.id,
             name: 'Test3',
             image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
             tags: [],
@@ -90,7 +90,7 @@ export default function ComponentCategory({ category }: { category: Category }):
         },
         {
             id: 8,
-            category,
+            categoryId: category.id,
             name: 'Test3',
             image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
             tags: [],

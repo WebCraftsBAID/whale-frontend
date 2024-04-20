@@ -1,4 +1,4 @@
-import { type OrderedItem } from '../../../data/dataTypes.ts'
+import { type OrderedItemSchema } from '../../../data/dataTypes.ts'
 import ComponentOrderedItem from './ComponentOrderedItem.tsx'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -11,8 +11,9 @@ export default function ComponentShoppingCart({ order }: { order: () => void }):
     const [modalOpen, setModalOpen] = useState(false)
     const { t } = useTranslation()
 
-    const mockOrderedItem: OrderedItem = {
+    const mockOrderedItem: OrderedItemSchema = {
         id: 1,
+        orderId: 1,
         itemType: {
             id: 8,
             category: {
@@ -35,7 +36,7 @@ export default function ComponentShoppingCart({ order }: { order: () => void }):
                 type: {
                     id: 1,
                     name: 'Added Fruits',
-                    default: 1
+                    defaultId: 1
                 },
                 priceChange: 1
             }

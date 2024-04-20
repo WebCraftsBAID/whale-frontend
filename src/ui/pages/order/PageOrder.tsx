@@ -1,4 +1,4 @@
-import { type Category } from '../../../data/dataTypes.ts'
+import { type CategorySchema } from '../../../data/dataTypes.ts'
 import AnimatedPage from '../../../AnimatedPage.tsx'
 import ComponentCategories from './ComponentCategories.tsx'
 import { type InViewHookResponse, useInView } from 'react-intersection-observer'
@@ -12,7 +12,7 @@ import ComponentOrderConfirmModal from './ComponentOrderConfirmModal.tsx'
 export default function PageOrder(): JSX.Element {
     const [confirmModalOpen, setConfirmModalOpen] = useState(false)
 
-    const categories: Category[] = [{
+    const categories: CategorySchema[] = [{
         id: 1,
         name: 'Coffee ☕'
     }, {

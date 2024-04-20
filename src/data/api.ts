@@ -1,7 +1,7 @@
-import { type Category, type ItemType, type Order, type OrderedItem } from './dataTypes.ts'
-import { type OrderEstimatedTime, type StandardError } from './apiDataTypes.ts'
+import { type CategorySchema, type ItemTypeSchema, type OrderSchema } from './dataTypes.ts'
+import { type GenericError, type OrderCreateSchema, type OrderEstimateSchema } from './apiDataTypes.ts'
 
-export async function get (endpoint: string, query = new Map<string, string>()): Promise<any> {
+export async function get(endpoint: string, query = new Map<string, string>()): Promise<any> {
     const entries = Array.from(query.entries())
     const queryParameters = entries.map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
 
@@ -15,7 +15,7 @@ export async function get (endpoint: string, query = new Map<string, string>()):
     return JSON.parse(text)
 }
 
-export async function post (endpoint: string, body: Record<string, unknown>): Promise<any> {
+export async function post(endpoint: string, body: Record<string, any>): Promise<any> {
     const response = await fetch(import.meta.env.API_HOST + '/' + endpoint, {
         method: 'POST',
         headers: {
@@ -33,7 +33,7 @@ export async function post (endpoint: string, body: Record<string, unknown>): Pr
     return JSON.parse(text)
 }
 
-export async function patch (endpoint: string, body: Record<string, unknown>): Promise<any> {
+export async function patch(endpoint: string, body: Record<string, unknown>): Promise<any> {
     const response = await fetch(import.meta.env.API_HOST + '/' + endpoint, {
         method: 'PATCH',
         headers: {
@@ -51,7 +51,7 @@ export async function patch (endpoint: string, body: Record<string, unknown>): P
     return JSON.parse(text)
 }
 
-export async function del (endpoint: string, body: Record<string, unknown>): Promise<any> {
+export async function del(endpoint: string, body: Record<string, unknown>): Promise<any> {
     const response = await fetch(import.meta.env.API_HOST + '/' + endpoint, {
         method: 'DELETE',
         headers: {
@@ -69,38 +69,42 @@ export async function del (endpoint: string, body: Record<string, unknown>): Pro
     return JSON.parse(text)
 }
 
-export async function getCategories (): Promise<Category[] | StandardError> {
-    return await get('categories')
-}
-
-export async function getItemTypes (): Promise<ItemType[] | StandardError> {
+export async function getItemTypes(): Promise<ItemTypeSchema[] | GenericError> {
     return await get('items')
 }
 
-export async function getSettings (): Promise<Map<string, string> | StandardError> {
-    return await get('settings')
+export async function getItemTypesByCategory(category: number): Promise<ItemTypeSchema[] | GenericError> {
+    return await get('items', new Map([['category', category.toString()]]))
 }
 
-export async function getSettingsByKey (key: string): Promise<string | StandardError> {
+export async function getItemType(id: number): Promise<ItemTypeSchema | GenericError> {
+    return await get('item', new Map([['id', id.toString()]]))
+}
+
+export async function getCategories(): Promise<CategorySchema[] | GenericError> {
+    return await get('categories')
+}
+
+export async function getCategory(id: number): Promise<CategorySchema | GenericError> {
+    return await get('category', new Map([['id', id.toString()]]))
+}
+
+export async function getSettings(key: string): Promise<string | GenericError> {
     return await get('settings', new Map([['key', key]]))
 }
 
-export async function getOrderByID (id: number): Promise<Order | StandardError> {
+export async function getOrder(id: number): Promise<OrderSchema | GenericError> {
     return await get('order', new Map([['id', id.toString()]]))
 }
 
-export async function getOrderTimeEstimate (id: number): Promise<OrderEstimatedTime | StandardError> {
+export async function getOrderTimeEstimate(id: number): Promise<OrderEstimateSchema | GenericError> {
     return await get('order/estimate', new Map([['id', id.toString()]]))
 }
 
-export async function cancelOrder (id: number): Promise<boolean | StandardError> {
+export async function cancelOrder(id: number): Promise<boolean | GenericError> {
     return await del('order', { id })
 }
 
-export async function order (items: OrderedItem[], contactName: string, contactRoom: string): Promise<Order | StandardError> {
-    return await post('order', {
-        items,
-        contactName,
-        contactRoom
-    })
+export async function order(create: OrderCreateSchema): Promise<OrderSchema | GenericError> {
+    return await post('order', create)
 }

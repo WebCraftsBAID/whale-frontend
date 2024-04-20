@@ -1,44 +1,45 @@
-export interface Category {
+export interface CategorySchema {
     id: number
     name: string
 }
 
-export interface Tag {
+export interface TagSchema {
     id: number
     name: string
     color: string
 }
 
-export interface OptionType {
+export interface OptionTypeSchema {
     id: number
     name: string
-    default: number
+    defaultId: number
 }
 
-export interface OptionItem {
+export interface OptionItemSchema {
     id: number
     name: string
-    type: OptionType
+    type: OptionTypeSchema
     priceChange: number
 }
 
-export interface ItemType {
+export interface ItemTypeSchema {
     id: number
-    category: Category
+    category: CategorySchema
     name: string
     image: string
-    tags: Tag[]
-    shortDescription: string
+    tags: TagSchema[]
     description: string
-    options: OptionType[]
+    shortDescription: string
+    options: OptionTypeSchema[]
     basePrice: number
     salePercent: number
 }
 
-export interface OrderedItem {
+export interface OrderedItemSchema {
     id: number
-    itemType: ItemType
-    appliedOptions: OptionItem[]
+    orderId: number
+    itemType: ItemTypeSchema
+    appliedOptions: OptionItemSchema[]
     amount: number
 }
 
@@ -49,13 +50,13 @@ export enum OrderStatus {
     pickedUp = 'pickedUp'
 }
 
-export interface Order {
+export interface OrderSchema {
     id: number
-    items: OrderedItem[]
     totalPrice: number
     number: string
     status: OrderStatus
     createdTime: string
     contactName: string
     contactRoom: string
+    items: OrderedItemSchema[]
 }

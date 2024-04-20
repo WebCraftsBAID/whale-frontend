@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { useTranslation } from 'react-i18next'
-import { type Category } from '../../../data/dataTypes.ts'
+import { type CategorySchema } from '../../../data/dataTypes.ts'
 import { type InViewHookResponse } from 'react-intersection-observer'
 
 // The tiles corresponding to each category is highlighted when
@@ -16,7 +16,7 @@ export default function ComponentCategories({
     refs,
     ids
 }:
-{ categories: Category[], refs: InViewHookResponse[], ids: string[] }): JSX.Element {
+{ categories: CategorySchema[], refs: InViewHookResponse[], ids: string[] }): JSX.Element {
     const navigate = useNavigate()
     const { t } = useTranslation()
 

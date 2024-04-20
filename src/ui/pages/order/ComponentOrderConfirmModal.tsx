@@ -3,7 +3,7 @@ import ComponentIconText from '../../common/ComponentIconText.tsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleExclamation, faClock, faClose } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
-import type { OrderedItem } from '../../../data/dataTypes.ts'
+import type { OrderedItemSchema } from '../../../data/dataTypes.ts'
 import ComponentOrderedItem from './ComponentOrderedItem.tsx'
 
 export default function ComponentOrderConfirmModal({
@@ -15,8 +15,9 @@ export default function ComponentOrderConfirmModal({
     const [name, setName] = useState('')
     const [room, setRoom] = useState('')
 
-    const mockOrderedItem: OrderedItem = {
+    const mockOrderedItem: OrderedItemSchema = {
         id: 1,
+        orderId: 1,
         itemType: {
             id: 8,
             category: {
@@ -39,7 +40,7 @@ export default function ComponentOrderConfirmModal({
                 type: {
                     id: 1,
                     name: 'Added Fruits',
-                    default: 1
+                    defaultId: 1
                 },
                 priceChange: 1
             }

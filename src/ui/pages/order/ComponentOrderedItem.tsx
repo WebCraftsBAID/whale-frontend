@@ -1,10 +1,10 @@
-import { type OrderedItem } from '../../../data/dataTypes.ts'
+import { type OrderedItemSchema } from '../../../data/dataTypes.ts'
 import { frontendCalculate, moneyRound } from '../../../utils.ts'
 
 export default function ComponentOrderedItem({
     item,
     changeAmount
-}: { item: OrderedItem, changeAmount: ((amount: number) => void) | null }): JSX.Element {
+}: { item: OrderedItemSchema, changeAmount: ((amount: number) => void) | null }): JSX.Element {
     return (
         <div
             className='flex items-center p-4 rounded-xl'>

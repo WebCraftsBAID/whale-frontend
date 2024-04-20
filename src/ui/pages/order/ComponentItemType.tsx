@@ -1,8 +1,8 @@
-import { type ItemType } from '../../../data/dataTypes.ts'
+import { type ItemTypeSchema } from '../../../data/dataTypes.ts'
 import { moneyRound } from '../../../utils.ts'
 import { useTranslation } from 'react-i18next'
 
-export default function ComponentItemType({ item }: { item: ItemType }): JSX.Element {
+export default function ComponentItemType({ item }: { item: ItemTypeSchema }): JSX.Element {
     const { t } = useTranslation()
 
     return (

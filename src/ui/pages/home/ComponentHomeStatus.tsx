@@ -1,12 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faHourglass, faHourglassHalf } from '@fortawesome/free-solid-svg-icons'
-import { type Order, OrderStatus } from '../../../data/dataTypes.ts'
+import { type OrderSchema, OrderStatus } from '../../../data/dataTypes.ts'
 import { Trans, useTranslation } from 'react-i18next'
 
 export default function ComponentHomeStatus(): JSX.Element {
     const { t } = useTranslation()
 
-    const order: Order = {
+    const order: OrderSchema = {
         id: 0,
         items: [],
         totalPrice: 0,
@@ -35,12 +35,15 @@ export default function ComponentHomeStatus(): JSX.Element {
                     {
                         new Map<OrderStatus, JSX.Element>([
                             [OrderStatus.ready,
+                                // eslint-disable-next-line react/jsx-key
                                 <FontAwesomeIcon icon={faCircleCheck}
                                                  className='text-5xl lg:text-7xl text-green-400' />],
                             [OrderStatus.inProgress,
+                                // eslint-disable-next-line react/jsx-key
                                 <FontAwesomeIcon icon={faHourglassHalf}
                                                  className='text-5xl lg:text-7xl text-accent-orange' />],
                             [OrderStatus.notStarted,
+                                // eslint-disable-next-line react/jsx-key
                                 <FontAwesomeIcon icon={faHourglass}
                                                  className='text-5xl lg:text-7xl text-accent-orange' />]
                         ]).get(order.status)
