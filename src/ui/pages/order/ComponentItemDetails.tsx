@@ -62,6 +62,10 @@ export default function ComponentItemDetails({
         setOptions(initialOptions)
     }, [item])
     const [amount, setAmount] = useState(1)
+    useEffect(() => {
+        setAmount(1)
+    }, [item])
+
     const { t } = useTranslation()
     const { addItem } = useShoppingCart()
 
