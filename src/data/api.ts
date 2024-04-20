@@ -97,6 +97,10 @@ export async function getOrder(id: number): Promise<OrderSchema | GenericError> 
     return await get('order', new Map([['id', id.toString()]]))
 }
 
+export async function getOrderTimeEstimateNow(): Promise<OrderEstimateSchema | GenericError> {
+    return await get('order/estimate')
+}
+
 export async function getOrderTimeEstimate(id: number): Promise<OrderEstimateSchema | GenericError> {
     return await get('order/estimate', new Map([['id', id.toString()]]))
 }

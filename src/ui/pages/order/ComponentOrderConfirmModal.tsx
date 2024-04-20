@@ -5,6 +5,10 @@ import { faCircleExclamation, faClock, faClose } from '@fortawesome/free-solid-s
 import { useState } from 'react'
 import type { OrderedItemSchema } from '../../../data/dataTypes.ts'
 import ComponentOrderedItem from './ComponentOrderedItem.tsx'
+import { useShoppingCart } from '../../../data/shoppingCart.tsx'
+import { useQuery } from '@tanstack/react-query'
+import { getOrderTimeEstimateNow } from '../../../data/api.ts'
+import { type OrderEstimateSchema } from '../../../data/apiDataTypes.ts'
 
 export default function ComponentOrderConfirmModal({
     open,
@@ -15,38 +19,16 @@ export default function ComponentOrderConfirmModal({
     const [name, setName] = useState('')
     const [room, setRoom] = useState('')
 
-    const mockOrderedItem: OrderedItemSchema = {
-        id: 1,
-        orderId: 1,
-        itemType: {
-            id: 8,
-            category: {
-                id: 1,
-                name: 'Drinks'
-            },
-            name: 'Test3',
-            image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
-            tags: [],
-            shortDescription: 'Lorem ipsum sit dolor amit. Lorem ipsum sit dolor amit.',
-            description: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-            options: [],
-            basePrice: '10',
-            salePercent: 0.8
-        },
-        appliedOptions: [
-            {
-                id: 1,
-                name: 'Lemon',
-                type: {
-                    id: 1,
-                    name: 'Added Fruits',
-                    defaultId: 1
-                },
-                priceChange: '1'
-            }
-        ],
-        amount: 3
-    }
+    const {
+        items,
+        getTotalPrice,
+        getTotalItems
+    } = useShoppingCart()
+
+    const estimate = useQuery({
+        queryKey: ['estimate', `estimate-${getTotalPrice().toString()}`],
+        queryFn: getOrderTimeEstimateNow
+    })
 
     return (
         <>
@@ -69,8 +51,13 @@ export default function ComponentOrderConfirmModal({
                         <p className='text-gray-400 text-xs mb-2'>{t('order.confirm.importantInformation')}</p>
                         <div className='mb-3'>
                             <ComponentIconText icon={<FontAwesomeIcon icon={faClock} className='text-accent-red' />}>
-                                <Trans i18nKey={'order.confirm.waitTime'} count={3}
-                                       components={{ 1: <strong></strong> }} />
+                                {estimate.isError ? t('order.confirm.waitError') : null}
+                                {estimate.isPending ? t('order.confirm.waitLoading') : null}
+                                {estimate.data != null
+                                    ? <Trans i18nKey={'order.confirm.waitTime'}
+                                             count={(estimate.data as OrderEstimateSchema).time + getTotalItems() * 2}
+                                             components={{ 1: <strong></strong> }} />
+                                    : null}
                             </ComponentIconText>
                         </div>
                         <div className='mb-5'>
@@ -104,12 +91,15 @@ export default function ComponentOrderConfirmModal({
                         </div>
 
                         <p className='text-gray-400 text-xs mb-2'>{t('order.confirm.orders')}</p>
-                        <ComponentOrderedItem item={mockOrderedItem} />
+                        <div className='mb-12 lg:mb-0'>
+                            {items.map((item: OrderedItemSchema) => <ComponentOrderedItem key={item.id} item={item} />)}
+                        </div>
                     </div>
 
                     <div className='fixed lg:sticky w-full bg-gray-100 bottom-0 flex'>
                         <div className='flex-grow p-4'>
-                            <p className='text-lg font-display'><Trans i18nKey='order.confirm.total' count={27} /></p>
+                            <p className='text-lg font-display'><Trans i18nKey='order.confirm.total'
+                                                                       count={getTotalPrice().toString()} /></p>
                         </div>
 
                         <button className='flex-shrink lg:rounded-br-3xl transition-colors duration-100

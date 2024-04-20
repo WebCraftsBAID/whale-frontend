@@ -24,9 +24,9 @@ export default function ComponentShoppingCart({ order }: { order: () => void }):
             }}
                  className={`lg:hidden w-screen h-screen absolute top-0 left-0 z-30 transition-colors duration-200 ${modalOpen ? 'bg-gray-500/30' : 'pointer-events-none'}`}></div>
 
-            <div className={`lg:hidden fixed w-screen bottom-0 left-0 bg-white z-40 p-5 rounded-t-2xl 
+            <div className={`lg:hidden fixed w-screen bottom-0 left-0 bg-white z-40 px-5 pb-5 rounded-t-2xl max-h-[80dvh] overflow-y-auto 
                             transition-transform transform-gpu duration-200 ${modalOpen ? '-translate-y-16' : 'translate-y-full'}`}>
-                <div className='flex items-center mb-5'>
+                <div className='flex items-center sticky top-0 bg-white py-4'>
                     <p className='font-display flex-grow'>{t('order.shoppingCart')}</p>
                     <button className='rounded-full w-8 h-8 hover:bg-gray-50 transition-colors duration-100'
                             onClick={() => {
@@ -62,7 +62,10 @@ export default function ComponentShoppingCart({ order }: { order: () => void }):
                 </div>
                 <button className='flex-shrink transition-colors duration-100
                      flex bg-accent-orange-bg hover:bg-amber-100 py-3 px-8 justify-center items-center'
-                        onClick={order}>
+                        onClick={items.length > 0
+                            ? order
+                            : () => {
+                            }}>
                     <p className='font-display'>{t('order.order')}</p>
                 </button>
             </div>

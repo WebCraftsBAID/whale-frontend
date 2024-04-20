@@ -36,6 +36,8 @@
     "confirm": {
       "title": "Confirm Your Order",
       "importantInformation": "Important Information",
+      "waitError": "Failed to load wait time information.",
+      "waitLoading": "You will be waiting for approximately ... minutes.",
       "waitTime_one": "You will be waiting for approximately {{count}} minute.",
       "waitTime_other": "You will be waiting for approximately {{count}} minutes.",
       "payment": "Please be ready to pay <1><2>in-person</2> after getting your drink.</1>",

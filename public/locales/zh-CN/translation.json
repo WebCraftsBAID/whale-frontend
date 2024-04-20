@@ -36,6 +36,8 @@
     "confirm": {
       "title": "确认点单",
       "importantInformation": "重要信息",
+      "waitError": "暂时无法加载点单等待时间信息。",
+      "waitLoading": "现在点单需要等待约 ... 分钟。",
       "waitTime_one": "现在点单需要等待约 {{count}} 分钟。",
       "waitTime_other": "现在点单需要等待约 {{count}} 分钟。",
       "payment": "请准备好在取餐时 <1><2>现场</2> 付款。</1>",
