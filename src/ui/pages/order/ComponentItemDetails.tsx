@@ -105,13 +105,15 @@ export default function ComponentItemDetails({
                 <img alt='Product Image' src={item?.image}
                      className='object-cover h-48 lg:h-56 xl:h-72 w-full rounded-3xl mb-8' />
 
-                <div className='flex items-center mb-5'>
-                    <p className='text-2xl lg:text-3xl xl:text-4xl font-bold font-display mr-5'>{item?.name}</p>
-                    {item?.tags.map(tag =>
-                        <div key={tag.id} style={{ backgroundColor: tag.color }}
-                             className={`py-1 px-2 lg:px-3 rounded-full mr-2 ${shouldUseWhiteText(tag.color) ? 'text-white' : 'text-black'}`}>
-                            <p className='font-display font-bold text-xs lg:text-sm'>{tag.name}</p>
-                        </div>)}
+                <div className='flex flex-col lg:flex-row lg:items-center mb-5'>
+                    <p className='text-2xl lg:text-3xl xl:text-4xl font-bold font-display mb-2 lg:mb-0 lg:mr-5'>{item?.name}</p>
+                    <div className='flex'>
+                        {item?.tags.map(tag =>
+                            <div key={tag.id} style={{ backgroundColor: tag.color }}
+                                 className={`py-1 px-2 lg:px-3 rounded-full mr-2 ${shouldUseWhiteText(tag.color) ? 'text-white' : 'text-black'}`}>
+                                <p className='font-display font-bold text-xs lg:text-sm'>{tag.name}</p>
+                            </div>)}
+                    </div>
                 </div>
 
                 <div className='bg-accent-orange-bg rounded-3xl lg:p-5 p-3 mb-5'>
