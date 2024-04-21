@@ -81,15 +81,15 @@ export default function PageOrder(): JSX.Element {
                     <ComponentCategories categories={resultedCategories}
                                          ids={resultedCategories.map(category => `category-d-${category.id}`)} />
                 </div>
-                <div className='flex flex-grow min-h-0'>
-                    <div className='w-1/2 border-r border-gray-300 border-solid p-16 h-full overflow-y-auto relative'>
-                        <div
-                            className={`absolute top-0 left-0 w-full h-full transition-opacity duration-100 ${pickItem == null ? 'opacity-0 pointer-events-none' : ''}`}>
-                            <ComponentItemDetails item={pickItem} close={() => {
-                                setPickItem(null)
-                            }} />
-                        </div>
+                <div className='flex flex-grow min-h-0 relative'>
+                    <div
+                        className={`absolute top-0 left-0 w-[calc(50%_-_1px)] h-full transition-opacity duration-100 ${pickItem == null ? 'opacity-0 pointer-events-none' : ''}`}>
+                        <ComponentItemDetails item={pickItem} close={() => {
+                            setPickItem(null)
+                        }} />
+                    </div>
 
+                    <div className='w-1/2 border-r border-gray-300 border-solid h-full overflow-y-auto p-16'>
                         {resultedCategories.map(category => <div key={category.id}
                                                                  className='mb-8'
                                                                  id={`category-d-${category.id}`}>
