@@ -9,7 +9,7 @@ export default function ComponentIconText({
             <div className='text-xl mr-3'>
                 {icon}
             </div>
-            <p className='text-sm'>{children}</p>
+            <p className='text-xs lg:text-sm'>{children}</p>
         </div>
     )
 }

@@ -53,5 +53,30 @@
       "total": "¥{{count}} Total",
       "confirm": "Confirm"
     }
+  },
+  "check": {
+    "estimateOrders_one": "<1!>{{count}}</1> order in front of you",
+    "estimateOrders_other": "<1>{{count}}</1> orders in front of you",
+    "estimateTime_one": "~<1>{{count}}</1> minute remaining",
+    "estimateTime_other": "~<1>{{count}}</1> minutes remaining",
+    "status": {
+      "notStarted": "Not Started",
+      "inProgress": "In Progress",
+      "ready": "Ready to Pick",
+      "pickedUp": "Picked Up",
+      "current": "(Current Status)"
+    },
+    "message": {
+      "orderNumber": "Please remember your order number, you will need it when picking up your drink.",
+      "pay": "Please be ready to pay in-person."
+    },
+    "contacts": "Order Contacts",
+    "contactName": "Contact Name",
+    "contactRoom": "Contact Room",
+    "products": "Ordered Products",
+    "cancel": "Cancel",
+    "cancelLoading": "...",
+    "cancelFailed": "Cannot cancel",
+    "cancelConfirm": "Confirm?"
   }
 }

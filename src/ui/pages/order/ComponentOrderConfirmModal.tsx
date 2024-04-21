@@ -3,7 +3,7 @@ import ComponentIconText from '../../common/ComponentIconText.tsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleExclamation, faClock, faClose, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
-import type { OptionTypeSchema, OrderedItemSchema } from '../../../data/dataTypes.ts'
+import type { OptionTypeSchema, OrderedItemSchema, OrderSchema } from '../../../data/dataTypes.ts'
 import ComponentOrderedItem from './ComponentOrderedItem.tsx'
 import { useShoppingCart } from '../../../data/shoppingCart.tsx'
 import { useMutation, useQuery } from '@tanstack/react-query'
@@ -11,12 +11,14 @@ import { getOrderTimeEstimateNow, order } from '../../../data/api.ts'
 import { type OrderedItemCreateSchema, type OrderEstimateSchema } from '../../../data/apiDataTypes.ts'
 import ComponentLoading from '../../common/ComponentLoading.tsx'
 import ComponentError from '../../common/ComponentError.tsx'
+import { useNavigate } from 'react-router-dom'
 
 export default function ComponentOrderConfirmModal({
     open,
     close
 }: { open: boolean, close: () => void }): JSX.Element {
     const { t } = useTranslation()
+    const navigate = useNavigate()
 
     const [name, setName] = useState('')
     const [nameError, setNameError] = useState('')
@@ -27,9 +29,9 @@ export default function ComponentOrderConfirmModal({
 
     const orderCreate = useMutation({
         mutationFn: order,
-        onSuccess: () => {
+        onSuccess: (data) => {
             clear()
-            close()
+            navigate(`/check/${(data as OrderSchema).id}`)
         }
     })
 
@@ -42,7 +44,8 @@ export default function ComponentOrderConfirmModal({
 
     const estimate = useQuery({
         queryKey: ['estimate', `estimate-${getTotalPrice().toString()}`],
-        queryFn: getOrderTimeEstimateNow
+        queryFn: getOrderTimeEstimateNow,
+        staleTime: 20 * 1000
     })
 
     function submit(): void {

@@ -53,5 +53,28 @@
       "total": "需付款 ¥{{count}}",
       "confirm": "确认"
     }
+  },
+  "check": {
+    "estimateOrders_one": "前方排队 <1!>{{count}}</1> 单",
+    "estimateOrders_other": "前方排队 <1>{{count}}</1> 单",
+    "estimateTime_one": "需要等待约 <1>{{count}}</1> 分钟",
+    "estimateTime_other": "需要等待约 <1>{{count}}</1> 分钟",
+    "status": {
+      "notStarted": "待备餐",
+      "inProgress": "备餐中",
+      "ready": "待取餐",
+      "pickedUp": "已取餐",
+      "current": "(目前状态)"
+    },
+    "message": {
+      "orderNumber": "请记住您的订单号，您取餐时会需要您的订单号。",
+      "pay": "请准备好现场付款。"
+    },
+    "contacts": "点单联系人",
+    "products": "产品",
+    "cancel": "取消订单",
+    "cancelLoading": "...",
+    "cancelFailed": "无法取消订单",
+    "cancelConfirm": "确认?"
   }
 }

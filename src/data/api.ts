@@ -51,15 +51,13 @@ export async function patch(endpoint: string, body: Record<string, unknown>): Pr
     return JSON.parse(text)
 }
 
-export async function del(endpoint: string, body: Record<string, unknown>): Promise<any> {
-    const response = await fetch(import.meta.env.VITE_API_HOST + '/' + endpoint, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body)
-    })
+export async function del(endpoint: string, query = new Map<string, string>()): Promise<any> {
+    const entries = Array.from(query.entries())
+    const queryParameters = entries.map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
 
+    const response = await fetch(import.meta.env.VITE_API_HOST + '/' + endpoint + '?' + queryParameters.join('&'), {
+        method: 'DELETE'
+    })
     const text = await response.text()
 
     if (text.length < 1) {
@@ -106,7 +104,7 @@ export async function getOrderTimeEstimate(id: number): Promise<OrderEstimateSch
 }
 
 export async function cancelOrder(id: number): Promise<boolean | GenericError> {
-    return await del('order', { id })
+    return await del('order', new Map([['id', id.toString()]]))
 }
 
 export async function order(create: OrderCreateSchema): Promise<OrderSchema | GenericError> {
