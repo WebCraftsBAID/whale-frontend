@@ -14,11 +14,13 @@ export default function ComponentError({
             className={`${screen ? 'w-screen h-screen' : 'w-full h-full'} flex flex-col justify-center items-center p-5`}>
             <FontAwesomeIcon icon={faCircleExclamation} className='text-4xl text-accent-red mb-3' />
             <p className='font-bold font-display text-lg mb-1'>{t('error.message')}</p>
-            {detail?.data?.detail != null
-                ? <p>{detail.data.detail}</p>
-                : (detail.error != null
-                    ? <p>{detail.error.name}: {detail.error.message}</p>
-                    : null)}
+            {detail != null
+                ? (detail?.data?.detail != null
+                    ? <p>{detail.data.detail}</p>
+                    : (detail.error != null
+                        ? <p>{detail.error.name}: {detail.error.message}</p>
+                        : null))
+                : null}
         </div>
     )
 }

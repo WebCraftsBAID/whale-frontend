@@ -9,6 +9,7 @@ export interface ShoppingCart {
     setItemAmount: (localId: number, newAmount: number) => boolean
     getTotalItems: () => number
     getTotalPrice: () => Decimal
+    clear: () => void
 }
 
 const ShoppingCartContext = createContext<ShoppingCart>(null as unknown as ShoppingCart)
@@ -86,6 +87,10 @@ export function ShoppingCartProvider({ children }: { children: ReactNode }): JSX
         return total
     }
 
+    function clear(): void {
+        setItems([])
+    }
+
     return (
         <ShoppingCartContext.Provider value={{
             items,
@@ -93,7 +98,8 @@ export function ShoppingCartProvider({ children }: { children: ReactNode }): JSX
             getItemAmount,
             setItemAmount,
             getTotalItems,
-            getTotalPrice
+            getTotalPrice,
+            clear
         }}>
             {children}
         </ShoppingCartContext.Provider>
