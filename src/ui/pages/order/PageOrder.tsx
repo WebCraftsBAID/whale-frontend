@@ -83,7 +83,7 @@ export default function PageOrder(): JSX.Element {
                 </div>
                 <div className='flex flex-grow min-h-0 relative'>
                     <div
-                        className={`absolute top-0 left-0 w-[calc(50%_-_1px)] h-full transition-opacity duration-100 ${pickItem == null ? 'opacity-0 pointer-events-none' : ''}`}>
+                        className={`absolute top-0 left-0 overflow-y-scroll w-[calc(50%_-_1px)] max-h-full transition-opacity duration-100 ${pickItem == null ? 'opacity-0 pointer-events-none' : ''}`}>
                         <ComponentItemDetails item={pickItem} close={() => {
                             setPickItem(null)
                         }} />
