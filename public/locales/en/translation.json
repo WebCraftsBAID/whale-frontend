@@ -77,6 +77,14 @@
     "cancel": "Cancel",
     "cancelLoading": "...",
     "cancelFailed": "Cannot cancel",
-    "cancelConfirm": "Confirm?"
+    "cancelConfirm": "Confirm?",
+    "modal": {
+      "title": "Check Your Order",
+      "number": "Your Order Number*",
+      "check": "Check",
+      "cancel": "Cancel",
+      "numberError": "Enter a number between 1 and 3 digits",
+      "notFound": "Incorrect number"
+    }
   }
 }

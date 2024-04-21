@@ -5,12 +5,19 @@ import ComponentCheckButton from './ComponentCheckButton.tsx'
 import ComponentHomeStatus from './ComponentHomeStatus.tsx'
 import { Trans, useTranslation } from 'react-i18next'
 import AnimatedPage from '../../../AnimatedPage.tsx'
+import { useState } from 'react'
+import ComponentCheckModal from '../check/ComponentCheckModal.tsx'
 
 export default function PageHome(): JSX.Element {
     const { t } = useTranslation()
+    const [checkModalOpen, setCheckModalOpen] = useState(false)
 
     return (
         <AnimatedPage>
+            <ComponentCheckModal open={checkModalOpen} close={() => {
+                setCheckModalOpen(false)
+            }} />
+
             <div className='block lg:hidden'>
                 <div className='top-0 left-0 absolute h-[50vh] bg-cover -z-10 w-full'
                      style={{ backgroundImage: `url(${mobileDeco})` }}></div>
@@ -18,7 +25,9 @@ export default function PageHome(): JSX.Element {
                     <div
                         className='grid grid-cols-2 grid-rows-1 place-content-center w-full bg-white rounded-3xl shadow-xl p-8 mb-5'>
                         <ComponentPickupButton />
-                        <ComponentCheckButton />
+                        <ComponentCheckButton open={() => {
+                            setCheckModalOpen(true)
+                        }} />
                     </div>
 
                     <div className='bg-white rounded-3xl shadow-md w-full'>
@@ -57,7 +66,9 @@ export default function PageHome(): JSX.Element {
                         </div>
 
                         <div className='w-48 h-48 flex justify-center items-center bg-white rounded-3xl mr-8'>
-                            <ComponentCheckButton />
+                            <ComponentCheckButton open={() => {
+                                setCheckModalOpen(true)
+                            }} />
                         </div>
 
                         <div className='h-48 flex justify-center items-center bg-white rounded-3xl'>
