@@ -75,6 +75,14 @@
     "cancel": "取消订单",
     "cancelLoading": "...",
     "cancelFailed": "无法取消订单",
-    "cancelConfirm": "确认?"
+    "cancelConfirm": "确认?",
+    "modal": {
+      "title": "查询订单",
+      "number": "您的订单号*",
+      "check": "查询",
+      "cancel": "取消",
+      "numberError": "请输入一个 3 位订单号",
+      "notFound": "订单号错误"
+    }
   }
 }

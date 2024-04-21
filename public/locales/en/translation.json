@@ -83,7 +83,7 @@
       "number": "Your Order Number*",
       "check": "Check",
       "cancel": "Cancel",
-      "numberError": "Enter a number between 1 and 3 digits",
+      "numberError": "Enter a 3-digit order number",
       "notFound": "Incorrect number"
     }
   }
