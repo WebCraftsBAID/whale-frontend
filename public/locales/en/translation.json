@@ -55,7 +55,7 @@
     }
   },
   "check": {
-    "estimateOrders_one": "<1!>{{count}}</1> order in front of you",
+    "estimateOrders_one": "<1>{{count}}</1> order in front of you",
     "estimateOrders_other": "<1>{{count}}</1> orders in front of you",
     "estimateTime_one": "~<1>{{count}}</1> minute remaining",
     "estimateTime_other": "~<1>{{count}}</1> minutes remaining",

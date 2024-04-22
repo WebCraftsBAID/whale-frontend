@@ -55,7 +55,7 @@
     }
   },
   "check": {
-    "estimateOrders_one": "前方排队 <1!>{{count}}</1> 单",
+    "estimateOrders_one": "前方排队 <1>{{count}}</1> 单",
     "estimateOrders_other": "前方排队 <1>{{count}}</1> 单",
     "estimateTime_one": "需要等待约 <1>{{count}}</1> 分钟",
     "estimateTime_other": "需要等待约 <1>{{count}}</1> 分钟",
