@@ -12,10 +12,12 @@ import ComponentError from '../../common/ComponentError.tsx'
 import ComponentLoading from '../../common/ComponentLoading.tsx'
 import { type CategorySchema, type ItemTypeSchema } from '../../../data/dataTypes.ts'
 import ComponentItemDetails from './ComponentItemDetails.tsx'
+import { useShoppingCart } from '../../../data/shoppingCart.tsx'
 
 export default function PageOrder(): JSX.Element {
     const [confirmModalOpen, setConfirmModalOpen] = useState(false)
     const [pickItem, setPickItem] = useState<ItemTypeSchema | null>(null)
+    const shoppingCart = useShoppingCart()
 
     const categories = useQuery({
         queryKey: ['categories'],
@@ -71,7 +73,9 @@ export default function PageOrder(): JSX.Element {
 
                 <div className='flex-shrink w-full'>
                     <ComponentShoppingCart order={() => {
-                        setConfirmModalOpen(true)
+                        if (shoppingCart.getTotalItems() > 0) {
+                            setConfirmModalOpen(true)
+                        }
                     }} />
                 </div>
             </div>
@@ -105,7 +109,9 @@ export default function PageOrder(): JSX.Element {
                             </div>
                             <div className='lg:h-3/5'>
                                 <ComponentShoppingCart order={() => {
-                                    setConfirmModalOpen(true)
+                                    if (shoppingCart.getTotalItems() > 0) {
+                                        setConfirmModalOpen(true)
+                                    }
                                 }} />
                             </div>
                         </div>

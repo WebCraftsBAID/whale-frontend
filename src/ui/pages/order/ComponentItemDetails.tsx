@@ -133,7 +133,7 @@ export default function ComponentItemDetails({
             </div>
 
             <div className='fixed w-full lg:w-auto lg:mx-12 xl:mx-24 lg:sticky
-                            bottom-0 lg:bottom-8 bg-gray-100 mt-8 flex lg:rounded-full shadow-md items-center'>
+                            bottom-0 lg:bottom-8 bg-gray-100 mt-8 flex lg:rounded-full items-center'>
                 <div className='flex-grow flex items-center h-12 p-7'>
                     <p className='font-display'>¥{totalPrice.toString()}</p>
                 </div>
