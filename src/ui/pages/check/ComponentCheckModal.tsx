@@ -31,13 +31,13 @@ export default function ComponentCheckModal({
             return
         }
 
-        await order.refetch()
+        const result = await order.refetch()
 
-        if (order.data == null || 'detail' in order.data) {
+        if (result.data == null || 'detail' in result.data) {
             setNumberError(t('check.modal.notFound'))
             return
         }
-        navigate(`/check/${order.data.id}`)
+        navigate(`/check/${result.data.id}`)
     }
 
     return (

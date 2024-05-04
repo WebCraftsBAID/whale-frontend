@@ -16,7 +16,7 @@ export default function ComponentError({
             <p className='font-bold font-display text-lg mb-1'>{t('error.message')}</p>
             {detail != null
                 ? (detail?.data?.detail != null
-                    ? <p>{detail.data.detail}</p>
+                    ? <p>{detail.data.detail.toString()}</p>
                     : (detail.error != null
                         ? <p>{detail.error.name}: {detail.error.message}</p>
                         : null))
