@@ -22,7 +22,8 @@
       "notStarted_other": "正在等待开始制作，<1>大约需等待 {{count}} 分钟。<1>",
       "inProgress_one": "正在制作，<1>大约需等待 {{count}} 分钟。<1>",
       "inProgress_other": "正在制作，<1>大约需等待 {{count}} 分钟。<1>",
-      "ready": "制作完成，请尽快取餐。<1>请携带平板现场付款。</1>"
+      "ready": "制作完成，请尽快取餐。<1>请携带平板现场付款。</1>",
+      "pickedUp": "已取餐，感谢您光临白鲸咖啡馆!"
     }
   },
   "order": {
@@ -76,6 +77,8 @@
     "cancelLoading": "...",
     "cancelFailed": "无法取消订单",
     "cancelConfirm": "确认?",
+    "ready": "制作完成，请尽快取餐。请准备好现场付款。",
+    "pickedUp": "感谢光临白鲸咖啡馆!",
     "modal": {
       "title": "查询订单",
       "number": "您的订单号*",

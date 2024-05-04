@@ -1,3 +1,5 @@
+import { type OrderStatus } from './dataTypes.ts'
+
 export interface OrderedItemCreateSchema {
     itemType: number
     appliedOptions: number[]
@@ -13,6 +15,8 @@ export interface OrderCreateSchema {
 export interface OrderEstimateSchema {
     time: number
     orders: number
+    number: string | null
+    status: OrderStatus | null
 }
 
 export interface GenericError {

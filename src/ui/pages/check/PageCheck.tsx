@@ -37,13 +37,13 @@ export default function PageCheck(): JSX.Element {
 
     const order = useQuery({
         queryKey: ['order', `order-${id}`],
-        staleTime: 10 * 1000,
+        refetchInterval: 10000,
         queryFn: async () => await getOrder(parseInt(id))
     })
 
     const estimate = useQuery({
         queryKey: ['order-check-estimate', `order-${id}`],
-        staleTime: 10 * 1000,
+        refetchInterval: 10000,
         queryFn: async () => await getOrderTimeEstimate(parseInt(id))
     })
 
@@ -91,14 +91,17 @@ export default function PageCheck(): JSX.Element {
                 <div className='flex-grow p-8 pt-16'>
                     <div className='flex flex-col items-center'>
                         <h1 className='text-6xl font-bold font-display mb-3'>{order.data.number}</h1>
-                        <p className='text-sm'>
-                            <Trans i18nKey='check.estimateOrders' count={estimate.data.orders}
-                                   components={{ 1: <strong></strong> }} />
-                        </p>
-                        <p className='text-sm mb-5'>
-                            <Trans i18nKey='check.estimateTime' count={estimate.data.time}
-                                   components={{ 1: <strong></strong> }} />
-                        </p>
+                        {(order.data.status === OrderStatus.notStarted || order.data.status === OrderStatus.inProgress)
+                            ? <>
+                                <p className='text-sm'>
+                                    <Trans i18nKey='check.estimateOrders' count={estimate.data.orders}
+                                           components={{ 1: <strong></strong> }} />
+                                </p>
+                                <p className='text-sm mb-5'>
+                                    <Trans i18nKey='check.estimateTime' count={estimate.data.time}
+                                           components={{ 1: <strong></strong> }} />
+                                </p></>
+                            : <p className='text-sm mb-5'>{t(`check.${order.data.status}`)}</p>}
                     </div>
 
                     <div className='flex mb-5 justify-center'>
@@ -197,14 +200,18 @@ export default function PageCheck(): JSX.Element {
                     <div
                         className='w-1/2 border-r border-gray-300 border-solid p-16 h-full overflow-y-auto relative flex flex-col justify-center items-center'>
                         <h1 className='text-7xl xl:text-[7rem] font-bold font-display mb-3'>{order.data.number}</h1>
-                        <p className='text-xl mb-1'>
-                            <Trans i18nKey='check.estimateOrders' count={estimate.data.orders}
-                                   components={{ 1: <strong></strong> }} />
-                        </p>
-                        <p className='text-xl mb-8'>
-                            <Trans i18nKey='check.estimateTime' count={estimate.data.time}
-                                   components={{ 1: <strong></strong> }} />
-                        </p>
+                        {(order.data.status === OrderStatus.notStarted || order.data.status === OrderStatus.inProgress)
+                            ? <>
+                                <p className='text-xl mb-1'>
+                                    <Trans i18nKey='check.estimateOrders' count={estimate.data.orders}
+                                           components={{ 1: <strong></strong> }} />
+                                </p>
+                                <p className='text-xl mb-8'>
+                                    <Trans i18nKey='check.estimateTime' count={estimate.data.time}
+                                           components={{ 1: <strong></strong> }} />
+                                </p>
+                            </>
+                            : <p className='text-xl mb-8'>{t(`check.${order.data.status}`)}</p>}
 
                         <div className='flex mb-8'>
                             <div

@@ -22,7 +22,8 @@
       "notStarted_other": "Waiting in line, <1>~{{count}} minutes remaining.</1>",
       "inProgress_one": "Making your drink, <1>~{{count}} minute remaining.</1>",
       "inProgress_other": "Making your drink, <1>~{{count}} minutes remaining.</1>",
-      "ready": "Ready for pick up! <1>Bring your tablet to pay.</1>"
+      "ready": "Ready for pick up! <1>Bring your tablet to pay.</1>",
+      "pickedUp": "Order finished, thank you for your patronage!"
     }
   },
   "order": {
@@ -78,6 +79,8 @@
     "cancelLoading": "...",
     "cancelFailed": "Cannot cancel",
     "cancelConfirm": "Confirm?",
+    "ready": "Ready for pick up! Remember to pay in-person.",
+    "pickedUp": "Thank you for visiting Whale Cafe!",
     "modal": {
       "title": "Check Your Order",
       "number": "Your Order Number*",

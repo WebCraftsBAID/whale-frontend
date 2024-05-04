@@ -6,6 +6,7 @@ import PreventWeChatBrowser from './ui/pages/wechat/PreventWeChatBrowser.tsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ShoppingCartProvider } from './data/shoppingCart.tsx'
 import PageCheck from './ui/pages/check/PageCheck.tsx'
+import { PersistentStorageProvider } from './data/persistentStorage.tsx'
 
 const queryClient = new QueryClient()
 
@@ -16,13 +17,15 @@ export default function App(): JSX.Element {
         <AnimatePresence mode='wait'>
             <QueryClientProvider client={queryClient}>
                 <ShoppingCartProvider>
-                    {/MicroMessenger/i.test(window.navigator.userAgent)
-                        ? <PreventWeChatBrowser />
-                        : <Routes location={location} key={location.pathname}>
-                            <Route index element={<PageHome />} />
-                            <Route path='order' element={<PageOrder />} />
-                            <Route path='check/:id' element={<PageCheck />} />
-                        </Routes>}
+                    <PersistentStorageProvider>
+                        {/MicroMessenger/i.test(window.navigator.userAgent)
+                            ? <PreventWeChatBrowser />
+                            : <Routes location={location} key={location.pathname}>
+                                <Route index element={<PageHome />} />
+                                <Route path='order' element={<PageOrder />} />
+                                <Route path='check/:id' element={<PageCheck />} />
+                            </Routes>}
+                    </PersistentStorageProvider>
                 </ShoppingCartProvider>
             </QueryClientProvider>
         </AnimatePresence>

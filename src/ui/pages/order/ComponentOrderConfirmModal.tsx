@@ -12,6 +12,7 @@ import { type OrderedItemCreateSchema, type OrderEstimateSchema } from '../../..
 import ComponentLoading from '../../common/ComponentLoading.tsx'
 import ComponentError from '../../common/ComponentError.tsx'
 import { useNavigate } from 'react-router-dom'
+import { usePersistentStorage } from '../../../data/persistentStorage.tsx'
 
 export default function ComponentOrderConfirmModal({
     open,
@@ -19,6 +20,7 @@ export default function ComponentOrderConfirmModal({
 }: { open: boolean, close: () => void }): JSX.Element {
     const { t } = useTranslation()
     const navigate = useNavigate()
+    const persistentStorage = usePersistentStorage()
 
     const [name, setName] = useState('')
     const [nameError, setNameError] = useState('')
@@ -31,6 +33,7 @@ export default function ComponentOrderConfirmModal({
         mutationFn: order,
         onSuccess: (data) => {
             clear()
+            persistentStorage.setCurrentOrder((data as OrderSchema).id)
             navigate(`/check/${(data as OrderSchema).id}`)
         }
     })
@@ -45,7 +48,7 @@ export default function ComponentOrderConfirmModal({
     const estimate = useQuery({
         queryKey: ['estimate', `estimate-${getTotalPrice().toString()}`],
         queryFn: getOrderTimeEstimateNow,
-        staleTime: 20 * 1000
+        refetchInterval: 10000
     })
 
     function submit(): void {
