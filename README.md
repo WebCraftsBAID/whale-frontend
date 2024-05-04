@@ -1,9 +1,42 @@
 # Whale Frontend
 
-For Beijing Academy's Whale Cafe internal ordering system, this is the frontend, built with React + TailwindCSS.
+This is the frontend for the ordering system for BAID's Whale Cafe. Built with React + TailwindCSS.
 
-## How to contribute
+## Get Started
 
-Open a pull request, it's that simple!
+To run in production, follow the tutorial under [BAIDWebDev](https://github.com/BAIDWebDev)/[**whale-docker
+**](https://github.com/BAIDWebDev/whale-docker).
 
-* Replace the API host accordingly, and run `npm run dev`.
+To run in development:
+
+* Ensure that you have node.js and npm available.
+* Follow the tutorial under [BAIDWebDev](https://github.com/BAIDWebDev)/[**whale-backend
+  **](https://github.com/BAIDWebDev/whale-backend) to run the backend development server.
+* Copy `.env.example` to `.env`, and change `VITE_API_HOST` accordingly. Typically, you will change it
+  to `http://localhost:8000`.
+* Run `npm install`.
+* Run `npm run dev`.
+
+## Contribution
+
+To contribute, simply open a pull request.
+
+## License
+
+```
+    Whale is BAID's Whale Cafe's ordering system.
+    Copyright (C) 2024  BAID Web Dev Team
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+```

@@ -5,7 +5,7 @@ export async function get(endpoint: string, query = new Map<string, string>()): 
     const entries = Array.from(query.entries())
     const queryParameters = entries.map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
 
-    const response = await fetch('/api/' + endpoint + '?' + queryParameters.join('&'))
+    const response = await fetch(import.meta.env.VITE_API_HOST + '/' + endpoint + '?' + queryParameters.join('&'))
     const text = await response.text()
 
     if (text.length < 1) {
@@ -16,7 +16,7 @@ export async function get(endpoint: string, query = new Map<string, string>()): 
 }
 
 export async function post(endpoint: string, body: Record<string, any>): Promise<any> {
-    const response = await fetch('/api/' + endpoint, {
+    const response = await fetch(import.meta.env.VITE_API_HOST + '/' + endpoint, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -34,7 +34,7 @@ export async function post(endpoint: string, body: Record<string, any>): Promise
 }
 
 export async function patch(endpoint: string, body: Record<string, unknown>): Promise<any> {
-    const response = await fetch('/api/' + endpoint, {
+    const response = await fetch(import.meta.env.VITE_API_HOST + '/' + endpoint, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
@@ -55,7 +55,7 @@ export async function del(endpoint: string, query = new Map<string, string>()): 
     const entries = Array.from(query.entries())
     const queryParameters = entries.map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
 
-    const response = await fetch('/api/' + endpoint + '?' + queryParameters.join('&'), {
+    const response = await fetch(import.meta.env.VITE_API_HOST + '/' + endpoint + '?' + queryParameters.join('&'), {
         method: 'DELETE'
     })
     const text = await response.text()
