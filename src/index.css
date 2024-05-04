@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Outfit';
+    src: url('/fonts/Outfit-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: fallback;
+    unicode-range: U+0020-007F;
+}
+
+@font-face {
+    font-family: 'Outfit';
+    src: url('/fonts/Outfit-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: fallback;
+    unicode-range: U+0020-007F;
+}
+
+@font-face {
+    font-family: 'Outfit';
+    src: url('/fonts/Outfit-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: fallback;
+    unicode-range: U+0020-007F;
+}
+
+@font-face {
+    font-family: 'Outfit';
+    src: url('/fonts/Outfit-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: fallback;
+    unicode-range: U+0020-007F;
+}
+
+@font-face {
+    font-family: 'Noto Sans CJK SC';
+    src: url('/fonts/NotoSansSC-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: fallback;
+}
+
+@font-face {
+    font-family: 'Noto Sans CJK SC';
+    src: url('/fonts/NotoSansSC-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: fallback;
+}
+
+@font-face {
+    font-family: 'Noto Sans CJK SC';
+    src: url('/fonts/NotoSansSC-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: fallback;
+}
+
+* {
+    -webkit-font-smoothing: antialiased;
+    @apply font-body scroll-smooth select-none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+}
+
+.h-screen {
+    height: 100vh;
+    height: 100dvh;
+}
+
+.w-screen {
+    width: 100vw;
+    width: 100dvw;
+}
+
+input {
+    appearance: none;
+    border: 0;
+}
+
+input:focus {
+    outline: none !important;
+}

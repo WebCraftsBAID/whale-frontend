@@ -1,0 +1,93 @@
+{
+  "name": "Whale Cafe",
+  "error": {
+    "message": "An error occurred."
+  },
+  "home": {
+    "title": "Enjoyment in <1/> every sip.",
+    "description": "Lorem ipsum sit dolor amit, consectetur adipiscing elit. <1/> Lorem ipsum sit dolor amit, consectetur adipiscing elit.",
+    "backgroundText": "Whale Cafe",
+    "startOrdering": "Start Ordering",
+    "pickUp": {
+      "name": "Pick Up",
+      "description": "Order w/o queues"
+    },
+    "check": {
+      "name": "Check",
+      "description": "Check order status"
+    },
+    "currentOrderCard": {
+      "name": "Current Order",
+      "notStarted_one": "Waiting in line, <1>~{{count}} minute remaining.</1>",
+      "notStarted_other": "Waiting in line, <1>~{{count}} minutes remaining.</1>",
+      "inProgress_one": "Making your drink, <1>~{{count}} minute remaining.</1>",
+      "inProgress_other": "Making your drink, <1>~{{count}} minutes remaining.</1>",
+      "ready": "Ready for pick up! <1>Bring your tablet to pay.</1>",
+      "pickedUp": "Order finished, thank you for your patronage!"
+    }
+  },
+  "order": {
+    "item": {
+      "pick": "Pick"
+    },
+    "shoppingCart": "Shopping Cart",
+    "empty": "Fancy drinking something?",
+    "order": "Order",
+    "add": "Add",
+    "confirm": {
+      "title": "Confirm Your Order",
+      "importantInformation": "Important Information",
+      "waitError": "Failed to load wait time information.",
+      "waitLoading": "You will be waiting for approximately ... minutes.",
+      "waitTime_one": "You will be waiting for approximately {{count}} minute.",
+      "waitTime_other": "You will be waiting for approximately {{count}} minutes.",
+      "payment": "Please be ready to pay <1><2>in-person</2> after getting your drink.</1>",
+      "abuse": "Abusive orders may be cancelled without notice.",
+      "contactInformation": "Personal Information",
+      "name": "Your Name*",
+      "nameError": "Enter a correct name",
+      "room": "Your Classroom Number*",
+      "roomError": "Enter a correct room number",
+      "payAttention": "Please enter \"I will pay in-person\"*",
+      "payAttentionError": "Copy \"I will pay in-person\"",
+      "orders": "Your Orders",
+      "total": "¥{{count}} Total",
+      "confirm": "Confirm"
+    }
+  },
+  "check": {
+    "estimateOrders_one": "<1>{{count}}</1> order in front of you",
+    "estimateOrders_other": "<1>{{count}}</1> orders in front of you",
+    "estimateTime_one": "~<1>{{count}}</1> minute remaining",
+    "estimateTime_other": "~<1>{{count}}</1> minutes remaining",
+    "status": {
+      "notStarted": "Not Started",
+      "inProgress": "In Progress",
+      "ready": "Ready to Pick",
+      "pickedUp": "Picked Up",
+      "current": "(Current Status)"
+    },
+    "message": {
+      "orderNumber": "Please remember your order number, you will need it when picking up your drink.",
+      "pay": "Please be ready to pay in-person."
+    },
+    "contacts": "Order Contacts",
+    "contactName": "Contact Name",
+    "contactRoom": "Contact Room",
+    "products": "Ordered Products",
+    "cancel": "Cancel",
+    "cancelLoading": "...",
+    "cancelFailed": "Cannot cancel",
+    "cancelConfirm": "Confirm?",
+    "ready": "Ready for pick up! Remember to pay in-person.",
+    "pickedUp": "Thank you for visiting Whale Cafe!",
+    "modal": {
+      "title": "Check Your Order",
+      "number": "Your Order Number*",
+      "check": "Check",
+      "cancel": "Cancel",
+      "numberError": "Enter a 3-digit order number",
+      "notFound": "Incorrect number"
+    }
+  }
+}
