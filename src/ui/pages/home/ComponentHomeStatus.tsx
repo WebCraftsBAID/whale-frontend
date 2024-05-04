@@ -7,9 +7,11 @@ import { useQuery } from '@tanstack/react-query'
 import { getOrderTimeEstimate } from '../../../data/api.ts'
 import ComponentLoading from '../../common/ComponentLoading.tsx'
 import ComponentError from '../../common/ComponentError.tsx'
+import { useNavigate } from 'react-router-dom'
 
 export default function ComponentHomeStatus(): JSX.Element {
     const { t } = useTranslation()
+    const navigate = useNavigate()
     const persistentStorage = usePersistentStorage()
 
     const order = useQuery({
@@ -36,8 +38,17 @@ export default function ComponentHomeStatus(): JSX.Element {
         return <div className='min-w-80'><ComponentError detail={order} /></div>
     }
 
+    function navigateTo(): void {
+        if (persistentStorage.getCurrentOrder() == null) {
+            return
+        }
+        navigate(`/check/${persistentStorage.getCurrentOrder()}`)
+    }
+
     return (
-        <div className='p-5 lg:p-7 xl:p-8 w-full'>
+        <button
+            className='block text-left hover:bg-gray-100 transition-colors duration-100 h-full rounded-3xl p-5 lg:p-7 xl:p-8 w-full'
+            onClick={navigateTo}>
             <div className='flex items-center'>
                 <div className='flex-grow mr-3 lg:mr-5 xl:mr-8'>
                     <p className='text-xs lg:text-sm text-gray-400 lg:mb-1'>
@@ -74,6 +85,6 @@ export default function ComponentHomeStatus(): JSX.Element {
                     }
                 </div>
             </div>
-        </div>
+        </button>
     )
 }
