@@ -106,7 +106,7 @@ export default function PageCheck(): JSX.Element {
 
                     <div className='flex mb-5 justify-center'>
                         <div
-                            className={`flex flex-col items-center mr-3 ${order.data.status !== OrderStatus.notStarted ? 'text-gray-400' : ''}`}>
+                            className={`flex flex-col items-center mr-3 ${order.data.status !== OrderStatus.notStarted ? 'text-gray-400' : 'text-accent-orange'}`}>
                             <FontAwesomeIcon
                                 icon={order.data.status === OrderStatus.notStarted ? faHourglass : faHourglassR}
                                 className='text-4xl mb-1' />
@@ -117,7 +117,7 @@ export default function PageCheck(): JSX.Element {
                         </div>
 
                         <div
-                            className={`flex flex-col items-center mr-3 ${order.data.status !== OrderStatus.inProgress ? 'text-gray-400' : ''}`}>
+                            className={`flex flex-col items-center mr-3 ${order.data.status !== OrderStatus.inProgress ? 'text-gray-400' : 'text-blue-500'}`}>
                             <FontAwesomeIcon
                                 icon={order.data.status === OrderStatus.inProgress ? faHourglassHalf : faHourglassHalfR}
                                 className='text-4xl mb-1' />
@@ -128,7 +128,7 @@ export default function PageCheck(): JSX.Element {
                         </div>
 
                         <div
-                            className={`flex flex-col items-center mr-3 ${order.data.status !== OrderStatus.ready ? 'text-gray-400' : ''}`}>
+                            className={`flex flex-col items-center mr-3 ${order.data.status !== OrderStatus.ready ? 'text-gray-400' : 'text-green-400'}`}>
                             <FontAwesomeIcon
                                 icon={order.data.status === OrderStatus.ready ? faCircleCheck : faCircleCheckR}
                                 className='text-4xl mb-1' />
@@ -139,7 +139,7 @@ export default function PageCheck(): JSX.Element {
                         </div>
 
                         <div
-                            className={`flex flex-col items-center ${order.data.status !== OrderStatus.pickedUp ? 'text-gray-400' : ''}`}>
+                            className={`flex flex-col items-center ${order.data.status !== OrderStatus.pickedUp ? 'text-gray-400' : 'text-yellow-400'}`}>
                             <FontAwesomeIcon
                                 icon={order.data.status === OrderStatus.pickedUp ? faFaceSmile : faFaceSmileR}
                                 className='text-4xl mb-1' />
@@ -215,7 +215,7 @@ export default function PageCheck(): JSX.Element {
 
                         <div className='flex mb-8'>
                             <div
-                                className={`flex flex-col items-center mr-5 ${order.data.status !== OrderStatus.notStarted ? 'text-gray-400' : ''}`}>
+                                className={`flex flex-col items-center mr-5 ${order.data.status !== OrderStatus.notStarted ? 'text-gray-400' : 'text-accent-orange'}`}>
                                 <FontAwesomeIcon
                                     icon={order.data.status === OrderStatus.notStarted ? faHourglass : faHourglassR}
                                     className='text-4xl mb-1' />
@@ -226,7 +226,7 @@ export default function PageCheck(): JSX.Element {
                             </div>
 
                             <div
-                                className={`flex flex-col items-center mr-5 ${order.data.status !== OrderStatus.inProgress ? 'text-gray-400' : ''}`}>
+                                className={`flex flex-col items-center mr-5 ${order.data.status !== OrderStatus.inProgress ? 'text-gray-400' : 'text-blue-500'}`}>
                                 <FontAwesomeIcon
                                     icon={order.data.status === OrderStatus.inProgress ? faHourglassHalf : faHourglassHalfR}
                                     className='text-4xl mb-1' />
@@ -237,7 +237,7 @@ export default function PageCheck(): JSX.Element {
                             </div>
 
                             <div
-                                className={`flex flex-col items-center mr-5 ${order.data.status !== OrderStatus.ready ? 'text-gray-400' : ''}`}>
+                                className={`flex flex-col items-center mr-5 ${order.data.status !== OrderStatus.ready ? 'text-gray-400' : 'text-green-400'}`}>
                                 <FontAwesomeIcon
                                     icon={order.data.status === OrderStatus.ready ? faCircleCheck : faCircleCheckR}
                                     className='text-4xl mb-1' />
@@ -248,7 +248,7 @@ export default function PageCheck(): JSX.Element {
                             </div>
 
                             <div
-                                className={`flex flex-col items-center ${order.data.status !== OrderStatus.pickedUp ? 'text-gray-400' : ''}`}>
+                                className={`flex flex-col items-center ${order.data.status !== OrderStatus.pickedUp ? 'text-gray-400' : 'text-yellow-400'}`}>
                                 <FontAwesomeIcon
                                     icon={order.data.status === OrderStatus.pickedUp ? faFaceSmile : faFaceSmileR}
                                     className='text-4xl mb-1' />

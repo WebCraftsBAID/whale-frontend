@@ -59,7 +59,7 @@ export default function ComponentHomeStatus(): JSX.Element {
                             [OrderStatus.inProgress,
                                 // eslint-disable-next-line react/jsx-key
                                 <FontAwesomeIcon icon={faHourglassHalf}
-                                                 className='text-5xl lg:text-7xl text-accent-orange' />],
+                                                 className='text-5xl lg:text-7xl text-blue-500' />],
                             [OrderStatus.notStarted,
                                 // eslint-disable-next-line react/jsx-key
                                 <FontAwesomeIcon icon={faHourglass}
