@@ -13,13 +13,13 @@ export interface OptionTypeSchema {
     id: number
     name: string
     items: OptionItemSchema[]
-    defaultId: number | null
 }
 
 export interface OptionItemSchema {
     id: number
     name: string
     typeId: number
+    isDefault: boolean
     priceChange: string
 }
 

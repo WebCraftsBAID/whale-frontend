@@ -54,7 +54,12 @@ export default function ComponentItemDetails({
     useEffect(() => {
         const initialOptions = new Map<number, number>()
         for (const optionType of item?.options ?? []) {
-            initialOptions.set(optionType.id, optionType.defaultId ?? (optionType.items.length > 0 ? optionType.items[0].id : -1))
+            for (const optionItem of optionType.items) {
+                if (optionItem.isDefault) {
+                    initialOptions.set(optionType.id, optionItem.id)
+                    break
+                }
+            }
         }
         setOptions(initialOptions)
     }, [item])
