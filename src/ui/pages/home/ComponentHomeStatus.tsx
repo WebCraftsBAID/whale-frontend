@@ -14,21 +14,26 @@ export default function ComponentHomeStatus(): JSX.Element {
 
     const order = useQuery({
         queryKey: ['order-estimate-for-id', `id-${persistentStorage.getCurrentOrder()}`],
-        queryFn: async () => await getOrderTimeEstimate(persistentStorage.getCurrentOrder() as number),
+        queryFn: async () =>
+            (persistentStorage.getCurrentOrder() == null ? null : await getOrderTimeEstimate(persistentStorage.getCurrentOrder() as number)),
         refetchInterval: 10000
     })
 
-    if (order.isPending) {
-        return <ComponentLoading />
+    if (persistentStorage.getCurrentOrder() == null) {
+        return <div></div>
     }
 
-    if (order.isError && order.data != null && 'detail' in order.data && order.data.detail === 'Not Found') {
+    if (order.isPending || order.data == null) {
+        return <div className='min-w-80'><ComponentLoading /></div>
+    }
+
+    if (order.isError && 'detail' in order.data && order.data.detail === 'Not Found') {
         persistentStorage.setCurrentOrder(null)
-        return <ComponentLoading />
+        return <div className='min-w-80'><ComponentLoading /></div>
     }
 
     if (order.isError || 'detail' in order.data) {
-        return <ComponentError detail={order} />
+        return <div className='min-w-80'><ComponentError detail={order} /></div>
     }
 
     return (
@@ -50,6 +55,7 @@ export default function ComponentHomeStatus(): JSX.Element {
                     {
                         new Map<OrderStatus, JSX.Element>([
                             [OrderStatus.pickedUp,
+                                // eslint-disable-next-line react/jsx-key
                                 <FontAwesomeIcon icon={faFaceSmile}
                                                  className='text-5xl lg:text-7xl text-yellow-400' />],
                             [OrderStatus.ready,

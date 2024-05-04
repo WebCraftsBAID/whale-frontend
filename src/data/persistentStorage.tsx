@@ -9,13 +9,8 @@ const PersistentStorageContext = createContext<PersistentStorage>(null as unknow
 export const usePersistentStorage = (): any => useContext(PersistentStorageContext)
 
 export function PersistentStorageProvider({ children }: { children: ReactNode }): JSX.Element {
-    const [order, setOrder] = useState<number | null>(null)
-
-    useEffect(() => {
-        if (localStorage.getItem('stored-order') != null) {
-            setOrder(parseInt(localStorage.getItem('stored-order')!))
-        }
-    }, [])
+    const [order, setOrder] =
+        useState<number | null>(localStorage.getItem('stored-order') == null ? null : parseInt(localStorage.getItem('stored-order')!))
 
     useEffect(() => {
         if (order == null) {

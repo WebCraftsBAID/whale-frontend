@@ -7,11 +7,9 @@ import { Trans, useTranslation } from 'react-i18next'
 import AnimatedPage from '../../../AnimatedPage.tsx'
 import { useState } from 'react'
 import ComponentCheckModal from '../check/ComponentCheckModal.tsx'
-import { usePersistentStorage } from '../../../data/persistentStorage.tsx'
 
 export default function PageHome(): JSX.Element {
     const { t } = useTranslation()
-    const persistentStorage = usePersistentStorage()
     const [checkModalOpen, setCheckModalOpen] = useState(false)
 
     return (
@@ -32,12 +30,9 @@ export default function PageHome(): JSX.Element {
                         }} />
                     </div>
 
-                    {persistentStorage.getCurrentOrder() == null
-                        ? null
-                        : <div className='bg-white rounded-3xl shadow-md w-full'>
-                            <ComponentHomeStatus />
-                        </div>
-                    }
+                    <div className='bg-white rounded-3xl shadow-md w-full'>
+                        <ComponentHomeStatus />
+                    </div>
                 </div>
             </div>
 
@@ -76,12 +71,9 @@ export default function PageHome(): JSX.Element {
                             }} />
                         </div>
 
-                        {persistentStorage.getCurrentOrder() == null
-                            ? null
-                            : <div className='ml-8 h-48 flex justify-center items-center bg-white rounded-3xl min-w-80'>
-                                <ComponentHomeStatus />
-                            </div>
-                        }
+                        <div className='ml-8 h-48 flex justify-center items-center bg-white rounded-3xl'>
+                            <ComponentHomeStatus />
+                        </div>
                     </div>
                 </div>
             </div>
