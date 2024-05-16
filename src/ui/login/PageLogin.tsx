@@ -2,7 +2,7 @@ import AnimatedPage from '../../AnimatedPage.tsx'
 import { Trans, useTranslation } from 'react-i18next'
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate, useParams } from 'react-router-dom'
 import ComponentError from '../common/ComponentError.tsx'
 import { useMutation } from '@tanstack/react-query'
@@ -16,7 +16,7 @@ export default function PageLogin(): JSX.Element {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [error, setError] = useState('​') // Zero width space here as a placeholder
+    const [error, setError] = useState('​') // Zero width spa
 
     const { redirect } = useParams()
     if (redirect == null) {
@@ -31,7 +31,9 @@ export default function PageLogin(): JSX.Element {
                 return
             }
             persistentStorage.setToken(data.access_token)
-            navigate(redirect.replace(/_/g, '/'))
+            setTimeout(() => {
+                navigate(redirect.replace(/_/g, '/'))
+            }, 500)
         }
     })
 
@@ -83,9 +85,14 @@ export default function PageLogin(): JSX.Element {
 
                 <p className='text-xs text-gray-400 mb-5'>{t('login.privacy')}</p>
 
-                <button className='w-full rounded-full bg-blue-500 hover:bg-blue-600 hover:shadow-lg
-                 transition-colors duration-100 p-2 font-display text-white mb-8' onClick={login}>
-                    {t('login.continue')}
+                <button
+                    className={`w-full rounded-full ${fetchToken.isPending ? 'bg-gray-300' : 'bg-blue-500 hover:bg-blue-600'} hover:shadow-lg
+                 transition-colors duration-100 p-2 font-display text-white mb-8`}
+                    onClick={fetchToken.isPending ? undefined : login}>
+                    {fetchToken.isPending
+                        ? <FontAwesomeIcon icon={faSpinner} className='text-xl text-gray-400'
+                                           spin={true} />
+                        : t('login.continue')}
                 </button>
             </div>
         </div>

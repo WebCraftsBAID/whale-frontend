@@ -16,7 +16,7 @@ export const usePersistentStorage = (): any => useContext(PersistentStorageConte
 export function PersistentStorageProvider({ children }: { children: ReactNode }): JSX.Element {
     const [order, setOrder] =
         useState<number | null>(localStorage.getItem('stored-order') == null ? null : parseInt(localStorage.getItem('stored-order')!))
-    const [token, setToken] = useState<string | null>(localStorage.getItem('token'))
+    const [token, setTokenT] = useState<string | null>(localStorage.getItem('token'))
 
     useEffect(() => {
         if (order == null) {
@@ -53,11 +53,15 @@ export function PersistentStorageProvider({ children }: { children: ReactNode })
         if (token == null) {
             return null
         }
-        if (Date.now() > jwtDecode(token).exp!) {
+        if (Date.now() > jwtDecode(token).exp! * 1000) {
             setToken(null)
             return null
         }
         return token
+    }
+
+    function setToken(token: string | null): void {
+        setTokenT(token)
     }
 
     function setCurrentOrder(order: number | null): void {

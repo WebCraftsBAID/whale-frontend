@@ -4,7 +4,7 @@ import ComponentCategory from './ComponentCategory.tsx'
 import ComponentAd from './ComponentAd.tsx'
 import ComponentShoppingCart from './ComponentShoppingCart.tsx'
 import ComponentTopBar from '../../common/ComponentTopBar.tsx'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ComponentOrderConfirmModal from './ComponentOrderConfirmModal.tsx'
 import { useQuery } from '@tanstack/react-query'
 import { getCategories } from '../../../data/api.ts'
@@ -28,10 +28,11 @@ export default function PageOrder(): JSX.Element {
         queryFn: getCategories
     })
 
-    if (persistentStorage.getToken() == null) {
-        navigate('/login/_order')
-        return <></>
-    }
+    useEffect(() => {
+        if (persistentStorage.getToken() == null) {
+            navigate('/login/_order')
+        }
+    }, [])
 
     if (categories.isError) {
         return <AnimatedPage><ComponentError detail={categories} screen={true} /></AnimatedPage>
