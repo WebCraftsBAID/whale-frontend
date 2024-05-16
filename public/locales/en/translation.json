@@ -79,5 +79,16 @@
       "numberError": "Enter a 3-digit order number",
       "notFound": "Incorrect number"
     }
+  },
+  "login": {
+    "baid": "Beijing Academy",
+    "title": "Log In",
+    "hint": "Use your <1>SEIUE account</1> to log in to <1>Whale Cafe</1>",
+    "username": "Username",
+    "password": "Password",
+    "continue": "Continue",
+    "resetPassword": "Forgot Password?",
+    "privacy": "Whale Cafe will receive your name and Beijing Education ID, and won't be able to access your password or other account information.",
+    "error": "Login Failed"
   }
 }

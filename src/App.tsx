@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ShoppingCartProvider } from './data/shoppingCart.tsx'
 import PageCheck from './ui/pages/check/PageCheck.tsx'
 import { PersistentStorageProvider } from './data/persistentStorage.tsx'
+import PageLogin from './ui/login/PageLogin.tsx'
 
 const queryClient = new QueryClient()
 
@@ -23,6 +24,7 @@ export default function App(): JSX.Element {
                             : <Routes location={location} key={location.pathname}>
                                 <Route index element={<PageHome />} />
                                 <Route path='order' element={<PageOrder />} />
+                                <Route path='login/:redirect' element={<PageLogin />} />
                                 <Route path='check/:id' element={<PageCheck />} />
                             </Routes>}
                     </PersistentStorageProvider>

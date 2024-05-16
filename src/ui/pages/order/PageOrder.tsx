@@ -13,16 +13,25 @@ import ComponentLoading from '../../common/ComponentLoading.tsx'
 import { type CategorySchema, type ItemTypeSchema } from '../../../data/dataTypes.ts'
 import ComponentItemDetails from './ComponentItemDetails.tsx'
 import { useShoppingCart } from '../../../data/shoppingCart.tsx'
+import { type PersistentStorage, usePersistentStorage } from '../../../data/persistentStorage.tsx'
+import { useNavigate } from 'react-router-dom'
 
 export default function PageOrder(): JSX.Element {
     const [confirmModalOpen, setConfirmModalOpen] = useState(false)
     const [pickItem, setPickItem] = useState<ItemTypeSchema | null>(null)
     const shoppingCart = useShoppingCart()
+    const persistentStorage: PersistentStorage = usePersistentStorage()
+    const navigate = useNavigate()
 
     const categories = useQuery({
         queryKey: ['categories'],
         queryFn: getCategories
     })
+
+    if (persistentStorage.getToken() == null) {
+        navigate('/login/_order')
+        return <></>
+    }
 
     if (categories.isError) {
         return <AnimatedPage><ComponentError detail={categories} screen={true} /></AnimatedPage>
