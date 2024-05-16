@@ -5,16 +5,42 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate, useParams } from 'react-router-dom'
 import ComponentError from '../common/ComponentError.tsx'
+import { useMutation } from '@tanstack/react-query'
+import { getToken } from '../../data/api.ts'
+import { type PersistentStorage, usePersistentStorage } from '../../data/persistentStorage.tsx'
 
 export default function PageLogin(): JSX.Element {
     const { t } = useTranslation()
     const navigate = useNavigate()
+    const persistentStorage: PersistentStorage = usePersistentStorage()
+
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [error, setError] = useState('​') // Zero width space here as a placeholder
 
     const { redirect } = useParams()
     if (redirect == null) {
         return <AnimatedPage><ComponentError screen={true} /></AnimatedPage>
+    }
+
+    const fetchToken = useMutation({
+        mutationFn: async () => await getToken(username, password),
+        onSuccess: (data) => {
+            if ('detail' in data) {
+                setError(t('login.error'))
+                return
+            }
+            persistentStorage.setToken(data.access_token)
+            navigate(redirect.replace(/_/g, '/'))
+        }
+    })
+
+    function login(): void {
+        setError('​')
+        if (username.length < 1 || password.length < 1) {
+            setError(t('login.errorValidation'))
+        }
+        fetchToken.mutate()
     }
 
     return <AnimatedPage>
@@ -48,13 +74,17 @@ export default function PageLogin(): JSX.Element {
                            }} placeholder={t('login.password')} />
                 </div>
 
+                <p className='text-accent-red mb-3'>
+                    {error}
+                </p>
+
                 <p className='text-gray-500 hover:text-gray-600 transition-colors duration-100 text-sm mb-3'>
                     <a href='https://passport.seiue.com/reset-password?school_id=452'>{t('login.resetPassword')}</a></p>
 
                 <p className='text-xs text-gray-400 mb-5'>{t('login.privacy')}</p>
 
                 <button className='w-full rounded-full bg-blue-500 hover:bg-blue-600 hover:shadow-lg
-                 transition-colors duration-100 p-2 font-display text-white mb-8'>
+                 transition-colors duration-100 p-2 font-display text-white mb-8' onClick={login}>
                     {t('login.continue')}
                 </button>
             </div>

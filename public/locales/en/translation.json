@@ -89,6 +89,7 @@
     "continue": "Continue",
     "resetPassword": "Forgot Password?",
     "privacy": "Whale Cafe will receive your name and Beijing Education ID, and won't be able to access your password or other account information.",
-    "error": "Login Failed"
+    "error": "Failed to log in",
+    "errorValidation": "Username and password must be filled"
   }
 }

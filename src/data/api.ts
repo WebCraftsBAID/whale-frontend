@@ -1,5 +1,10 @@
 import { type CategorySchema, type ItemTypeSchema, type OrderSchema } from './dataTypes.ts'
-import { type GenericError, type OrderCreateSchema, type OrderEstimateSchema } from './apiDataTypes.ts'
+import {
+    type AccessToken,
+    type GenericError,
+    type OrderCreateSchema,
+    type OrderEstimateSchema
+} from './apiDataTypes.ts'
 
 export async function get(endpoint: string, query = new Map<string, string>(), token: string | null = null): Promise<any> {
     const entries = Array.from(query.entries())
@@ -74,6 +79,13 @@ export async function del(endpoint: string, query = new Map<string, string>(), t
     }
 
     return JSON.parse(text)
+}
+
+export async function getToken(username: string, password: string): Promise<AccessToken | GenericError> {
+    return await post('token', {
+        username,
+        password
+    })
 }
 
 export async function getItemTypes(): Promise<ItemTypeSchema[] | GenericError> {

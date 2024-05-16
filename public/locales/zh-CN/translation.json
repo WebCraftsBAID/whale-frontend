@@ -89,6 +89,7 @@
     "continue": "继续",
     "resetPassword": "忘记密码?",
     "privacy": "白鲸咖啡馆会获得您的姓名与北京教育 ID，且无法访问您的密码或其他账号信息。",
-    "error": "登录失败"
+    "error": "登录失败",
+    "errorValidation": "必须填写用户名和密码"
   }
 }

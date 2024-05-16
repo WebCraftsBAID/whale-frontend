@@ -1,5 +1,10 @@
 import { type OrderStatus } from './dataTypes.ts'
 
+export interface AccessToken {
+    access_token: string
+    token_type: string
+}
+
 export interface OrderedItemCreateSchema {
     itemType: number
     appliedOptions: number[]
