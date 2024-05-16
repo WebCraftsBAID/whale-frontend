@@ -2,7 +2,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import ComponentIconText from '../../common/ComponentIconText.tsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleExclamation, faClock, faClose, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react'
 import type { OptionTypeSchema, OrderedItemSchema, OrderSchema } from '../../../data/dataTypes.ts'
 import ComponentOrderedItem from './ComponentOrderedItem.tsx'
 import { useShoppingCart } from '../../../data/shoppingCart.tsx'
@@ -21,13 +20,6 @@ export default function ComponentOrderConfirmModal({
     const { t } = useTranslation()
     const navigate = useNavigate()
     const persistentStorage = usePersistentStorage()
-
-    const [name, setName] = useState('')
-    const [nameError, setNameError] = useState('')
-    const [room, setRoom] = useState('')
-    const [roomError, setRoomError] = useState('')
-    const [payAttention, setPayAttention] = useState('')
-    const [payAttentionError, setPayAttentionError] = useState('')
 
     const orderCreate = useMutation({
         mutationFn: order,
@@ -52,31 +44,6 @@ export default function ComponentOrderConfirmModal({
     })
 
     function submit(): void {
-        let error = false
-        setPayAttentionError('')
-        setRoomError('')
-        setNameError('')
-        if (payAttention.replace(/-/g, '').replace(/ /g, '').toLowerCase() !== 'iwillpayinperson' &&
-            payAttention !== '我会现场付款') {
-            setPayAttentionError(t('order.confirm.payAttentionError'))
-            error = true
-            document.getElementById('attention-scroll')?.scrollIntoView()
-        }
-        if (room.length < 1 || room.length > 5) {
-            setRoomError(t('order.confirm.roomError'))
-            error = true
-            document.getElementById('room-scroll')?.scrollIntoView()
-        }
-        if (name.length < 1 || name.length > 63) {
-            setNameError(t('order.confirm.nameError'))
-            error = true
-            document.getElementById('name-scroll')?.scrollIntoView()
-        }
-
-        if (error) {
-            return
-        }
-
         const createItems: OrderedItemCreateSchema[] = []
 
         for (const item of items) {
@@ -88,9 +55,7 @@ export default function ComponentOrderConfirmModal({
         }
 
         orderCreate.mutate({
-            items: createItems,
-            contactName: name,
-            contactRoom: room
+            items: createItems
         })
     }
 
@@ -146,38 +111,6 @@ export default function ComponentOrderConfirmModal({
                                                    2: <u></u>
                                                }} />
                                     </ComponentIconText>
-                                </div>
-
-                                <div className='mb-5'>
-                                    <p className='text-gray-400 text-xs mb-2'>{t('order.confirm.contactInformation')}</p>
-                                    <div className='w-full rounded-2xl bg-accent-yellow-bg p-4'>
-                                        <p className='text-gray-400 text-xs mb-2'
-                                           id='name-scroll'>{t('order.confirm.name')}</p>
-                                        <div className='rounded-full w-full p-2 bg-white mb-1'>
-                                            <input className='w-full' value={name} onChange={e => {
-                                                setName(e.target.value)
-                                            }} />
-                                        </div>
-                                        <p className='mb-2 text-xs text-accent-red'>{nameError}</p>
-
-                                        <p className='text-gray-400 text-xs mb-2'
-                                           id='room-scroll'>{t('order.confirm.room')}</p>
-                                        <div className='rounded-full w-full p-2 bg-white mb-1'>
-                                            <input className='w-full' value={room} onChange={e => {
-                                                setRoom(e.target.value)
-                                            }} />
-                                        </div>
-                                        <p className='mb-2 text-xs text-accent-red'>{roomError}</p>
-
-                                        <p className='text-gray-400 text-xs mb-2'
-                                           id='attention-scroll'>{t('order.confirm.payAttention')}</p>
-                                        <div className='rounded-full w-full p-2 bg-white mb-1'>
-                                            <input className='w-full' value={payAttention} onChange={e => {
-                                                setPayAttention(e.target.value)
-                                            }} />
-                                        </div>
-                                        <p className='text-xs text-accent-red'>{payAttentionError}</p>
-                                    </div>
                                 </div>
 
                                 <p className='text-gray-400 text-xs mb-2'>{t('order.confirm.orders')}</p>

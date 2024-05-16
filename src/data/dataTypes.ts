@@ -1,3 +1,8 @@
+export interface UserSchema {
+    id: string
+    name: string
+}
+
 export interface CategorySchema {
     id: number
     name: string
@@ -57,7 +62,6 @@ export interface OrderSchema {
     number: string
     status: OrderStatus
     createdTime: string
-    contactName: string
-    contactRoom: string
+    user: UserSchema
     items: OrderedItemSchema[]
 }

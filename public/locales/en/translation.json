@@ -43,13 +43,6 @@
       "waitTime_other": "You will be waiting for approximately {{count}} minutes.",
       "payment": "Please be ready to pay <1><2>in-person</2> after getting your drink.</1>",
       "abuse": "Abusive orders may be cancelled without notice.",
-      "contactInformation": "Personal Information",
-      "name": "Your Name*",
-      "nameError": "Enter a correct name",
-      "room": "Your Classroom Number*",
-      "roomError": "Enter a correct room number",
-      "payAttention": "Please enter \"I will pay in-person\"*",
-      "payAttentionError": "Copy \"I will pay in-person\"",
       "orders": "Your Orders",
       "total": "¥{{count}} Total",
       "confirm": "Confirm"
@@ -71,9 +64,6 @@
       "orderNumber": "Please remember your order number, you will need it when picking up your drink.",
       "pay": "Please be ready to pay in-person."
     },
-    "contacts": "Order Contacts",
-    "contactName": "Contact Name",
-    "contactRoom": "Contact Room",
     "products": "Ordered Products",
     "cancel": "Cancel",
     "cancelLoading": "...",

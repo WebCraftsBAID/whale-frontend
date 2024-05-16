@@ -8,8 +8,6 @@ export interface OrderedItemCreateSchema {
 
 export interface OrderCreateSchema {
     items: OrderedItemCreateSchema[]
-    contactName: string
-    contactRoom: string
 }
 
 export interface OrderEstimateSchema {

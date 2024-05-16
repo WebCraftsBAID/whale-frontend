@@ -164,19 +164,6 @@ export default function PageCheck(): JSX.Element {
                         </ComponentIconText>
                     </div>
 
-                    <p className='text-gray-400 text-xs mb-2'>{t('check.contacts')}</p>
-                    <div className='w-full rounded-2xl bg-accent-yellow-bg p-4 mb-8'>
-                        <p className='text-gray-400 text-xs mb-2'>{t('check.contactName')}</p>
-                        <div className='rounded-full w-full p-2 bg-white mb-1'>
-                            <input className='w-full' value={order.data.contactName} readOnly={true} />
-                        </div>
-
-                        <p className='text-gray-400 text-xs mb-2'>{t('check.contactRoom')}</p>
-                        <div className='rounded-full w-full p-2 bg-white mb-1'>
-                            <input className='w-full' value={order.data.contactRoom} readOnly={true} />
-                        </div>
-                    </div>
-
                     <p className='text-gray-400 text-xs mb-2'>{t('check.products')}</p>
                     {order.data.items.map((item: OrderedItemSchema) => <ComponentOrderedItem key={item.id}
                                                                                              item={item} />)}
@@ -285,19 +272,6 @@ export default function PageCheck(): JSX.Element {
                         </div>
                     </div>
                     <div className='w-1/2 h-full p-8 xl:p-12 2xl:px-24 2xl:py-16 overflow-y-auto'>
-                        <p className='text-gray-400 text-xs mb-2'>{t('check.contacts')}</p>
-                        <div className='w-full rounded-2xl bg-accent-yellow-bg p-4 mb-8'>
-                            <p className='text-gray-400 text-xs mb-2'>{t('check.contactName')}</p>
-                            <div className='rounded-full w-full p-2 bg-white mb-1'>
-                                <input className='w-full' value={order.data.contactName} readOnly={true} />
-                            </div>
-
-                            <p className='text-gray-400 text-xs mb-2'>{t('check.contactRoom')}</p>
-                            <div className='rounded-full w-full p-2 bg-white mb-1'>
-                                <input className='w-full' value={order.data.contactRoom} readOnly={true} />
-                            </div>
-                        </div>
-
                         <p className='text-gray-400 text-xs mb-2'>{t('check.products')}</p>
                         {order.data.items.map((item: OrderedItemSchema) => <ComponentOrderedItem key={item.id}
                                                                                                  item={item} />)}
