@@ -1,8 +1,13 @@
 import { createContext, type ReactNode, useContext, useEffect, useState } from 'react'
+import { type UserSchema } from './dataTypes.ts'
+import { jwtDecode } from 'jwt-decode'
 
 export interface PersistentStorage {
     getCurrentOrder: () => number | null
     setCurrentOrder: (order: number | null) => void
+    getToken: () => string | null
+    setToken: (token: string | null) => void
+    decodeToken: () => UserSchema | null
 }
 
 const PersistentStorageContext = createContext<PersistentStorage>(null as unknown as PersistentStorage)
@@ -11,6 +16,7 @@ export const usePersistentStorage = (): any => useContext(PersistentStorageConte
 export function PersistentStorageProvider({ children }: { children: ReactNode }): JSX.Element {
     const [order, setOrder] =
         useState<number | null>(localStorage.getItem('stored-order') == null ? null : parseInt(localStorage.getItem('stored-order')!))
+    const [token, setToken] = useState<string | null>(localStorage.getItem('token'))
 
     useEffect(() => {
         if (order == null) {
@@ -21,6 +27,14 @@ export function PersistentStorageProvider({ children }: { children: ReactNode })
         localStorage.setItem('stored-order', order.toString())
         localStorage.setItem('stored-order-now', Date.now().toString())
     }, [order])
+
+    useEffect(() => {
+        if (token == null) {
+            localStorage.removeItem('token')
+            return
+        }
+        localStorage.setItem('token', token)
+    }, [token])
 
     function getCurrentOrder(): number | null {
         if (localStorage.getItem('stored-order-now') == null || localStorage.getItem('stored-order') == null) {
@@ -35,14 +49,40 @@ export function PersistentStorageProvider({ children }: { children: ReactNode })
         return order
     }
 
+    function getToken(): string | null {
+        if (token == null) {
+            return null
+        }
+        if (Date.now() > jwtDecode(token).exp!) {
+            setToken(null)
+            return null
+        }
+        return token
+    }
+
     function setCurrentOrder(order: number | null): void {
         setOrder(order)
+    }
+
+    function decodeToken(): UserSchema | null {
+        const token = getToken()
+        if (token == null) {
+            return null
+        }
+        const decoded = jwtDecode<any>(token)
+        return {
+            id: decoded.id,
+            name: decoded.name
+        }
     }
 
     return (
         <PersistentStorageContext.Provider value={{
             getCurrentOrder,
-            setCurrentOrder
+            setCurrentOrder,
+            getToken,
+            setToken,
+            decodeToken
         }}>
             {children}
         </PersistentStorageContext.Provider>

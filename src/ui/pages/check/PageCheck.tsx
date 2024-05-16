@@ -24,10 +24,12 @@ import { type OrderedItemSchema, OrderStatus } from '../../../data/dataTypes.ts'
 import ComponentIconText from '../../common/ComponentIconText.tsx'
 import ComponentOrderedItem from '../order/ComponentOrderedItem.tsx'
 import { useState } from 'react'
+import { type PersistentStorage, usePersistentStorage } from '../../../data/persistentStorage.tsx'
 
 export default function PageCheck(): JSX.Element {
     const { t } = useTranslation()
     const navigate = useNavigate()
+    const persistentStorage: PersistentStorage = usePersistentStorage()
     const [cancelConfirm, setCancelConfirm] = useState(false)
 
     const { id } = useParams()
@@ -48,7 +50,7 @@ export default function PageCheck(): JSX.Element {
     })
 
     const orderCancel = useMutation({
-        mutationFn: async () => await cancelOrder(parseInt(id)),
+        mutationFn: async () => await cancelOrder(parseInt(id), persistentStorage.getToken()!),
         onSuccess: () => {
             setCancelConfirm(false)
             if (typeof orderCancel.data === 'object') {

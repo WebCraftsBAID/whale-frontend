@@ -7,11 +7,15 @@ import ComponentOrderedItem from './ComponentOrderedItem.tsx'
 import { useShoppingCart } from '../../../data/shoppingCart.tsx'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { getOrderTimeEstimateNow, order } from '../../../data/api.ts'
-import { type OrderedItemCreateSchema, type OrderEstimateSchema } from '../../../data/apiDataTypes.ts'
+import {
+    type OrderCreateSchema,
+    type OrderedItemCreateSchema,
+    type OrderEstimateSchema
+} from '../../../data/apiDataTypes.ts'
 import ComponentLoading from '../../common/ComponentLoading.tsx'
 import ComponentError from '../../common/ComponentError.tsx'
 import { useNavigate } from 'react-router-dom'
-import { usePersistentStorage } from '../../../data/persistentStorage.tsx'
+import { type PersistentStorage, usePersistentStorage } from '../../../data/persistentStorage.tsx'
 
 export default function ComponentOrderConfirmModal({
     open,
@@ -19,10 +23,10 @@ export default function ComponentOrderConfirmModal({
 }: { open: boolean, close: () => void }): JSX.Element {
     const { t } = useTranslation()
     const navigate = useNavigate()
-    const persistentStorage = usePersistentStorage()
+    const persistentStorage: PersistentStorage = usePersistentStorage()
 
     const orderCreate = useMutation({
-        mutationFn: order,
+        mutationFn: async (data: OrderCreateSchema) => await order(data, persistentStorage.getToken()!),
         onSuccess: (data) => {
             clear()
             persistentStorage.setCurrentOrder((data as OrderSchema).id)

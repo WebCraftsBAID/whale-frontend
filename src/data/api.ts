@@ -1,62 +1,71 @@
 import { type CategorySchema, type ItemTypeSchema, type OrderSchema } from './dataTypes.ts'
 import { type GenericError, type OrderCreateSchema, type OrderEstimateSchema } from './apiDataTypes.ts'
 
-export async function get(endpoint: string, query = new Map<string, string>()): Promise<any> {
-    const entries = Array.from(query.entries())
-    const queryParameters = entries.map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
-
-    const response = await fetch(import.meta.env.VITE_API_HOST + '/' + endpoint + '?' + queryParameters.join('&'))
-    const text = await response.text()
-
-    if (text.length < 1) {
-        return response.status === 200
-    }
-
-    return JSON.parse(text)
-}
-
-export async function post(endpoint: string, body: Record<string, any>): Promise<any> {
-    const response = await fetch(import.meta.env.VITE_API_HOST + '/' + endpoint, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body)
-    })
-
-    const text = await response.text()
-
-    if (text.length < 1) {
-        return response.status === 200
-    }
-
-    return JSON.parse(text)
-}
-
-export async function patch(endpoint: string, body: Record<string, unknown>): Promise<any> {
-    const response = await fetch(import.meta.env.VITE_API_HOST + '/' + endpoint, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body)
-    })
-
-    const text = await response.text()
-
-    if (text.length < 1) {
-        return response.status === 200
-    }
-
-    return JSON.parse(text)
-}
-
-export async function del(endpoint: string, query = new Map<string, string>()): Promise<any> {
+export async function get(endpoint: string, query = new Map<string, string>(), token: string | null = null): Promise<any> {
     const entries = Array.from(query.entries())
     const queryParameters = entries.map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
 
     const response = await fetch(import.meta.env.VITE_API_HOST + '/' + endpoint + '?' + queryParameters.join('&'), {
-        method: 'DELETE'
+        headers: {
+            Authorization: token == null ? '' : `Bearer ${token}`
+        }
+    })
+    const text = await response.text()
+
+    if (text.length < 1) {
+        return response.status === 200
+    }
+
+    return JSON.parse(text)
+}
+
+export async function post(endpoint: string, body: Record<string, any>, token: string | null = null): Promise<any> {
+    const response = await fetch(import.meta.env.VITE_API_HOST + '/' + endpoint, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: token == null ? '' : `Bearer ${token}`
+        },
+        body: JSON.stringify(body)
+    })
+
+    const text = await response.text()
+
+    if (text.length < 1) {
+        return response.status === 200
+    }
+
+    return JSON.parse(text)
+}
+
+export async function patch(endpoint: string, body: Record<string, unknown>, token: string | null = null): Promise<any> {
+    const response = await fetch(import.meta.env.VITE_API_HOST + '/' + endpoint, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: token == null ? '' : `Bearer ${token}`
+        },
+        body: JSON.stringify(body)
+    })
+
+    const text = await response.text()
+
+    if (text.length < 1) {
+        return response.status === 200
+    }
+
+    return JSON.parse(text)
+}
+
+export async function del(endpoint: string, query = new Map<string, string>(), token: string | null = null): Promise<any> {
+    const entries = Array.from(query.entries())
+    const queryParameters = entries.map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+
+    const response = await fetch(import.meta.env.VITE_API_HOST + '/' + endpoint + '?' + queryParameters.join('&'), {
+        method: 'DELETE',
+        headers: {
+            Authorization: token == null ? '' : `Bearer ${token}`
+        }
     })
     const text = await response.text()
 
@@ -107,10 +116,10 @@ export async function getOrderTimeEstimate(id: number): Promise<OrderEstimateSch
     return await get('order/estimate', new Map([['id', id.toString()]]))
 }
 
-export async function cancelOrder(id: number): Promise<boolean | GenericError> {
-    return await del('order', new Map([['id', id.toString()]]))
+export async function cancelOrder(id: number, token: string): Promise<boolean | GenericError> {
+    return await del('order', new Map([['id', id.toString()]]), token)
 }
 
-export async function order(create: OrderCreateSchema): Promise<OrderSchema | GenericError> {
-    return await post('order', create)
+export async function order(create: OrderCreateSchema, token: string): Promise<OrderSchema | GenericError> {
+    return await post('order', create, token)
 }
