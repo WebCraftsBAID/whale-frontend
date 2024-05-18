@@ -30,7 +30,7 @@ export default function PageOrder(): JSX.Element {
 
     useEffect(() => {
         if (persistentStorage.getToken() == null) {
-            navigate('/login/_order')
+            navigate('/login/oauth2/_order')
         }
     }, [])
 

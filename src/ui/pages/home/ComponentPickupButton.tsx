@@ -14,7 +14,7 @@ export default function ComponentPickupButton(): JSX.Element {
                             px-3 py-5 bg-white hover:bg-gray-100 transition-colors duration-100'
                 onClick={() => {
                     if (persistentStorage.getToken() == null) {
-                        navigate('/login/_order')
+                        navigate('/login/oauth2/_order')
                         return
                     }
                     navigate('/order')

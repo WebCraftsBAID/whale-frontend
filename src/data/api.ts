@@ -1,7 +1,7 @@
 import { type CategorySchema, type ItemTypeSchema, type OrderSchema } from './dataTypes.ts'
 import {
-    type AccessToken,
     type GenericError,
+    type LoginRedirectTarget,
     type OrderCreateSchema,
     type OrderEstimateSchema
 } from './apiDataTypes.ts'
@@ -81,13 +81,6 @@ export async function del(endpoint: string, query = new Map<string, string>(), t
     return JSON.parse(text)
 }
 
-export async function getToken(username: string, password: string): Promise<AccessToken | GenericError> {
-    return await post('token', {
-        username,
-        password
-    })
-}
-
 export async function getItemTypes(): Promise<ItemTypeSchema[] | GenericError> {
     return await get('items')
 }
@@ -134,4 +127,8 @@ export async function cancelOrder(id: number, token: string): Promise<boolean | 
 
 export async function order(create: OrderCreateSchema, token: string): Promise<OrderSchema | GenericError> {
     return await post('order', create, token)
+}
+
+export async function getLoginRedirectTarget(redirect: string): Promise<LoginRedirectTarget> {
+    return await get('login', new Map([['redirect', redirect]]))
 }

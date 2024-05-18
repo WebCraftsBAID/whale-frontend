@@ -15,6 +15,7 @@ To run in development:
   the backend development server.
 * Copy `.env.example` to `.env`, and change `VITE_API_HOST` accordingly. Typically, you will change it
   to `http://localhost:8000`.
+* Also change `VITE_HOST` according to where the frontend is hosted.
 * Run `npm install`.
 * Run `npm run dev`.
 

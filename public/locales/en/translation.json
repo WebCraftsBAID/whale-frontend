@@ -83,13 +83,15 @@
   "login": {
     "baid": "Beijing Academy",
     "title": "Log In",
-    "hint": "Use your <1>SEIUE account</1> to log in to <1>Whale Cafe</1>",
-    "username": "Username",
-    "password": "Password",
-    "continue": "Continue",
-    "resetPassword": "Forgot Password?",
-    "privacy": "Whale Cafe will receive your name and Beijing Education ID, and won't be able to access your password or other account information.",
-    "error": "Failed to log in",
-    "errorValidation": "Username and password must be filled"
+    "hint": "You will be redirected to <1>SEIUE</1> to log in.",
+    oa
+    "privacy": "SEIUE is a product operated by Beijing Yuehuo Education Technology Limited. By continuing to log in, you indicate your agreement to SEIUE's terms and conditions. Whale Cafe will receive basic information about your account, and won't be able to access your password or other account information.",
+    "onboarding": {
+      "error": "An error occurred while logging in, please try again.",
+      "tryAgain": "Try Again",
+      "welcome": "Welcome",
+      "welcomeMessage": "You have successfully logged in as {{name}} and may enjoy all that Whale Cafe has to offer.",
+      "continue": "Continue"
+    }
   }
 }
