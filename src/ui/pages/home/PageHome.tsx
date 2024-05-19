@@ -63,7 +63,7 @@ export default function PageHome(): JSX.Element {
                             <ComponentHistoryButton />
                         </div>
 
-                        <div className='w-48 h-48 flex justify-center items-center bg-white rounded-3xl mr-8'>
+                        <div className='w-48 h-48 flex justify-center items-center bg-white rounded-3xl'>
                             <ComponentAccountButton />
                         </div>
 

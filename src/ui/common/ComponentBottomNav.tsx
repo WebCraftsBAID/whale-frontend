@@ -9,34 +9,34 @@ export default function ComponentBottomNav(): JSX.Element {
     return (
         <nav
             className='w-full flex justify-center p-2 bg-white border-t border-gray-200 border-solid fixed bottom-0 h-16 z-30'>
-            <div className='mx-8'>
+            <div className='w-1/4'>
                 <NavLink to={'/'} className={({ isActive }) => isActive ? 'text-black' : 'text-gray-400'}>
                     <div className='text-center'>
-                        <FontAwesomeIcon icon={faHouse} className='text-sm' />
+                        <FontAwesomeIcon icon={faHouse} />
                         <p className='text-xs'>{t('navbar.home')}</p>
                     </div>
                 </NavLink>
             </div>
-            <div className='mx-8'>
+            <div className='w-1/4'>
                 <NavLink to={'/order'} className={({ isActive }) => isActive ? 'text-black' : 'text-gray-400'}>
                     <div className='text-center'>
-                        <FontAwesomeIcon icon={faCoffee} className='text-sm' />
+                        <FontAwesomeIcon icon={faCoffee} />
                         <p className='text-xs'>{t('navbar.order')}</p>
                     </div>
                 </NavLink>
             </div>
-            <div className='mx-8'>
+            <div className='w-1/4'>
                 <NavLink to={'/history'} className={({ isActive }) => isActive ? 'text-black' : 'text-gray-400'}>
                     <div className='text-center'>
-                        <FontAwesomeIcon icon={faClockRotateLeft} className='text-sm' />
+                        <FontAwesomeIcon icon={faClockRotateLeft} />
                         <p className='text-xs'>{t('navbar.history')}</p>
                     </div>
                 </NavLink>
             </div>
-            <div className='mx-8'>
+            <div className='w-1/4'>
                 <NavLink to={'/account'} className={({ isActive }) => isActive ? 'text-black' : 'text-gray-400'}>
                     <div className='text-center'>
-                        <FontAwesomeIcon icon={faUser} className='text-sm' />
+                        <FontAwesomeIcon icon={faUser} />
                         <p className='text-xs'>{t('navbar.account')}</p>
                     </div>
                 </NavLink>

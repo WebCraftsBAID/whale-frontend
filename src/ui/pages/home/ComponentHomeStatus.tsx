@@ -35,6 +35,11 @@ export default function ComponentHomeStatus(): JSX.Element {
     }
 
     if (order.isError || 'detail' in order.data) {
+        if ('detail' in order.data && order.data.detail === 'Not Found') {
+            setTimeout(() => {
+                persistentStorage.setCurrentOrder(null)
+            }, 500)
+        }
         return <div className='min-w-80'><ComponentError detail={order} /></div>
     }
 
