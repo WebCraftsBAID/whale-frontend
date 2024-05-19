@@ -3,6 +3,12 @@
   "error": {
     "message": "发生了一个错误."
   },
+  "navbar": {
+    "home": "首页",
+    "order": "点单",
+    "history": "历史",
+    "account": "我的"
+  },
   "home": {
     "title": "每分每刻 <1/> 皆享受.",
     "description": "Lorem ipsum sit dolor amit, consectetur adipiscing elit. <1/> Lorem ipsum sit dolor amit, consectetur adipiscing elit.",
@@ -12,9 +18,13 @@
       "name": "自取",
       "description": "免排队点单"
     },
-    "check": {
-      "name": "查询",
-      "description": "查询订单状态"
+    "history": {
+      "name": "历史",
+      "description": "查询订单历史"
+    },
+    "account": {
+      "name": "我的",
+      "description": "白鲸会员"
     },
     "currentOrderCard": {
       "name": "当前订单",

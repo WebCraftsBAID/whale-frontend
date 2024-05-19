@@ -3,6 +3,12 @@
   "error": {
     "message": "An error occurred."
   },
+  "navbar": {
+    "home": "Home",
+    "order": "Order",
+    "history": "History",
+    "account": "Me"
+  },
   "home": {
     "title": "Enjoyment in <1/> every sip.",
     "description": "Lorem ipsum sit dolor amit, consectetur adipiscing elit. <1/> Lorem ipsum sit dolor amit, consectetur adipiscing elit.",
@@ -12,9 +18,13 @@
       "name": "Pick Up",
       "description": "Order w/o queues"
     },
-    "check": {
-      "name": "Check",
-      "description": "Check order status"
+    "history": {
+      "name": "History",
+      "description": "Previous orders"
+    },
+    "account": {
+      "name": "Account",
+      "description": "Whale membership"
     },
     "currentOrderCard": {
       "name": "Current Order",
@@ -84,7 +94,6 @@
     "baid": "Beijing Academy",
     "title": "Log In",
     "hint": "You will be redirected to <1>SEIUE</1> to log in.",
-    oa
     "privacy": "SEIUE is a product operated by Beijing Yuehuo Education Technology Limited. By continuing to log in, you indicate your agreement to SEIUE's terms and conditions. Whale Cafe will receive basic information about your account, and won't be able to access your password or other account information.",
     "onboarding": {
       "error": "An error occurred while logging in, please try again.",

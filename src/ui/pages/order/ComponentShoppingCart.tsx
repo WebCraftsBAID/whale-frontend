@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClose, faMugSaucer } from '@fortawesome/free-solid-svg-icons'
 import { useShoppingCart } from '../../../data/shoppingCart.tsx'
+import ComponentBottomNav from '../../common/ComponentBottomNav.tsx'
 
 export default function ComponentShoppingCart({ order }: { order: () => void }): JSX.Element {
     const [modalOpen, setModalOpen] = useState(false)
@@ -22,9 +23,9 @@ export default function ComponentShoppingCart({ order }: { order: () => void }):
             <div onClick={() => {
                 setModalOpen(false)
             }}
-                 className={`lg:hidden w-screen h-screen absolute top-0 left-0 z-30 transition-colors duration-200 ${modalOpen ? 'bg-gray-500/30' : 'pointer-events-none'}`}></div>
+                 className={`lg:hidden w-screen h-[calc(100vh)] absolute top-0 left-0 z-10 transition-colors duration-200 ${modalOpen ? 'bg-gray-500/30' : 'pointer-events-none'}`}></div>
 
-            <div className={`lg:hidden fixed w-screen bottom-0 left-0 bg-white z-40 px-5 pb-5 rounded-t-2xl max-h-[80dvh] overflow-y-auto 
+            <div className={`lg:hidden fixed w-screen bottom-16 left-0 bg-white z-20 px-5 pb-5 rounded-t-2xl max-h-[80dvh] overflow-y-auto 
                             transition-transform transform-gpu duration-200 ${modalOpen ? '-translate-y-16' : 'translate-y-full'}`}>
                 <div className='flex items-center sticky top-0 bg-white py-4'>
                     <p className='font-display flex-grow'>{t('order.shoppingCart')}</p>
@@ -47,7 +48,7 @@ export default function ComponentShoppingCart({ order }: { order: () => void }):
                     </div>}
             </div>
 
-            <div className='lg:hidden bg-gray-100 flex w-full sticky z-50 h-16'>
+            <div className='lg:hidden bg-gray-100 flex w-full sticky mb-16 z-50 h-16'>
                 <div className='flex-grow flex items-center p-2'>
                     <button
                         className={`h-12 w-12 rounded-full flex justify-center items-center 
@@ -68,6 +69,10 @@ export default function ComponentShoppingCart({ order }: { order: () => void }):
                             }}>
                     <p className='font-display'>{t('order.order')}</p>
                 </button>
+            </div>
+
+            <div className='lg:hidden'>
+                <ComponentBottomNav />
             </div>
 
             <div className='w-full h-full hidden lg:flex flex-col'>
