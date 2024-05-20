@@ -109,6 +109,7 @@
       "inProgress": "Making your drink...",
       "ready": "Ready to pick up!",
       "pickedUp": "Order finished, thank you!"
-    }
+    },
+    "loadMore": "Load More"
   }
 }

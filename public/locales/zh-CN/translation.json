@@ -109,6 +109,7 @@
       "inProgress": "正在制作...",
       "ready": "制作完成，请取餐!",
       "pickedUp": "订单已结束"
-    }
+    },
+    "loadMore": "加载更多"
   }
 }

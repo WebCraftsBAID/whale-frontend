@@ -3,7 +3,6 @@ import ComponentCategories from './ComponentCategories.tsx'
 import ComponentCategory from './ComponentCategory.tsx'
 import ComponentAd from './ComponentAd.tsx'
 import ComponentShoppingCart from './ComponentShoppingCart.tsx'
-import ComponentTopBar from '../../common/ComponentTopBar.tsx'
 import { useEffect, useState } from 'react'
 import ComponentOrderConfirmModal from './ComponentOrderConfirmModal.tsx'
 import { useQuery } from '@tanstack/react-query'
@@ -16,6 +15,7 @@ import { useShoppingCart } from '../../../data/shoppingCart.tsx'
 import { type PersistentStorage, usePersistentStorage } from '../../../data/persistentStorage.tsx'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import ComponentTopBar from '../../common/ComponentTopBar.tsx'
 
 export default function PageOrder(): JSX.Element {
     const { t } = useTranslation()
@@ -54,8 +54,8 @@ export default function PageOrder(): JSX.Element {
             }} />
 
             <div className='lg:hidden flex flex-col h-screen'>
-                <div className='flex-shrink px-6 pt-6'>
-                    <h1 className='text-2xl font-display font-bold'>{t('navbar.order')}</h1>
+                <div className='flex-shrink'>
+                    <ComponentTopBar />
                 </div>
 
                 <div className='flex flex-grow min-h-0 relative'>
@@ -68,9 +68,11 @@ export default function PageOrder(): JSX.Element {
 
                     <div className='h-full' style={{ flexShrink: '0' }}>
                         <ComponentCategories categories={resultedCategories}
-                            ids={resultedCategories.map(category => `category-m-${category.id}`)} />
+                                             ids={resultedCategories.map(category => `category-m-${category.id}`)} />
                     </div>
                     <div className='flex-grow h-full overflow-y-auto p-5'>
+                        <h1 className='text-2xl font-display font-bold mb-5'>{t('navbar.order')}</h1>
+
                         <div className='h-40 mb-8'>
                             <ComponentAd />
                         </div>
@@ -96,7 +98,7 @@ export default function PageOrder(): JSX.Element {
             <div className='hidden lg:flex h-screen flex-col'>
                 <div className='flex-shrink'>
                     <ComponentCategories categories={resultedCategories}
-                        ids={resultedCategories.map(category => `category-d-${category.id}`)} />
+                                         ids={resultedCategories.map(category => `category-d-${category.id}`)} />
                 </div>
                 <div className='flex flex-grow min-h-0 relative'>
                     <div
@@ -107,9 +109,11 @@ export default function PageOrder(): JSX.Element {
                     </div>
 
                     <div className='w-1/2 border-r border-gray-300 border-solid h-full overflow-y-auto p-16'>
+                        <h1 className='text-4xl mb-8 font-display font-bold'>{t('navbar.order')}</h1>
+
                         {resultedCategories.map(category => <div key={category.id}
-                            className='mb-8'
-                            id={`category-d-${category.id}`}>
+                                                                 className='mb-8'
+                                                                 id={`category-d-${category.id}`}>
                             <ComponentCategory category={category} pickItem={(item) => {
                                 setPickItem(item)
                             }} />

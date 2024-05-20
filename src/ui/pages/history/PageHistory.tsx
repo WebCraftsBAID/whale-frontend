@@ -1,63 +1,74 @@
 import { useTranslation } from 'react-i18next'
 import AnimatedPage from '../../../AnimatedPage'
 import ComponentBottomNav from '../../common/ComponentBottomNav'
-import { OrderStatus, type OrderSchema } from '../../../data/dataTypes'
-import ComponentHistoricalOrder from './ComponentHistoricalOrder'
 import ComponentTopBar from '../../common/ComponentTopBar'
+import { useInfiniteQuery } from '@tanstack/react-query'
+import { getOrders } from '../../../data/api.ts'
+import { type PersistentStorage, usePersistentStorage } from '../../../data/persistentStorage.tsx'
+import ComponentLoading from '../../common/ComponentLoading.tsx'
+import ComponentError from '../../common/ComponentError.tsx'
+import { type UserOrdersResponse } from '../../../data/apiDataTypes.ts'
+import ComponentHistoricalOrder from './ComponentHistoricalOrder.tsx'
+import React from 'react'
+import { faMugSaucer, faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function PageHistory(): JSX.Element {
     const { t } = useTranslation()
-    const order: OrderSchema = {
-        id: 1,
-        totalPrice: '10',
-        number: '001',
-        status: OrderStatus.pickedUp,
-        createdTime: '2008',
-        user: {
-            name: 'John Doe',
-            id: '15000000'
-        },
-        items: [
-            {
-                id: 1,
-                orderId: 1,
-                itemType: {
-                    id: 1,
-                    category: {
-                        id: 1,
-                        name: 'Category 1'
-                    },
-                    name: 'Item 1',
-                    image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg',
-                    tags: [],
-                    description: 'Description 1',
-                    shortDescription: 'Short description 1',
-                    options: [],
-                    basePrice: '10',
-                    salePercent: 0
-                },
-                appliedOptions: [],
-                amount: 1
+    const persistentStorage: PersistentStorage = usePersistentStorage()
+
+    const query = useInfiniteQuery({
+        queryKey: ['user-orders'],
+        queryFn: async ({ pageParam }) => await getOrders(pageParam, persistentStorage.getToken()!),
+        initialPageParam: 1,
+        getNextPageParam: (lastPage) => {
+            if ('detail' in lastPage || lastPage.page >= lastPage.pages) {
+                return null
             }
-        ]
+            return lastPage.page + 1
+        }
+    })
+
+    if (query.isPending) {
+        return <ComponentLoading screen={true} />
+    }
+
+    if (query.isError) {
+        return <ComponentError detail={query} screen={true} />
+    }
+
+    let hasItems = false
+    for (const page of query.data.pages) {
+        if (!('detail' in page) && page.items.length > 0) {
+            hasItems = true
+            break
+        }
     }
 
     return (
         <AnimatedPage>
             <div className='lg:hidden flex flex-col h-screen'>
-                <div className='flex-shrink px-6 py-6'>
-                    <h1 className='text-2xl font-display font-bold'>{t('navbar.history')}</h1>
+                <div className='flex-shrink'>
+                    <ComponentTopBar />
                 </div>
 
                 <div className='flex flex-col flex-grow h-full min-h-0 overflow-y-auto relative px-6'>
-                    <ComponentHistoricalOrder order={order} />
-                    <ComponentHistoricalOrder order={order} />
-                    <ComponentHistoricalOrder order={order} />
-                    <ComponentHistoricalOrder order={order} />
-                    <ComponentHistoricalOrder order={order} />
-                    <ComponentHistoricalOrder order={order} />
-                    <ComponentHistoricalOrder order={order} />
-                    <ComponentHistoricalOrder order={order} />
+                    <h1 className='text-2xl font-display font-bold my-5'>{t('navbar.history')}</h1>
+
+                    {query.data.pages.map((page, i) => (
+                        <React.Fragment key={i}>
+                            {(page as UserOrdersResponse).items.map((order, index) => (
+                                <ComponentHistoricalOrder order={order} key={index} />
+                            ))}
+                        </React.Fragment>
+                    ))}
+
+                    {!hasItems
+                        ? <div className='w-full h-full flex flex-col justify-center items-center'>
+                            <FontAwesomeIcon icon={faMugSaucer} className='text-4xl text-gray-400 mb-3' />
+                            <p className='font-display text-lg mb-1'>{t('order.empty')}</p>
+                        </div>
+                        : null}
                 </div>
                 <ComponentBottomNav />
             </div>
@@ -66,8 +77,43 @@ export default function PageHistory(): JSX.Element {
                 <div className='flex-shrink'>
                     <ComponentTopBar />
                 </div>
-                <div className='flex flex-grow min-h-0'>
+                <div className='flex flex-grow min-h-0 flex-col h-full overflow-y-auto p-12'>
+                    <h1 className='text-4xl mb-8 font-display font-bold'>{t('navbar.history')}</h1>
 
+                    <div className='w-full 2xl:w-2/3 mb-3'>
+                        <div className='grid grid-cols-2 xl:grid-cols-3 gap-x-3 gap-y-1'>
+                            {query.data.pages.map((page, i) => (
+                                <React.Fragment key={i}>
+                                    {(page as UserOrdersResponse).items.map((order, index) => (
+                                        <ComponentHistoricalOrder order={order} key={index} />
+                                    ))}
+                                </React.Fragment>
+                            ))}
+                        </div>
+
+                        {!hasItems
+                            ? <div className='w-96 flex flex-col justify-center items-center'>
+                                <FontAwesomeIcon icon={faMugSaucer} className='text-4xl text-gray-400 mb-3' />
+                                <p className='font-display text-lg mb-1'>{t('order.empty')}</p>
+                            </div>
+                            : null}
+                    </div>
+
+                    {query.isFetchingNextPage
+                        ? <div className='flex justify-center items-center mb-3'><FontAwesomeIcon icon={faSpinner}
+                                                                                                  className='text-4xl text-gray-400'
+                                                                                                  spin={true} /></div>
+                        : null}
+
+                    {query.hasNextPage && !query.isFetchingNextPage
+                        ? <div className='flex justify-center items-center'>
+                            <button onClick={() => {
+                                void query.fetchNextPage()
+                            }}
+                                    className='rounded-full py-2 px-5 font-display bg-accent-yellow-bg hover:bg-accent-orange-bg transition-colors duration-100'>{t('history.loadMore')}</button>
+                        </div>
+                        : null
+                    }
                 </div>
             </div>
         </AnimatedPage>

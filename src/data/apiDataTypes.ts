@@ -1,4 +1,4 @@
-import { type OrderStatus } from './dataTypes.ts'
+import { type OrderSchema, type OrderStatus } from './dataTypes.ts'
 
 export interface LoginRedirectTarget {
     target: string
@@ -19,6 +19,14 @@ export interface OrderEstimateSchema {
     orders: number
     number: string | null
     status: OrderStatus | null
+}
+
+export interface UserOrdersResponse {
+    items: OrderSchema[]
+    total: number
+    page: number
+    size: number
+    pages: number
 }
 
 export interface GenericError {

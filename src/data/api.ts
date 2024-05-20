@@ -3,7 +3,8 @@ import {
     type GenericError,
     type LoginRedirectTarget,
     type OrderCreateSchema,
-    type OrderEstimateSchema
+    type OrderEstimateSchema,
+    type UserOrdersResponse
 } from './apiDataTypes.ts'
 
 export async function get(endpoint: string, query = new Map<string, string>(), token: string | null = null): Promise<any> {
@@ -107,6 +108,10 @@ export async function getSettings(key: string): Promise<string | GenericError> {
 
 export async function getOrder(id: number): Promise<OrderSchema | GenericError> {
     return await get('order', new Map([['id', id.toString()]]))
+}
+
+export async function getOrders(page: number, token: string): Promise<UserOrdersResponse | GenericError> {
+    return await get('orders', new Map([['page', page.toString()], ['size', '20']]), token)
 }
 
 export async function getOrderByNumber(number: string): Promise<OrderSchema | GenericError> {
