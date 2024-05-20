@@ -102,5 +102,13 @@
       "welcomeMessage": "You have successfully logged in as {{name}} and may enjoy all that Whale Cafe has to offer.",
       "continue": "Continue"
     }
+  },
+  "history": {
+    "status": {
+      "notStarted": "Waiting in line...",
+      "inProgress": "Making your drink...",
+      "ready": "Ready to pick up!",
+      "pickedUp": "Order finished, thank you!"
+    }
   }
 }

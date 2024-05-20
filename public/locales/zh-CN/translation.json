@@ -102,5 +102,13 @@
       "welcomeMessage": "您已成功以 {{name}} 的身份登录，现可以使用白鲸咖啡馆的各项服务。",
       "continue": "继续"
     }
+  },
+  "history": {
+    "status": {
+      "notStarted": "正在等待开始制作...",
+      "inProgress": "正在制作...",
+      "ready": "制作完成，请取餐!",
+      "pickedUp": "订单已结束"
+    }
   }
 }

@@ -15,8 +15,11 @@ import ComponentItemDetails from './ComponentItemDetails.tsx'
 import { useShoppingCart } from '../../../data/shoppingCart.tsx'
 import { type PersistentStorage, usePersistentStorage } from '../../../data/persistentStorage.tsx'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 export default function PageOrder(): JSX.Element {
+    const { t } = useTranslation()
+
     const [confirmModalOpen, setConfirmModalOpen] = useState(false)
     const [pickItem, setPickItem] = useState<ItemTypeSchema | null>(null)
     const shoppingCart = useShoppingCart()
@@ -51,8 +54,8 @@ export default function PageOrder(): JSX.Element {
             }} />
 
             <div className='lg:hidden flex flex-col h-screen'>
-                <div className='flex-shrink'>
-                    <ComponentTopBar />
+                <div className='flex-shrink px-6 pt-6'>
+                    <h1 className='text-2xl font-display font-bold'>{t('navbar.order')}</h1>
                 </div>
 
                 <div className='flex flex-grow min-h-0 relative'>
@@ -65,7 +68,7 @@ export default function PageOrder(): JSX.Element {
 
                     <div className='h-full' style={{ flexShrink: '0' }}>
                         <ComponentCategories categories={resultedCategories}
-                                             ids={resultedCategories.map(category => `category-m-${category.id}`)} />
+                            ids={resultedCategories.map(category => `category-m-${category.id}`)} />
                     </div>
                     <div className='flex-grow h-full overflow-y-auto p-5'>
                         <div className='h-40 mb-8'>
@@ -93,7 +96,7 @@ export default function PageOrder(): JSX.Element {
             <div className='hidden lg:flex h-screen flex-col'>
                 <div className='flex-shrink'>
                     <ComponentCategories categories={resultedCategories}
-                                         ids={resultedCategories.map(category => `category-d-${category.id}`)} />
+                        ids={resultedCategories.map(category => `category-d-${category.id}`)} />
                 </div>
                 <div className='flex flex-grow min-h-0 relative'>
                     <div
@@ -105,8 +108,8 @@ export default function PageOrder(): JSX.Element {
 
                     <div className='w-1/2 border-r border-gray-300 border-solid h-full overflow-y-auto p-16'>
                         {resultedCategories.map(category => <div key={category.id}
-                                                                 className='mb-8'
-                                                                 id={`category-d-${category.id}`}>
+                            className='mb-8'
+                            id={`category-d-${category.id}`}>
                             <ComponentCategory category={category} pickItem={(item) => {
                                 setPickItem(item)
                             }} />
