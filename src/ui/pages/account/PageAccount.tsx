@@ -9,6 +9,7 @@ import { getMe, getMeStatistics } from '../../../data/api'
 import ComponentLoading from '../../common/ComponentLoading'
 import ComponentError from '../../common/ComponentError'
 import ComponentDeleteAccountModal from './ComponentDeleteAccountModal'
+import ComponentBottomNav from '../../common/ComponentBottomNav.tsx'
 
 export default function PageAccount(): JSX.Element {
     const persistentStorage: PersistentStorage = usePersistentStorage()
@@ -50,20 +51,22 @@ export default function PageAccount(): JSX.Element {
         <AnimatedPage>
             <ComponentDeleteAccountModal open={open} deletable={meStatistics.data.deletable} close={() => { setOpen(false) }} />
 
-            <div className='hidden lg:flex h-screen flex-col'>
+            <div className='h-screen flex flex-col'>
                 <div className='flex-shrink'>
                     <ComponentTopBar />
                 </div>
-                <div className='flex flex-grow min-h-0 flex-col h-full overflow-y-auto px-96 py-12'>
-                    <h1 className='flex-shrink text-4xl mb-8 font-display font-bold'>{t('navbar.account')}</h1>
+                <div
+                    className='flex flex-grow min-h-0 flex-col h-full overflow-y-auto px-6 lg:px-24 xl:px-48 2xl:px-96 py-6 lg:pt-12 pb-36 lg:pb-12'>
+                    <h1 className='flex-shrink text-2xl lg:text-4xl mb-8 font-display font-bold'>{t('navbar.account')}</h1>
 
                     <div className='flex flex-grow flex-col'>
                         <div className='flex items-center mb-5'>
-                            <div className='rounded-full bg-accent-orange h-24 w-24 flex justify-center items-center mr-5'>
-                                <p className='text-white font-bold font-display text-4xl'>{me.data.name[0].toUpperCase()}</p>
+                            <div
+                                className='rounded-full bg-accent-orange h-16 w-16 lg:h-24 lg:w-24 flex justify-center items-center mr-5'>
+                                <p className='text-white font-bold font-display text-2xl lg:text-4xl'>{me.data.name[0].toUpperCase()}</p>
                             </div>
                             <div>
-                                <p className='font-bold font-display text-3xl mb-1'>{me.data.name}</p>
+                                <p className='font-bold font-display text-2xl lg:text-3xl mb-1'>{me.data.name}</p>
                                 <p className='text-sm mb-3'>{t('account.userGratification')}</p>
                             </div>
                         </div>
@@ -102,6 +105,10 @@ export default function PageAccount(): JSX.Element {
                         <button onClick={() => { setOpen(true) }} className='rounded-full text-white w-48 py-2 px-5 font-display bg-accent-red hover:bg-red-500 transition-colors duration-100 mb-3'>{t('account.deleteAccount')}</button>
                     </div>
                 </div>
+            </div>
+
+            <div className='lg:hidden'>
+                <ComponentBottomNav />
             </div>
         </AnimatedPage>
     )
