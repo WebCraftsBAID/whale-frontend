@@ -9,13 +9,15 @@ import ComponentLoading from '../../common/ComponentLoading.tsx'
 import ComponentError from '../../common/ComponentError.tsx'
 import { type UserOrdersResponse } from '../../../data/apiDataTypes.ts'
 import ComponentHistoricalOrder from './ComponentHistoricalOrder.tsx'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { faMugSaucer, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useNavigate } from 'react-router-dom'
 
 export default function PageHistory(): JSX.Element {
     const { t } = useTranslation()
     const persistentStorage: PersistentStorage = usePersistentStorage()
+    const navigate = useNavigate()
 
     const query = useInfiniteQuery({
         queryKey: ['user-orders'],
@@ -28,6 +30,12 @@ export default function PageHistory(): JSX.Element {
             return lastPage.page + 1
         }
     })
+
+    useEffect(() => {
+        if (persistentStorage.getToken() == null) {
+            navigate('/login/oauth2/_history')
+        }
+    }, [])
 
     if (query.isPending) {
         return <ComponentLoading screen={true} />
