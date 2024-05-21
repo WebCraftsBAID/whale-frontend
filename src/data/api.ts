@@ -1,4 +1,4 @@
-import { type CategorySchema, type ItemTypeSchema, type OrderSchema } from './dataTypes.ts'
+import { type UserSchemaSecure, type CategorySchema, type ItemTypeSchema, type OrderSchema } from './dataTypes.ts'
 import {
     type GenericError,
     type LoginRedirectTarget,
@@ -136,4 +136,8 @@ export async function order(create: OrderCreateSchema, token: string): Promise<O
 
 export async function getLoginRedirectTarget(redirect: string): Promise<LoginRedirectTarget> {
     return await get('login', new Map([['redirect', redirect]]))
+}
+
+export async function getMe(token: string): Promise<UserSchemaSecure | GenericError> {
+    return await get('me', new Map(), token)
 }

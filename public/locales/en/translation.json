@@ -94,7 +94,7 @@
     "baid": "Beijing Academy",
     "title": "Log In",
     "hint": "You will be redirected to <1>SEIUE</1> to log in.",
-    "privacy": "SEIUE is a product operated by Beijing Yuehuo Education Technology Limited. By continuing to log in, you indicate your agreement to SEIUE's terms and conditions. Whale Cafe will receive basic information about your account, and won't be able to access your password or other account information.",
+    "privacy": "SEIUE is a product operated by Beijing Yuehuo Education Technology Limited. By continuing to log in, you indicate your agreement to SEIUE's terms and conditions. Whale Cafe will receive basic information about your account, and won't be able to access your password or other account information. You may erase your information under certain conditions.",
     "onboarding": {
       "error": "An error occurred while logging in, please try again.",
       "tryAgain": "Try Again",
@@ -111,5 +111,30 @@
       "pickedUp": "Order finished, thank you!"
     },
     "loadMore": "Load More"
+  },
+  "account": {
+    "userGratification": "Thank you for being with Whale Cafe!",
+    "basicInformation": "Basic Information",
+    "eduId": "Beijing Education ID",
+    "phone": "Phone Number",
+    "unavailable": "N/A",
+    "statistics": "My Statistics",
+    "purchaseHistory": "Purchase History",
+    "viewHistory": "View History",
+    "totalSpent": "Total Spent",
+    "totalOrders": "Total Orders",
+    "totalCups": "Total Cups",
+    "privacy": "Privacy",
+    "privacyHint": "Your information is retrieved from SEIUE, a product operated by Beijing Yuehuo Education Technology Limited. Whale Cafe cannot access your SEIUE account credentials, and only retrieves basic information about your account. Your information is stored safely and is not shared with third-parties. You may erase your information under certain conditions.",
+    "deleteAccount": "Delete Account",
+    "deleteConfirm": {
+      "title": "Confirm Account Deletion",
+      "description": "Are you sure that you want to delete your account? All of your data will be erased. This action cannot be undone.",
+      "unavailable": "Your account cannot be deleted because you have unfinished orders.",
+      "cannotDelete": "...",
+      "confirm": "Confirm",
+      "cancel": "Cancel"
+    },
+    "logOut": "Log Out"
   }
 }

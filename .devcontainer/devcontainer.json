@@ -10,6 +10,15 @@
           }
         }
       }
+    },
+    "vscode": {
+      "extensions": [
+        "ecmel.vscode-html-css",
+        "ms-python.python",
+        "dbaeumer.vscode-eslint",
+        "GitHub.copilot",
+        "oderwat.indent-rainbow"
+      ]
     }
   }
 }

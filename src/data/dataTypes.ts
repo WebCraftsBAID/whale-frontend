@@ -3,6 +3,13 @@ export interface UserSchema {
     name: string
 }
 
+export interface UserSchemaSecure {
+    id: string
+    name: string
+    pinyin: string | null
+    phone: string | null
+}
+
 export interface CategorySchema {
     id: number
     name: string

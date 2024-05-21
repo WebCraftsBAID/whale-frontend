@@ -130,3 +130,5 @@ dist
 # JetBrains IDE
 .idea/
 *.iml
+
+.code-workspace
