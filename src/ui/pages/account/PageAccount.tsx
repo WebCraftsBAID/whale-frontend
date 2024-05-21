@@ -87,7 +87,7 @@ export default function PageAccount(): JSX.Element {
                         <button onClick={() => { navigate('/history') }} className='rounded-full w-48 py-2 px-5 font-display bg-accent-yellow-bg hover:bg-accent-orange-bg transition-colors duration-100 mb-3'>{t('account.viewHistory')}</button>
 
                         <p className='text-sm'>{t('account.totalSpent')}</p>
-                        <p className='text-2xl font-bold font-display mb-3'>{meStatistics.data.totalSpent}</p>
+                        <p className='text-2xl font-bold font-display mb-3'>¥{meStatistics.data.totalSpent}</p>
 
                         <p className='text-sm'>{t('account.totalOrders')}</p>
                         <p className='text-2xl font-bold font-display mb-3'>{meStatistics.data.totalOrders}</p>
