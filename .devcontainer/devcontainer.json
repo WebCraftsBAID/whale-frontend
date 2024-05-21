@@ -1,0 +1,15 @@
+{
+  "customizations": {
+    "codespaces": {
+      "repositories": {
+        "BAIDWebDev/whale-backend": {
+          "permissions": {
+            "contents": "write",
+            "issues": "write",
+            "pull_requests": "write"
+          }
+        }
+      }
+    }
+  }
+}
