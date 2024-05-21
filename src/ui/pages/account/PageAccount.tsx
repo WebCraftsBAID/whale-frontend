@@ -5,7 +5,7 @@ import AnimatedPage from '../../../AnimatedPage'
 import { useTranslation } from 'react-i18next'
 import ComponentTopBar from '../../common/ComponentTopBar'
 import { useQuery } from '@tanstack/react-query'
-import { getMe } from '../../../data/api'
+import { getMe, getMeStatistics } from '../../../data/api'
 import ComponentLoading from '../../common/ComponentLoading'
 import ComponentError from '../../common/ComponentError'
 import ComponentDeleteAccountModal from './ComponentDeleteAccountModal'
@@ -29,7 +29,12 @@ export default function PageAccount(): JSX.Element {
             (persistentStorage.getToken() == null ? null : await getMe(persistentStorage.getToken()!))
     })
 
-    if (me.isPending || me.data == null) {
+    const meStatistics = useQuery({
+        queryKey: ['user-statistics-from-token'],
+        queryFn: async () => (persistentStorage.getToken() == null ? null : await getMeStatistics(persistentStorage.getToken()!))
+    })
+
+    if (me.isPending || me.data == null || meStatistics.isPending || meStatistics.data == null) {
         return <ComponentLoading screen={true} />
     }
 
@@ -37,9 +42,13 @@ export default function PageAccount(): JSX.Element {
         return <ComponentError screen={true} detail={me} />
     }
 
+    if (meStatistics.isError || 'detail' in meStatistics.data) {
+        return <ComponentError screen={true} detail={meStatistics} />
+    }
+
     return (
         <AnimatedPage>
-            <ComponentDeleteAccountModal open={open} close={() => { setOpen(false) }} />
+            <ComponentDeleteAccountModal open={open} deletable={meStatistics.data.deletable} close={() => { setOpen(false) }} />
 
             <div className='hidden lg:flex h-screen flex-col'>
                 <div className='flex-shrink'>
@@ -75,13 +84,13 @@ export default function PageAccount(): JSX.Element {
                         <button onClick={() => { navigate('/history') }} className='rounded-full w-48 py-2 px-5 font-display bg-accent-yellow-bg hover:bg-accent-orange-bg transition-colors duration-100 mb-3'>{t('account.viewHistory')}</button>
 
                         <p className='text-sm'>{t('account.totalSpent')}</p>
-                        <p className='text-2xl font-bold font-display mb-3'>{me.data.id}</p>
+                        <p className='text-2xl font-bold font-display mb-3'>{meStatistics.data.totalSpent}</p>
 
                         <p className='text-sm'>{t('account.totalOrders')}</p>
-                        <p className='text-2xl font-bold font-display mb-3'>{me.data.id}</p>
+                        <p className='text-2xl font-bold font-display mb-3'>{meStatistics.data.totalOrders}</p>
 
                         <p className='text-sm'>{t('account.totalCups')}</p>
-                        <p className='text-2xl font-bold font-display mb-5'>{me.data.id}</p>
+                        <p className='text-2xl font-bold font-display mb-5'>{meStatistics.data.totalCups}</p>
 
                         <p className='text-xs text-gray-500 mb-1'>{t('account.privacy')}</p>
                         <hr className='w-full border-gray-200 mb-3' />

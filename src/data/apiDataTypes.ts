@@ -29,6 +29,13 @@ export interface UserOrdersResponse {
     pages: number
 }
 
+export interface UserStatisticsSchema {
+    totalOrders: number
+    totalSpent: string
+    totalCups: number
+    deletable: boolean
+}
+
 export interface GenericError {
     detail: string
 }

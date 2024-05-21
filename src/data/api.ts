@@ -1,5 +1,6 @@
 import { type UserSchemaSecure, type CategorySchema, type ItemTypeSchema, type OrderSchema } from './dataTypes.ts'
 import {
+    type UserStatisticsSchema,
     type GenericError,
     type LoginRedirectTarget,
     type OrderCreateSchema,
@@ -140,4 +141,12 @@ export async function getLoginRedirectTarget(redirect: string): Promise<LoginRed
 
 export async function getMe(token: string): Promise<UserSchemaSecure | GenericError> {
     return await get('me', new Map(), token)
+}
+
+export async function getMeStatistics(token: string): Promise<UserStatisticsSchema | GenericError> {
+    return await get('me/statistics', new Map(), token)
+}
+
+export async function deleteMe(token: string): Promise<boolean | GenericError> {
+    return await del('me', new Map(), token)
 }

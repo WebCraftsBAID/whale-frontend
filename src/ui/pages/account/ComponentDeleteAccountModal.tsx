@@ -1,9 +1,30 @@
 import { faClose } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useTranslation } from 'react-i18next'
+import { type PersistentStorage, usePersistentStorage } from '../../../data/persistentStorage'
+import { useMutation } from '@tanstack/react-query'
+import { deleteMe } from '../../../data/api'
+import { useNavigate } from 'react-router-dom'
 
-export default function ComponentDeleteAccountModal({ open, close }: { open: boolean, close: () => void }): JSX.Element {
+export default function ComponentDeleteAccountModal({ open, close, deletable }: { open: boolean, close: () => void, deletable: boolean }): JSX.Element {
     const { t } = useTranslation()
+    const persistentStorage: PersistentStorage = usePersistentStorage()
+    const navigate = useNavigate()
+
+    const deleteAcc = useMutation({
+        mutationFn: async () => await deleteMe(persistentStorage.getToken()!),
+        onSuccess: (data) => {
+            if (typeof data === 'object' && 'detail' in data) {
+                close()
+                return
+            }
+            persistentStorage.setToken(null)
+            navigate('/')
+        },
+        onError: () => {
+            close()
+        }
+    })
 
     return (
         <>
@@ -23,18 +44,30 @@ export default function ComponentDeleteAccountModal({ open, close }: { open: boo
                             </button>
                         </div>
 
-                        <p>{t('account.deleteConfirm.description')}</p>
+                        <p>{deletable ? t('account.deleteConfirm.description') : t('account.deleteConfirm.unavailable')}</p>
                     </div>
 
                     <div className='fixed lg:sticky w-full bg-gray-100 bottom-0 flex'>
-                        <button className='w-1/2 lg:rounded-bl-3xl transition-colors duration-100
-                        flex bg-gray-100 hover:bg-gray-200 py-3 px-8 justify-center items-center' onClick={() => { close() }}>
-                            <p className='font-display'>{t('account.deleteConfirm.cancel')}</p>
-                        </button>
-                        <button className='w-1/2 lg:rounded-br-3xl transition-colors duration-100
-                     flex bg-accent-orange-bg hover:bg-amber-100 py-3 px-8 justify-center items-center'>
-                            <p className='font-display'>{t('account.deleteConfirm.confirm')}</p>
-                        </button>
+                        {deletable
+                            ? (
+                                <>
+                                    <button className='w-1/2 lg:rounded-bl-3xl transition-colors duration-100
+                                flex bg-gray-100 hover:bg-gray-200 py-3 px-8 justify-center items-center' onClick={() => { close() }}>
+                                        <p className='font-display'>{t('account.deleteConfirm.cancel')}</p>
+                                    </button>
+                                    <button className='w-1/2 lg:rounded-br-3xl transition-colors duration-100
+                            flex bg-accent-orange-bg hover:bg-amber-100 py-3 px-8 justify-center items-center' onClick={() => { deleteAcc.mutate() }}>
+                                        <p className='font-display'>{t('account.deleteConfirm.confirm')}</p>
+                                    </button>
+                                </>
+                            )
+                            : (
+                                <button className='w-full lg:rounded-b-3xl transition-colors duration-100
+                                flex bg-gray-100 hover:bg-gray-200 py-3 px-8 justify-center items-center' onClick={() => { close() }}>
+                                    <p className='font-display'>{t('account.deleteConfirm.cancel')}</p>
+                                </button>
+                            )}
+
                     </div>
                 </div>
             </div>
