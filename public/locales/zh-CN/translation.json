@@ -156,5 +156,8 @@
     "orderBy": "点单客户",
     "itemOrdered": "订单产品",
     "done": "已完成!"
+  },
+  "stats": {
+    "title": "白鲸: 统计数据"
   }
 }

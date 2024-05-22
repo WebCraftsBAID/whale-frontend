@@ -156,5 +156,8 @@
     "orderBy": "Ordered By",
     "itemOrdered": "Items Ordered",
     "done": "Done!"
+  },
+  "stats": {
+    "title": "Whale Cafe: Statistics"
   }
 }
