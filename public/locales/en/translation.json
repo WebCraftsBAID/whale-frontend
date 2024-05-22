@@ -142,5 +142,8 @@
       "cancel": "Cancel"
     },
     "logOut": "Log Out"
+  },
+  "manage": {
+    "title": "Whale Cafe: Order Management"
   }
 }
