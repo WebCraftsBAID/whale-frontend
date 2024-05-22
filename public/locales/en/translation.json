@@ -81,6 +81,7 @@
     "cancelConfirm": "Confirm?",
     "ready": "Ready for pick up! Remember to pay in-person.",
     "pickedUp": "Thank you for visiting Whale Cafe!",
+    "totalPrice": "Total Price",
     "modal": {
       "title": "Check Your Order",
       "number": "Your Order Number*",

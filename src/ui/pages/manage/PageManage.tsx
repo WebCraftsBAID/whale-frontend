@@ -28,7 +28,7 @@ export default function PageManage(): JSX.Element {
                 return
             }
             setCurrentTime(new Date().getTime() - new Date(selectedOrder.createdTime).getTime())
-        }, 1000)
+        }, 300)
 
         return () => { clearInterval(legacyInterval) }
     }, [selectedOrder])
@@ -74,7 +74,7 @@ export default function PageManage(): JSX.Element {
                     {availableOrders.isSuccess
                         ? availableOrders.data.map(order =>
                             <button key={order.id} onClick={() => { setSelectedOrder(order) }}
-                                className={`p-3 rounded-2xl w-full text-left bg-white mb-1 hover:bg-gray-50 ${selectedOrder?.id === order.id ? 'shadow-lg text-accent-orange' : ''} transition-colors duration-100`}>
+                                className={`p-3 rounded-2xl w-full text-left bg-white mb-3 hover:bg-gray-50 ${selectedOrder?.id === order.id ? 'shadow-lg text-accent-orange' : ''} transition-colors duration-100`}>
                                 <p className='font-display font-bold text-xl'>{order.number}</p>
                             </button>
                         )

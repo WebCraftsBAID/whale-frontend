@@ -81,6 +81,7 @@
     "cancelConfirm": "确认?",
     "ready": "制作完成，请尽快取餐。请准备好现场付款。",
     "pickedUp": "感谢光临白鲸咖啡馆!",
+    "totalPrice": "应付款项",
     "modal": {
       "title": "查询订单",
       "number": "您的订单号*",
