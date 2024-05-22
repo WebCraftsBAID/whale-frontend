@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNavigate, useParams } from 'react-router-dom'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { Trans, useTranslation } from 'react-i18next'
+import ComponentLoading from '../../common/ComponentLoading.tsx'
 
 export default function PageLogin(): JSX.Element {
     const navigate = useNavigate()
@@ -16,12 +17,11 @@ export default function PageLogin(): JSX.Element {
         queryKey: ['loginRedirect'],
         queryFn: async () => await getLoginRedirectTarget(`${import.meta.env.VITE_HOST}/login/onboarding/${redirect}`)
     })
+    if (target.isPending) {
+        return <ComponentLoading screen={true} />
+    }
     if (target.isError) {
         return <ComponentError screen={true} detail={target} />
-    }
-    if (target.isSuccess) {
-        location.href = target.data.target
-        return <></>
     }
     return <AnimatedPage>
         <div className='flex justify-center items-center w-screen h-screen bg-gray-50'>
@@ -40,7 +40,23 @@ export default function PageLogin(): JSX.Element {
                     <Trans i18nKey='login.hint' components={{ 1: <strong /> }} />
                 </p>
 
+                <ul className='list-inside list-disc mb-5'>
+                    <li>{t('login.permissions.name')}</li>
+                    <li>{t('login.permissions.eduId')}</li>
+                    <li>{t('login.permissions.phone')}</li>
+                    <li>{t('login.permissions.noPassword')}</li>
+                </ul>
+
                 <p className='text-xs text-gray-400 mb-5'>{t('login.privacy')}</p>
+
+                <button
+                    className='w-full rounded-full bg-blue-500 hover:bg-blue-600 hover:shadow-lg
+                 transition-colors duration-100 p-2 font-display text-white mb-8'
+                    onClick={() => {
+                        location.href = target.data.target
+                    }}>
+                    {t('login.onboarding.continue')}
+                </button>
             </div>
         </div>
     </AnimatedPage>

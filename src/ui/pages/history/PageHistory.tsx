@@ -7,15 +7,16 @@ import { getOrders } from '../../../data/api.ts'
 import { type PersistentStorage, usePersistentStorage } from '../../../data/persistentStorage.tsx'
 import ComponentLoading from '../../common/ComponentLoading.tsx'
 import ComponentError from '../../common/ComponentError.tsx'
-import { type UserOrdersResponse } from '../../../data/apiDataTypes.ts'
 import ComponentHistoricalOrder from './ComponentHistoricalOrder.tsx'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { faMugSaucer, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useNavigate } from 'react-router-dom'
 
 export default function PageHistory(): JSX.Element {
     const { t } = useTranslation()
     const persistentStorage: PersistentStorage = usePersistentStorage()
+    const navigate = useNavigate()
 
     const query = useInfiniteQuery({
         queryKey: ['user-orders'],
@@ -28,6 +29,12 @@ export default function PageHistory(): JSX.Element {
             return lastPage.page + 1
         }
     })
+
+    useEffect(() => {
+        if (persistentStorage.getToken() == null) {
+            navigate('/login/oauth2/_history')
+        }
+    }, [])
 
     if (query.isPending) {
         return <ComponentLoading screen={true} />
@@ -57,9 +64,11 @@ export default function PageHistory(): JSX.Element {
 
                     {query.data.pages.map((page, i) => (
                         <React.Fragment key={i}>
-                            {(page as UserOrdersResponse).items.map((order, index) => (
-                                <ComponentHistoricalOrder order={order} key={index} />
-                            ))}
+                            {(page != null && !('detail' in page))
+                                ? page.items.map((order, index) => (
+                                    <ComponentHistoricalOrder order={order} key={index} />
+                                ))
+                                : null}
                         </React.Fragment>
                     ))}
 
@@ -84,9 +93,11 @@ export default function PageHistory(): JSX.Element {
                         <div className='grid grid-cols-2 xl:grid-cols-3 gap-x-3 gap-y-1'>
                             {query.data.pages.map((page, i) => (
                                 <React.Fragment key={i}>
-                                    {(page as UserOrdersResponse).items.map((order, index) => (
-                                        <ComponentHistoricalOrder order={order} key={index} />
-                                    ))}
+                                    {(page != null && !('detail' in page))
+                                        ? page.items.map((order, index) => (
+                                            <ComponentHistoricalOrder order={order} key={index} />
+                                        ))
+                                        : null}
                                 </React.Fragment>
                             ))}
                         </div>

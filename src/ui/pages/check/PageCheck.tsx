@@ -97,11 +97,11 @@ export default function PageCheck(): JSX.Element {
                             ? <>
                                 <p className='text-sm text-center'>
                                     <Trans i18nKey='check.estimateOrders' count={estimate.data.orders}
-                                           components={{ 1: <strong></strong> }} />
+                                        components={{ 1: <strong></strong> }} />
                                 </p>
                                 <p className='text-sm mb-5 text-center'>
                                     <Trans i18nKey='check.estimateTime' count={estimate.data.time}
-                                           components={{ 1: <strong></strong> }} />
+                                        components={{ 1: <strong></strong> }} />
                                 </p></>
                             : <p className='text-sm mb-5 text-center'>{t(`check.${order.data.status}`)}</p>}
                     </div>
@@ -166,13 +166,16 @@ export default function PageCheck(): JSX.Element {
                         </ComponentIconText>
                     </div>
 
+                    <p className='text-gray-400 text-xs mb-2'>{t('check.totalPrice')}</p>
+                    <p className='font-display font-bold text-3xl mb-5'>¥{order.data.totalPrice}</p>
+
                     <p className='text-gray-400 text-xs mb-2'>{t('check.products')}</p>
                     {order.data.items.map((item: OrderedItemSchema) => <ComponentOrderedItem key={item.id}
-                                                                                             item={item} />)}
+                        item={item} />)}
 
                     {order.data.status === OrderStatus.notStarted
                         ? <button onClick={cancel}
-                                  className={`mt-5 p-2 w-full rounded-full font-bold font-display transition-colors duration-100 ${orderCancel.isError || typeof orderCancel.data === 'object' || orderCancel.isPending ? 'bg-gray-300 text-gray-400' : 'bg-accent-red hover:bg-red-500 text-white'}`}>
+                            className={`mt-5 p-2 w-full rounded-full font-bold font-display transition-colors duration-100 ${orderCancel.isError || typeof orderCancel.data === 'object' || orderCancel.isPending ? 'bg-gray-300 text-gray-400' : 'bg-accent-red hover:bg-red-500 text-white'}`}>
                             {orderCancel.isPending ? t('check.cancelLoading') : null}
                             {orderCancel.isIdle ? (cancelConfirm ? t('check.cancelConfirm') : t('check.cancel')) : null}
                             {orderCancel.isError || typeof orderCancel.data === 'object' ? t('check.cancelFailed') : null}
@@ -193,11 +196,11 @@ export default function PageCheck(): JSX.Element {
                             ? <>
                                 <p className='text-xl mb-1 text-center'>
                                     <Trans i18nKey='check.estimateOrders' count={estimate.data.orders}
-                                           components={{ 1: <strong></strong> }} />
+                                        components={{ 1: <strong></strong> }} />
                                 </p>
                                 <p className='text-xl mb-8 text-center'>
                                     <Trans i18nKey='check.estimateTime' count={estimate.data.time}
-                                           components={{ 1: <strong></strong> }} />
+                                        components={{ 1: <strong></strong> }} />
                                 </p>
                             </>
                             : <p className='text-xl mb-8 text-center'>{t(`check.${order.data.status}`)}</p>}
@@ -265,7 +268,7 @@ export default function PageCheck(): JSX.Element {
 
                             {order.data.status === OrderStatus.notStarted
                                 ? <button onClick={cancel}
-                                          className={`p-2 w-full rounded-full font-bold font-display transition-colors duration-100 ${orderCancel.isError || typeof orderCancel.data === 'object' || orderCancel.isPending ? 'bg-gray-300 text-gray-400' : 'bg-accent-red hover:bg-red-500 text-white'}`}>
+                                    className={`p-2 w-full rounded-full font-bold font-display transition-colors duration-100 ${orderCancel.isError || typeof orderCancel.data === 'object' || orderCancel.isPending ? 'bg-gray-300 text-gray-400' : 'bg-accent-red hover:bg-red-500 text-white'}`}>
                                     {orderCancel.isPending ? t('check.cancelLoading') : null}
                                     {orderCancel.isIdle ? (cancelConfirm ? t('check.cancelConfirm') : t('check.cancel')) : null}
                                     {orderCancel.isError || typeof orderCancel.data === 'object' ? t('check.cancelFailed') : null}
@@ -274,9 +277,12 @@ export default function PageCheck(): JSX.Element {
                         </div>
                     </div>
                     <div className='w-1/2 h-full p-8 xl:p-12 2xl:px-24 2xl:py-16 overflow-y-auto'>
+                        <p className='text-gray-400 text-xs mb-2'>{t('check.totalPrice')}</p>
+                        <p className='font-display font-bold text-4xl mb-5'>¥{order.data.totalPrice}</p>
+
                         <p className='text-gray-400 text-xs mb-2'>{t('check.products')}</p>
                         {order.data.items.map((item: OrderedItemSchema) => <ComponentOrderedItem key={item.id}
-                                                                                                 item={item} />)}
+                            item={item} />)}
                     </div>
                 </div>
             </div>

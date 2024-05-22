@@ -81,6 +81,7 @@
     "cancelConfirm": "Confirm?",
     "ready": "Ready for pick up! Remember to pay in-person.",
     "pickedUp": "Thank you for visiting Whale Cafe!",
+    "totalPrice": "Total Price",
     "modal": {
       "title": "Check Your Order",
       "number": "Your Order Number*",
@@ -92,9 +93,15 @@
   },
   "login": {
     "baid": "Beijing Academy",
-    "title": "Log In",
-    "hint": "You will be redirected to <1>SEIUE</1> to log in.",
-    "privacy": "SEIUE is a product operated by Beijing Yuehuo Education Technology Limited. By continuing to log in, you indicate your agreement to SEIUE's terms and conditions. Whale Cafe will receive basic information about your account, and won't be able to access your password or other account information.",
+    "title": "Authorization",
+    "hint": "Do you want to authorize <1>Whale</1> to use your following information?",
+    "privacy": "SEIUE is a product operated by Beijing Yuehuo Education Technology Limited. By continuing to log in, you indicate your agreement to SEIUE's terms and conditions.",
+    "permissions": {
+      "name": "Whale will receive your real name.",
+      "eduId": "Whale will receive your Beijing Education ID or other user IDs.",
+      "phone": "Whale will receive your phone number, if available.",
+      "noPassword": "Whale will not be able to receive your password."
+    },
     "onboarding": {
       "error": "An error occurred while logging in, please try again.",
       "tryAgain": "Try Again",
@@ -111,5 +118,43 @@
       "pickedUp": "Order finished, thank you!"
     },
     "loadMore": "Load More"
+  },
+  "account": {
+    "userGratification": "Thank you for being with Whale Cafe!",
+    "basicInformation": "Basic Information",
+    "eduId": "Beijing Education ID or Other User IDs",
+    "phone": "Phone Number",
+    "unavailable": "N/A",
+    "statistics": "My Statistics",
+    "purchaseHistory": "Purchase History",
+    "viewHistory": "View History",
+    "orderManagement": "Manage Orders",
+    "statisticsManagement": "Manage Statistics",
+    "totalSpent": "Total Spent",
+    "totalOrders": "Total Orders",
+    "totalCups": "Total Cups",
+    "privacy": "Privacy",
+    "privacyHint": "Your information is retrieved from SEIUE, a product operated by Beijing Yuehuo Education Technology Limited. Whale Cafe cannot access your SEIUE account credentials, and only retrieves basic information about your account. Your information is stored safely and is not shared with third-parties. You may erase your information under certain conditions.",
+    "deleteAccount": "Delete Account",
+    "deleteConfirm": {
+      "title": "Confirm Account Deletion",
+      "description": "Are you sure that you want to delete your account? All of your data will be erased. This action cannot be undone.",
+      "unavailable": "Your account cannot be deleted because you have unfinished orders.",
+      "cannotDelete": "...",
+      "confirm": "Confirm",
+      "cancel": "Cancel"
+    },
+    "logOut": "Log Out"
+  },
+  "manage": {
+    "title": "Whale Cafe: Process Orders",
+    "unselected": "Select an order to get started",
+    "noOrders": "Phew, all orders completed!",
+    "updateStatus": "Update Order Status",
+    "amountCharge": "Amount to Charge",
+    "orderTime": "Client Waited For",
+    "orderBy": "Ordered By",
+    "itemOrdered": "Items Ordered",
+    "done": "Done!"
   }
 }

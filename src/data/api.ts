@@ -1,5 +1,6 @@
-import { type CategorySchema, type ItemTypeSchema, type OrderSchema } from './dataTypes.ts'
+import { type UserSchemaSecure, type CategorySchema, type ItemTypeSchema, type OrderSchema, type OrderStatus } from './dataTypes.ts'
 import {
+    type UserStatisticsSchema,
     type GenericError,
     type LoginRedirectTarget,
     type OrderCreateSchema,
@@ -44,7 +45,7 @@ export async function post(endpoint: string, body: Record<string, any>, token: s
     return JSON.parse(text)
 }
 
-export async function patch(endpoint: string, body: Record<string, unknown>, token: string | null = null): Promise<any> {
+export async function patch(endpoint: string, body: Record<string, any>, token: string | null = null): Promise<any> {
     const response = await fetch(import.meta.env.VITE_API_HOST + '/' + endpoint, {
         method: 'PATCH',
         headers: {
@@ -126,6 +127,14 @@ export async function getOrderTimeEstimate(id: number): Promise<OrderEstimateSch
     return await get('order/estimate', new Map([['id', id.toString()]]))
 }
 
+export async function getAvailableOrders(token: string): Promise<OrderSchema[] | GenericError> {
+    return await get('orders/available', new Map(), token)
+}
+
+export async function updateOrderStatus(orderId: number, status: OrderStatus, token: string): Promise<OrderSchema | GenericError> {
+    return await patch('order', { id: orderId, status }, token)
+}
+
 export async function cancelOrder(id: number, token: string): Promise<boolean | GenericError> {
     return await del('order', new Map([['id', id.toString()]]), token)
 }
@@ -136,4 +145,16 @@ export async function order(create: OrderCreateSchema, token: string): Promise<O
 
 export async function getLoginRedirectTarget(redirect: string): Promise<LoginRedirectTarget> {
     return await get('login', new Map([['redirect', redirect]]))
+}
+
+export async function getMe(token: string): Promise<UserSchemaSecure | GenericError> {
+    return await get('me', new Map(), token)
+}
+
+export async function getMeStatistics(token: string): Promise<UserStatisticsSchema | GenericError> {
+    return await get('me/statistics', new Map(), token)
+}
+
+export async function deleteMe(token: string): Promise<boolean | GenericError> {
+    return await del('me', new Map(), token)
 }
