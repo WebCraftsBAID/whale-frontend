@@ -12,6 +12,7 @@ import PageLoginOnboarding from './ui/pages/login/PageLoginOnboarding.tsx'
 import PageHistory from './ui/pages/history/PageHistory.tsx'
 import PageAccount from './ui/pages/account/PageAccount.tsx'
 import PageManage from './ui/pages/manage/PageManage.tsx'
+import PageStats from './ui/pages/stats/PageStats.tsx'
 
 const queryClient = new QueryClient()
 
@@ -34,6 +35,7 @@ export default function App(): JSX.Element {
                                 <Route path='history' element={<PageHistory />} />
                                 <Route path='account' element={<PageAccount />} />
                                 <Route path='manage' element={<PageManage />} />
+                                <Route path='statistics' element={<PageStats />} />
                             </Routes>}
                     </PersistentStorageProvider>
                 </ShoppingCartProvider>

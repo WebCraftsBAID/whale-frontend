@@ -36,6 +36,13 @@ export interface UserStatisticsSchema {
     deletable: boolean
 }
 
+export interface StatsAggregateSchema {
+    revenue: Map<string, string>
+    uniqueUsers: Map<string, number>
+    orders: Map<string, number>
+    cups: Map<string, number>
+}
+
 export interface GenericError {
     detail: string
 }

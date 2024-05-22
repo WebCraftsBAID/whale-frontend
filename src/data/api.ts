@@ -1,11 +1,18 @@
-import { type UserSchemaSecure, type CategorySchema, type ItemTypeSchema, type OrderSchema, type OrderStatus } from './dataTypes.ts'
 import {
-    type UserStatisticsSchema,
+    type CategorySchema,
+    type ItemTypeSchema,
+    type OrderSchema,
+    type OrderStatus,
+    type UserSchemaSecure
+} from './dataTypes.ts'
+import {
     type GenericError,
     type LoginRedirectTarget,
     type OrderCreateSchema,
     type OrderEstimateSchema,
-    type UserOrdersResponse
+    type StatsAggregateSchema,
+    type UserOrdersResponse,
+    type UserStatisticsSchema
 } from './apiDataTypes.ts'
 
 export async function get(endpoint: string, query = new Map<string, string>(), token: string | null = null): Promise<any> {
@@ -157,4 +164,8 @@ export async function getMeStatistics(token: string): Promise<UserStatisticsSche
 
 export async function deleteMe(token: string): Promise<boolean | GenericError> {
     return await del('me', new Map(), token)
+}
+
+export async function getStats(token: string): Promise<StatsAggregateSchema | GenericError> {
+    return await get('statistics', new Map(), token)
 }
