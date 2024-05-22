@@ -86,10 +86,12 @@ export default function PageAccount(): JSX.Element {
                         <p className='text-sm mb-1'>{t('account.purchaseHistory')}</p>
                         <button onClick={() => { navigate('/history') }} className='rounded-full w-48 py-2 px-5 font-display bg-accent-yellow-bg hover:bg-accent-orange-bg transition-colors duration-100 mb-3'>{t('account.viewHistory')}</button>
 
-                        {me.data.permissions.includes('admin.manage') && <><p className='text-sm mb-1'>{t('account.orderManagement')}</p>
+                        {(Boolean(me.data.permissions.includes('admin.manage'))) && <><p
+                            className='text-sm mb-1'>{t('account.orderManagement')}</p>
                             <button onClick={() => { navigate('/manage') }} className='rounded-full w-48 py-2 px-5 font-display bg-accent-yellow-bg hover:bg-accent-orange-bg transition-colors duration-100 mb-3'>{t('account.orderManagement')}</button></>}
 
-                        {me.data.permissions.includes('admin.statistics') && <><p className='text-sm mb-1'>{t('account.statisticsManagement')}</p>
+                        {(Boolean(me.data.permissions.includes('admin.statistics'))) && <><p
+                            className='text-sm mb-1'>{t('account.statisticsManagement')}</p>
                             <button onClick={() => { navigate('/statistics') }} className='rounded-full w-48 py-2 px-5 font-display bg-accent-yellow-bg hover:bg-accent-orange-bg transition-colors duration-100 mb-3'>{t('account.statisticsManagement')}</button></>}
 
                         <p className='text-sm'>{t('account.totalSpent')}</p>
