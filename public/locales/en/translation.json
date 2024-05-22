@@ -127,6 +127,8 @@
     "statistics": "My Statistics",
     "purchaseHistory": "Purchase History",
     "viewHistory": "View History",
+    "orderManagement": "Manage Orders",
+    "statisticsManagement": "Manage Statistics",
     "totalSpent": "Total Spent",
     "totalOrders": "Total Orders",
     "totalCups": "Total Cups",
@@ -149,7 +151,7 @@
     "noOrders": "Phew, all orders completed!",
     "updateStatus": "Update Order Status",
     "amountCharge": "Amount to Charge",
-    "orderTime": "Order Started For",
+    "orderTime": "Client Waited For",
     "orderBy": "Ordered By",
     "itemOrdered": "Items Ordered",
     "done": "Done!"

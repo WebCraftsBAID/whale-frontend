@@ -127,6 +127,8 @@
     "statistics": "统计数据",
     "purchaseHistory": "购买记录",
     "viewHistory": "查询记录",
+    "orderManagement": "管理订单",
+    "statisticsManagement": "管理统计数据",
     "totalSpent": "总消费",
     "totalOrders": "总订单数",
     "totalCups": "总杯数",
@@ -148,9 +150,9 @@
     "unselected": "请在左侧选择订单",
     "noOrders": "暂无未处理的订单",
     "updateStatus": "更新订单状态",
-    "amountCharge": "需收款",
-    "orderTime": "用户已等待",
-    "orderBy": "点单用户",
+    "amountCharge": "应收款项",
+    "orderTime": "客户已等待",
+    "orderBy": "点单客户",
     "itemOrdered": "订单产品",
     "done": "已完成!"
   }

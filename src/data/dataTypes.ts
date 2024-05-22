@@ -1,11 +1,13 @@
 export interface UserSchema {
     id: string
     name: string
+    permissions: string
 }
 
 export interface UserSchemaSecure {
     id: string
     name: string
+    permissions: string
     pinyin: string | null
     phone: string | null
 }
