@@ -142,5 +142,16 @@
       "cancel": "取消"
     },
     "logOut": "退出登录"
+  },
+  "manage": {
+    "title": "白鲸: 订单处理",
+    "unselected": "请在左侧选择订单",
+    "noOrders": "暂无未处理的订单",
+    "updateStatus": "更新订单状态",
+    "amountCharge": "需收款",
+    "orderTime": "用户已等待",
+    "orderBy": "点单用户",
+    "itemOrdered": "订单产品",
+    "done": "已完成!"
   }
 }

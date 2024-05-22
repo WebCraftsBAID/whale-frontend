@@ -144,6 +144,14 @@
     "logOut": "Log Out"
   },
   "manage": {
-    "title": "Whale Cafe: Order Management"
+    "title": "Whale Cafe: Process Orders",
+    "unselected": "Select an order to get started",
+    "noOrders": "Phew, all orders completed!",
+    "updateStatus": "Update Order Status",
+    "amountCharge": "Amount to Charge",
+    "orderTime": "Order Started For",
+    "orderBy": "Ordered By",
+    "itemOrdered": "Items Ordered",
+    "done": "Done!"
   }
 }

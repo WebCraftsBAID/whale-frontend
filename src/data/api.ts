@@ -1,4 +1,4 @@
-import { type UserSchemaSecure, type CategorySchema, type ItemTypeSchema, type OrderSchema } from './dataTypes.ts'
+import { type UserSchemaSecure, type CategorySchema, type ItemTypeSchema, type OrderSchema, type OrderStatus } from './dataTypes.ts'
 import {
     type UserStatisticsSchema,
     type GenericError,
@@ -45,7 +45,7 @@ export async function post(endpoint: string, body: Record<string, any>, token: s
     return JSON.parse(text)
 }
 
-export async function patch(endpoint: string, body: Record<string, unknown>, token: string | null = null): Promise<any> {
+export async function patch(endpoint: string, body: Record<string, any>, token: string | null = null): Promise<any> {
     const response = await fetch(import.meta.env.VITE_API_HOST + '/' + endpoint, {
         method: 'PATCH',
         headers: {
@@ -125,6 +125,14 @@ export async function getOrderTimeEstimateNow(): Promise<OrderEstimateSchema | G
 
 export async function getOrderTimeEstimate(id: number): Promise<OrderEstimateSchema | GenericError> {
     return await get('order/estimate', new Map([['id', id.toString()]]))
+}
+
+export async function getAvailableOrders(token: string): Promise<OrderSchema[] | GenericError> {
+    return await get('orders/available', new Map(), token)
+}
+
+export async function updateOrderStatus(orderId: number, status: OrderStatus, token: string): Promise<OrderSchema | GenericError> {
+    return await patch('order', { id: orderId, status }, token)
 }
 
 export async function cancelOrder(id: number, token: string): Promise<boolean | GenericError> {
