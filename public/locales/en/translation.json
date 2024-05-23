@@ -156,5 +156,29 @@
     "orderBy": "Ordered By",
     "itemOrdered": "Items Ordered",
     "done": "Done!"
+  },
+  "stats": {
+    "title": "Whale Cafe: Statistics",
+    "limit": "Query days limit",
+    "by": "Aggregate stats by",
+    "individual": "Individual",
+    "day": "Day",
+    "week": "Week",
+    "month": "Month",
+    "time": "Time",
+    "revenue": "Total Revenue",
+    "revenueAxis": "Total Revenue (CN¥)",
+    "uniqueUsers": "Unique Users",
+    "uniqueUsersAxis": "Unique Users (count)",
+    "orders": "Orders",
+    "ordersAxis": "Orders (count)",
+    "cups": "Cups",
+    "cupsAxis": "Cups (count)",
+    "refetch": "Refetch",
+    "todayRevenue": "Today's Revenue (CN¥)",
+    "todayUniqueUsers": "Today's Unique Users (Count)",
+    "todayOrders": "Today's Orders (Count)",
+    "todayCups": "Today's Cups (Count)",
+    "weekRevenue": "Calendar Week Revenue (CN¥)"
   }
 }
