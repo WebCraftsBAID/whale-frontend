@@ -37,10 +37,16 @@ export interface UserStatisticsSchema {
 }
 
 export interface StatsAggregateSchema {
-    revenue: Map<string, string>
-    uniqueUsers: Map<string, number>
-    orders: Map<string, number>
-    cups: Map<string, number>
+    todayRevenue: string
+    todayUniqueUsers: number
+    todayOrders: number
+    todayCups: number
+    weekRevenue: string
+    weekRevenueRange: string
+    revenue: Record<string, string>
+    uniqueUsers: Record<string, number>
+    orders: Record<string, number>
+    cups: Record<string, number>
 }
 
 export interface GenericError {
