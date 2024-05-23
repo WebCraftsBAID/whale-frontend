@@ -12,7 +12,7 @@ export default function PageStats(): JSX.Element {
     const persistentStorage: PersistentStorage = usePersistentStorage()
     const { t } = useTranslation()
 
-    const [by, setBy] = useState('day')
+    const [by, setBy] = useState('individual')
     const [limit, setLimit] = useState(180)
 
     const stats = useQuery({
@@ -80,6 +80,7 @@ export default function PageStats(): JSX.Element {
                     <p className='text-gray-500 text-sm mb-1'>{t('stats.by')}</p>
                     <div className='p-2 bg-accent-yellow-bg w-32 rounded-full'>
                         <select value={by} onChange={e => { setBy(e.target.value) }} className='bg-transparent w-full'>
+                            <option value='individual'>{t('stats.individual')}</option>
                             <option value='day'>{t('stats.day')}</option>
                             <option value='week'>{t('stats.week')}</option>
                             <option value='month'>{t('stats.month')}</option>
@@ -95,19 +96,19 @@ export default function PageStats(): JSX.Element {
             </div>
 
             <div className='flex mb-5'>
-                <div className='mr-3'>
+                <div className='mr-5'>
                     <p className='text-sm text-gray-500 mb-1'>{t('stats.todayRevenue')}</p>
                     <p className='font-bold text-4xl font-display'>¥{stats.data.todayRevenue}</p>
                 </div>
-                <div className='mr-3'>
+                <div className='mr-5'>
                     <p className='text-sm text-gray-500 mb-1'>{t('stats.todayOrders')}</p>
                     <p className='font-bold text-4xl font-display'>{stats.data.todayOrders}</p>
                 </div>
-                <div className='mr-3'>
+                <div className='mr-5'>
                     <p className='text-sm text-gray-500 mb-1'>{t('stats.todayCups')}</p>
                     <p className='font-bold text-4xl font-display'>{stats.data.todayCups}</p>
                 </div>
-                <div className='mr-3'>
+                <div className='mr-5'>
                     <p className='text-sm text-gray-500 mb-1'>{t('stats.todayUniqueUsers')}</p>
                     <p className='font-bold text-4xl font-display'>{stats.data.todayUniqueUsers}</p>
                 </div>

@@ -161,6 +161,7 @@
     "title": "Whale Cafe: Statistics",
     "limit": "Query days limit",
     "by": "Aggregate stats by",
+    "individual": "Individual",
     "day": "Day",
     "week": "Week",
     "month": "Month",

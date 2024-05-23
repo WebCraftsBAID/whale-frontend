@@ -158,12 +158,27 @@
     "done": "已完成!"
   },
   "stats": {
-    "title": "白鲸: 统计数据",
+    "title": "白鲸: 总计数据",
     "limit": "查询天数限制",
-    "by": "数据汇总",
-    "day": "每日",
-    "week": "每周",
-    "month": "每月",
-    "refetch": "刷新"
+    "by": "数据加总",
+    "individual": "不加总",
+    "day": "按自然日加总",
+    "week": "按自然周加总",
+    "month": "按自然月加总",
+    "time": "时间",
+    "revenue": "总收入",
+    "revenueAxis": "总收入 (CN¥)",
+    "uniqueUsers": "独特用户数",
+    "uniqueUsersAxis": "独特用户 (数量)",
+    "orders": "订单数",
+    "ordersAxis": "订单 (数量)",
+    "cups": "杯数",
+    "cupsAxis": "杯 (数量)",
+    "refetch": "刷新",
+    "todayRevenue": "本自然日总收入 (CN¥)",
+    "todayUniqueUsers": "本自然日独特用户 (数量)",
+    "todayOrders": "本自然日订单 (数量)",
+    "todayCups": "本自然日杯 (数量)",
+    "weekRevenue": "本自然周总收入 (CN¥)"
   }
 }
