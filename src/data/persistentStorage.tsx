@@ -76,7 +76,8 @@ export function PersistentStorageProvider({ children }: { children: ReactNode })
         const decoded = jwtDecode<any>(token)
         return {
             id: decoded.id,
-            name: decoded.name
+            name: decoded.name,
+            permissions: decoded.permissions
         }
     }
 
