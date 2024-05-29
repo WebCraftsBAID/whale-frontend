@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import AnimatedPage from '../../../AnimatedPage'
 import { useMutation, useQuery } from '@tanstack/react-query'
-import { getAvailableOrders, updateOrderStatus } from '../../../data/api'
+import { cancelOrder, getAvailableOrders, updateOrderStatus } from '../../../data/api'
 import { type PersistentStorage, usePersistentStorage } from '../../../data/persistentStorage'
 import ComponentError from '../../common/ComponentError'
 import ComponentLoading from '../../common/ComponentLoading'
@@ -23,6 +23,7 @@ export default function PageManage(): JSX.Element {
     const [selectedOrder, setSelectedOrder] = useState<OrderSchema | null>(null)
 
     const [currentTime, setCurrentTime] = useState(0)
+    const [cancelConfirm, setCancelConfirm] = useState(false)
     let legacyInterval = -1
 
     useEffect(() => {
@@ -52,8 +53,32 @@ export default function PageManage(): JSX.Element {
                 return
             }
             setSelectedOrder(data)
+            void availableOrders.refetch()
         }
     })
+
+    const orderCancel = useMutation({
+        mutationFn: async () => await cancelOrder(selectedOrder!.id, persistentStorage.getToken()!),
+        onSuccess: () => {
+            setCancelConfirm(false)
+            if (typeof orderCancel.data === 'object') {
+                return
+            }
+            setSelectedOrder(null)
+            void availableOrders.refetch()
+        },
+        onError: () => {
+            setCancelConfirm(false)
+        }
+    })
+
+    function cancel(): void {
+        if (cancelConfirm) {
+            orderCancel.mutate()
+        } else {
+            setCancelConfirm(true)
+        }
+    }
 
     function msToTime(duration: number): string {
         const seconds = Math.floor((duration / 1000) % 60)
@@ -126,18 +151,23 @@ export default function PageManage(): JSX.Element {
                             </div>
 
                             <div className='flex mb-5'>
-                                <div className='w-1/3'>
+                                <div className='w-1/4'>
                                     <p className='font-display text-lg mb-3'>{t('manage.amountCharge')}</p>
                                     <p className='font-display text-5xl font-bold'>¥{selectedOrder.totalPrice}</p>
                                 </div>
-                                <div className='w-1/3'>
+                                <div className='w-1/4'>
                                     <p className='font-display text-lg mb-3'>{t('manage.orderTime')}</p>
                                     <p className='font-display text-5xl font-bold'>{(selectedOrder.status === OrderStatus.ready || selectedOrder.status === OrderStatus.pickedUp) ? t('manage.done') : msToTime(currentTime)}</p>
                                 </div>
-                                <div className='w-1/3'>
+                                <div className='w-1/4'>
                                     <p className='font-display text-lg mb-3'>{t('manage.orderBy')}</p>
                                     <p className='font-display text-5xl font-bold'>{selectedOrder.user.name}</p>
                                 </div>
+                                <button
+                                    className='w-1/4 rounded-3xl bg-accent-red hover:bg-red-500 p-8 font-display font-bold text-3xl text-white'
+                                    onClick={cancel}>
+                                    {cancelConfirm ? t('check.cancelConfirm') : t('check.cancel')}
+                                </button>
                             </div>
 
                             <p className='font-display text-lg mb-3'>{t('manage.itemOrdered')}</p>
