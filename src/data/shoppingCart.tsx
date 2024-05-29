@@ -78,11 +78,13 @@ export function ShoppingCartProvider({ children }: { children: ReactNode }): JSX
     function getTotalPrice(): Decimal {
         let total = new Decimal(0)
         for (const item of items) {
-            total = total.add(new Decimal(item.itemType.basePrice).mul(item.itemType.salePercent))
+            let thisItem = new Decimal(0)
+            thisItem = thisItem.add(new Decimal(item.itemType.basePrice).mul(item.itemType.salePercent))
             for (const option of item.appliedOptions) {
-                total = total.add(new Decimal(option.priceChange))
+                thisItem = thisItem.add(new Decimal(option.priceChange))
             }
-            total = total.mul(item.amount)
+            thisItem = thisItem.mul(item.amount)
+            total = total.add(thisItem)
         }
         return total
     }
