@@ -175,6 +175,7 @@
     "cups": "Cups",
     "cupsAxis": "Cups (count)",
     "refetch": "Refetch",
+    "export": "Export",
     "todayRevenue": "Today's Revenue (CN¥)",
     "todayUniqueUsers": "Today's Unique Users (Count)",
     "todayOrders": "Today's Orders (Count)",

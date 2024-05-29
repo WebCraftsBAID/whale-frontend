@@ -169,3 +169,7 @@ export async function deleteMe(token: string): Promise<boolean | GenericError> {
 export async function getStats(by: string, limit: number, token: string): Promise<StatsAggregateSchema | GenericError> {
     return await get('statistics', new Map([['by', by], ['limit', limit.toString()]]), token)
 }
+
+export async function getStatsExport(by: string, limit: number, token: string): Promise<string | GenericError> {
+    return await get('statistics/export/token', new Map([['by', by], ['limit', limit.toString()]]), token)
+}

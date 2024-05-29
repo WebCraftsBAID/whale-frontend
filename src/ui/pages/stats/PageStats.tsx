@@ -2,7 +2,7 @@ import AnimatedPage from '../../../AnimatedPage.tsx'
 import { Chart } from 'react-google-charts'
 import { type PersistentStorage, usePersistentStorage } from '../../../data/persistentStorage.tsx'
 import { useQuery } from '@tanstack/react-query'
-import { getStats } from '../../../data/api.ts'
+import { getStats, getStatsExport } from '../../../data/api.ts'
 import ComponentError from '../../common/ComponentError.tsx'
 import ComponentLoading from '../../common/ComponentLoading.tsx'
 import { useTranslation } from 'react-i18next'
@@ -18,6 +18,13 @@ export default function PageStats(): JSX.Element {
     const stats = useQuery({
         queryKey: ['stats'],
         queryFn: async () => await getStats(by, limit, persistentStorage.getToken()!)
+    })
+
+    const statsExport = useQuery({
+        queryKey: ['stats-export'],
+        queryFn: async () => await getStatsExport(by, limit, persistentStorage.getToken()!),
+        enabled: false,
+        gcTime: Infinity
     })
 
     if (stats.isError || (stats.data != null && 'detail' in stats.data)) {
@@ -65,6 +72,14 @@ export default function PageStats(): JSX.Element {
         cups.push([new Date(key), value])
     }
 
+    async function exportStats(): Promise<void> {
+        const result = await statsExport.refetch()
+        if (result.isError || result.isRefetchError || typeof result.data === 'object') {
+            return
+        }
+        location.href = `${import.meta.env.VITE_API_HOST}/statistics/export?token=${result.data}`
+    }
+
     return <AnimatedPage>
         <div className='h-screen w-screen p-12 flex flex-col'>
             <p className='font-display text-lg mb-5 flex-shrink'>{t('stats.title')}</p>
@@ -72,14 +87,18 @@ export default function PageStats(): JSX.Element {
                 <div className='mr-3'>
                     <p className='text-gray-500 text-sm mb-1'>{t('stats.limit')}</p>
                     <div className='p-2 bg-accent-yellow-bg w-32 rounded-full'>
-                        <input type='number' value={limit} onChange={e => { setLimit(parseInt(e.target.value)) }} className='bg-transparent w-full' />
+                        <input type='number' value={limit} onChange={e => {
+                            setLimit(parseInt(e.target.value))
+                        }} className='bg-transparent w-full' />
                     </div>
                 </div>
 
                 <div className='mr-3'>
                     <p className='text-gray-500 text-sm mb-1'>{t('stats.by')}</p>
                     <div className='p-2 bg-accent-yellow-bg w-32 rounded-full'>
-                        <select value={by} onChange={e => { setBy(e.target.value) }} className='bg-transparent w-full'>
+                        <select value={by} onChange={e => {
+                            setBy(e.target.value)
+                        }} className='bg-transparent w-full'>
                             <option value='individual'>{t('stats.individual')}</option>
                             <option value='day'>{t('stats.day')}</option>
                             <option value='week'>{t('stats.week')}</option>
@@ -89,9 +108,19 @@ export default function PageStats(): JSX.Element {
                 </div>
 
                 <button
-                    onClick={() => { void stats.refetch() }}
-                    className='rounded-3xl bg-accent-yellow-bg hover:bg-accent-orange-bg transition-colors duration-100 py-2 px-4 font-bold font-display text-lg'>
+                    onClick={() => {
+                        void stats.refetch()
+                    }}
+                    className='rounded-3xl bg-accent-yellow-bg hover:bg-accent-orange-bg transition-colors duration-100 py-2 px-4 font-bold font-display text-lg mr-3'>
                     {t('stats.refetch')}
+                </button>
+
+                <button
+                    onClick={() => {
+                        void exportStats()
+                    }}
+                    className='rounded-3xl bg-accent-yellow-bg hover:bg-accent-orange-bg transition-colors duration-100 py-2 px-4 font-bold font-display text-lg'>
+                    {t('stats.export')}
                 </button>
             </div>
 
