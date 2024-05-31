@@ -186,7 +186,7 @@ export default function PageManage(): JSX.Element {
                                 </div>
                                 <div className='w-1/3'>
                                     <p className='font-display text-lg mb-3'>{t('manage.orderTime')}</p>
-                                    <p className='font-display text-5xl font-bold'>{(selectedOrder.status !== OrderStatus.pickedUp) ? t('manage.done') : msToTime(currentTime)}</p>
+                                    <p className='font-display text-5xl font-bold'>{selectedOrder.status === OrderStatus.pickedUp ? t('manage.done') : msToTime(currentTime)}</p>
                                 </div>
                                 <div className='w-1/3'>
                                     <p className='font-display text-lg mb-3'>{t('manage.orderBy')}</p>
