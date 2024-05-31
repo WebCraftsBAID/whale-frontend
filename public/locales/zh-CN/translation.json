@@ -10,8 +10,8 @@
     "account": "我的"
   },
   "home": {
-    "title": "Title<1/>Title.",
-    "description": "Lorem ipsum sit dolor amit, consectetur adipiscing elit. <1/> Lorem ipsum sit dolor amit, consectetur adipiscing elit.",
+    "title": "欢迎来到<1>白鲸咖啡馆!",
+    "description": "您的每一次消费都在助力公益事业。",
     "backgroundText": "Whale Cafe",
     "startOrdering": "开始点单",
     "pickUp": {
