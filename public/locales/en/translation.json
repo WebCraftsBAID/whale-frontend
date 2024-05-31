@@ -15,7 +15,7 @@
     "backgroundText": "Whale Cafe",
     "startOrdering": "Start Ordering",
     "pickUp": {
-      "name": "Pick Up",
+      "name": "Order",
       "description": "Order w/o queues"
     },
     "history": {
@@ -28,17 +28,27 @@
     },
     "currentOrderCard": {
       "name": "Current Order",
-      "notStarted_one": "Waiting in line, <1>~{{count}} minute remaining.</1>",
-      "notStarted_other": "Waiting in line, <1>~{{count}} minutes remaining.</1>",
-      "inProgress_one": "Making your drink, <1>~{{count}} minute remaining.</1>",
-      "inProgress_other": "Making your drink, <1>~{{count}} minutes remaining.</1>",
-      "ready": "Ready for pick up! <1>Bring your tablet to pay.</1>",
-      "pickedUp": "Order finished, thank you for your patronage!"
+      "notStarted_pickUp_one": "Waiting in line, <1>~{{count}} minute remaining.</1>",
+      "notStarted_pickUp_other": "Waiting in line, <1>~{{count}} minutes remaining.</1>",
+      "inProgress_pickUp_one": "Making your drink, <1>~{{count}} minute remaining.</1>",
+      "inProgress_pickUp_other": "Making your drink, <1>~{{count}} minutes remaining.</1>",
+      "ready_pickUp": "Ready for pick up! <1>Bring your tablet to pay.</1>",
+      "pickedUp_pickUp": "Order finished, thank you for your patronage!",
+      "notStarted_delivery_one": "Waiting in line, <1>~{{count}} minute remaining.</1>",
+      "notStarted_delivery_other": "Waiting in line, <1>~{{count}} minutes remaining.</1>",
+      "inProgress_delivery_one": "Making your drink, <1>~{{count}} minute remaining.</1>",
+      "inProgress_delivery_other": "Making your drink, <1>~{{count}} minutes remaining.</1>",
+      "ready_delivery": "Delivering your drink! <1>You will pay on delivery.</1>",
+      "pickedUp_delivery": "Order finished, thank you for your patronage!"
     }
   },
   "order": {
     "item": {
       "pick": "Pick"
+    },
+    "type": {
+      "pickUp": "Pick Up",
+      "delivery": "Delivery"
     },
     "shoppingCart": "Shopping Cart",
     "empty": "Fancy drinking something?",
@@ -49,6 +59,9 @@
     "back": "Back",
     "confirm": {
       "title": "Confirm Your Order",
+      "deliveryInformation": "Delivery Information",
+      "room": "Room",
+      "roomError": "Enter a 3-digit room number",
       "importantInformation": "Important Information",
       "waitError": "Failed to load wait time information.",
       "waitLoading": "You will be waiting for approximately ... minutes.",
@@ -62,15 +75,21 @@
     }
   },
   "check": {
+    "orderType": "Order Type",
+    "deliveryRoom": "Delivery Room",
     "estimateOrders_one": "<1>{{count}}</1> order in front of you",
     "estimateOrders_other": "<1>{{count}}</1> orders in front of you",
     "estimateTime_one": "~<1>{{count}}</1> minute remaining",
     "estimateTime_other": "~<1>{{count}}</1> minutes remaining",
     "status": {
-      "notStarted": "Not Started",
-      "inProgress": "In Progress",
-      "ready": "Ready to Pick",
-      "pickedUp": "Picked Up",
+      "notStarted_pickUp": "Not Started",
+      "inProgress_pickUp": "In Progress",
+      "ready_pickUp": "Ready to Pick",
+      "pickedUp_pickUp": "Picked Up",
+      "notStarted_delivery": "Not Started",
+      "inProgress_delivery": "In Progress",
+      "ready_delivery": "Delivering",
+      "pickedUp_delivery": "Picked Up",
       "current": "(Current Status)"
     },
     "message": {
@@ -82,8 +101,10 @@
     "cancelLoading": "...",
     "cancelFailed": "Cannot cancel",
     "cancelConfirm": "Confirm?",
-    "ready": "Ready for pick up! Remember to pay in-person.",
-    "pickedUp": "Thank you for visiting Whale Cafe!",
+    "ready_pickUp": "Ready for pick up! Remember to pay in-person.",
+    "ready_delivery": "Delivering your drink! You will pay on delivery.",
+    "pickedUp_pickUp": "Thank you for visiting Whale Cafe!",
+    "pickedUp_delivery": "Thank you for visiting Whale Cafe!",
     "totalPrice": "Total Price",
     "modal": {
       "title": "Check Your Order",
@@ -115,10 +136,14 @@
   },
   "history": {
     "status": {
-      "notStarted": "Waiting in line...",
-      "inProgress": "Making your drink...",
-      "ready": "Ready to pick up!",
-      "pickedUp": "Order finished, thank you!"
+      "notStarted_pickUp": "Waiting in line...",
+      "inProgress_pickUp": "Making your drink...",
+      "ready_pickUp": "Ready to pick up!",
+      "pickedUp_pickUp": "Order finished, thank you!",
+      "notStarted_delivery": "Waiting in line...",
+      "inProgress_delivery": "Making your drink...",
+      "ready_delivery": "Delivering...",
+      "pickedUp_delivery": "Order finished, thank you!"
     },
     "loadMore": "Load More"
   },
@@ -157,6 +182,8 @@
     "amountCharge": "Amount to Charge",
     "orderTime": "Client Waited For",
     "orderBy": "Ordered By",
+    "orderType": "Order Type",
+    "deliveryRoom": "Delivery Room",
     "itemOrdered": "Items Ordered",
     "shopOpen": "Ready for Ordering",
     "shopClosed": "Ordering Closed",

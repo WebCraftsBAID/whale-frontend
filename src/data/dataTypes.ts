@@ -65,11 +65,18 @@ export enum OrderStatus {
     pickedUp = 'pickedUp'
 }
 
+export enum OrderType {
+    pickUp = 'pickUp',
+    delivery = 'delivery'
+}
+
 export interface OrderSchema {
     id: number
     totalPrice: string
     number: string
     status: OrderStatus
+    type: OrderType
+    deliveryRoom: string | null
     createdTime: string
     user: UserSchema
     items: OrderedItemSchema[]

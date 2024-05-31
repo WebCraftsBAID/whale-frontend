@@ -12,7 +12,8 @@ import {
     faFaceSmile,
     faHourglass,
     faHourglassHalf,
-    faTriangleExclamation
+    faTriangleExclamation,
+    faTruck
 } from '@fortawesome/free-solid-svg-icons'
 import {
     faCircleCheck as faCircleCheckR,
@@ -20,7 +21,7 @@ import {
     faHourglass as faHourglassR,
     faHourglassHalf as faHourglassHalfR
 } from '@fortawesome/free-regular-svg-icons'
-import { type OrderedItemSchema, OrderStatus } from '../../../data/dataTypes.ts'
+import { type OrderedItemSchema, OrderStatus, OrderType } from '../../../data/dataTypes.ts'
 import ComponentIconText from '../../common/ComponentIconText.tsx'
 import ComponentOrderedItem from '../order/ComponentOrderedItem.tsx'
 import { useState } from 'react'
@@ -103,7 +104,7 @@ export default function PageCheck(): JSX.Element {
                                     <Trans i18nKey='check.estimateTime' count={estimate.data.time}
                                         components={{ 1: <strong></strong> }} />
                                 </p></>
-                            : <p className='text-sm mb-5 text-center'>{t(`check.${order.data.status}`)}</p>}
+                            : <p className='text-sm mb-5 text-center'>{t(`check.${order.data.status}_${order.data.type}`)}</p>}
                     </div>
 
                     <div className='flex mb-5 justify-center'>
@@ -112,7 +113,7 @@ export default function PageCheck(): JSX.Element {
                             <FontAwesomeIcon
                                 icon={order.data.status === OrderStatus.notStarted ? faHourglass : faHourglassR}
                                 className='text-4xl mb-1' />
-                            <p className='text-xs text-center'>{t('check.status.notStarted')}</p>
+                            <p className='text-xs text-center'>{t('check.status.notStarted_' + order.data.type)}</p>
                             {order.data.status === OrderStatus.notStarted
                                 ? <p className='w-0 h-0 overflow-hidden'>{t('check.status.current')}</p>
                                 : null}
@@ -123,7 +124,7 @@ export default function PageCheck(): JSX.Element {
                             <FontAwesomeIcon
                                 icon={order.data.status === OrderStatus.inProgress ? faHourglassHalf : faHourglassHalfR}
                                 className='text-4xl mb-1' />
-                            <p className='text-xs text-center'>{t('check.status.inProgress')}</p>
+                            <p className='text-xs text-center'>{t('check.status.inProgress_' + order.data.type)}</p>
                             {order.data.status === OrderStatus.inProgress
                                 ? <p className='w-0 h-0 overflow-hidden'>{t('check.status.current')}</p>
                                 : null}
@@ -132,9 +133,9 @@ export default function PageCheck(): JSX.Element {
                         <div
                             className={`flex flex-col items-center mr-3 ${order.data.status !== OrderStatus.ready ? 'text-gray-400' : 'text-green-400'}`}>
                             <FontAwesomeIcon
-                                icon={order.data.status === OrderStatus.ready ? faCircleCheck : faCircleCheckR}
+                                icon={order.data.type === OrderType.delivery ? faTruck : (order.data.status === OrderStatus.ready ? faCircleCheck : faCircleCheckR)}
                                 className='text-4xl mb-1' />
-                            <p className='text-xs text-center'>{t('check.status.ready')}</p>
+                            <p className='text-xs text-center'>{t('check.status.ready_' + order.data.type)}</p>
                             {order.data.status === OrderStatus.ready
                                 ? <p className='w-0 h-0 overflow-hidden'>{t('check.status.current')}</p>
                                 : null}
@@ -145,7 +146,7 @@ export default function PageCheck(): JSX.Element {
                             <FontAwesomeIcon
                                 icon={order.data.status === OrderStatus.pickedUp ? faFaceSmile : faFaceSmileR}
                                 className='text-4xl mb-1' />
-                            <p className='text-xs text-center'>{t('check.status.pickedUp')}</p>
+                            <p className='text-xs text-center'>{t('check.status.pickedUp_' + order.data.type)}</p>
                             {order.data.status === OrderStatus.pickedUp
                                 ? <p className='w-0 h-0 overflow-hidden'>{t('check.status.current')}</p>
                                 : null}
@@ -168,6 +169,12 @@ export default function PageCheck(): JSX.Element {
 
                     <p className='text-gray-400 text-xs mb-2'>{t('check.totalPrice')}</p>
                     <p className='font-display font-bold text-3xl mb-5'>¥{order.data.totalPrice}</p>
+
+                    <p className='text-gray-400 text-xs mb-2'>{t('check.orderType')}</p>
+                    <p className='font-display font-bold text-3xl mb-5'>{t(`order.type.${order.data.type}`)}</p>
+
+                    {order.data.type === OrderType.delivery ? <p className='text-gray-400 text-xs mb-2'>{t('check.deliveryRoom')}</p> : null}
+                    {order.data.type === OrderType.delivery ? <p className='font-display font-bold text-3xl mb-5'>{order.data.deliveryRoom}</p> : null}
 
                     <p className='text-gray-400 text-xs mb-2'>{t('check.products')}</p>
                     {order.data.items.map((item: OrderedItemSchema) => <ComponentOrderedItem key={item.id}
@@ -203,7 +210,7 @@ export default function PageCheck(): JSX.Element {
                                         components={{ 1: <strong></strong> }} />
                                 </p>
                             </>
-                            : <p className='text-xl mb-8 text-center'>{t(`check.${order.data.status}`)}</p>}
+                            : <p className='text-xl mb-8 text-center'>{t(`check.${order.data.status}_${order.data.type}`)}</p>}
 
                         <div className='flex mb-8'>
                             <div
@@ -211,7 +218,7 @@ export default function PageCheck(): JSX.Element {
                                 <FontAwesomeIcon
                                     icon={order.data.status === OrderStatus.notStarted ? faHourglass : faHourglassR}
                                     className='text-4xl mb-1' />
-                                <p className='text-sm text-center'>{t('check.status.notStarted')}</p>
+                                <p className='text-sm text-center'>{t('check.status.notStarted_' + order.data.type)}</p>
                                 {order.data.status === OrderStatus.notStarted
                                     ? <p className='w-0 h-0 overflow-hidden'>{t('check.status.current')}</p>
                                     : null}
@@ -222,7 +229,7 @@ export default function PageCheck(): JSX.Element {
                                 <FontAwesomeIcon
                                     icon={order.data.status === OrderStatus.inProgress ? faHourglassHalf : faHourglassHalfR}
                                     className='text-4xl mb-1' />
-                                <p className='text-sm text-center'>{t('check.status.inProgress')}</p>
+                                <p className='text-sm text-center'>{t('check.status.inProgress_' + order.data.type)}</p>
                                 {order.data.status === OrderStatus.inProgress
                                     ? <p className='w-0 h-0 overflow-hidden'>{t('check.status.current')}</p>
                                     : null}
@@ -231,9 +238,9 @@ export default function PageCheck(): JSX.Element {
                             <div
                                 className={`flex flex-col items-center mr-5 ${order.data.status !== OrderStatus.ready ? 'text-gray-400' : 'text-green-400'}`}>
                                 <FontAwesomeIcon
-                                    icon={order.data.status === OrderStatus.ready ? faCircleCheck : faCircleCheckR}
+                                    icon={order.data.type === OrderType.delivery ? faTruck : (order.data.status === OrderStatus.ready ? faCircleCheck : faCircleCheckR)}
                                     className='text-4xl mb-1' />
-                                <p className='text-sm text-center'>{t('check.status.ready')}</p>
+                                <p className='text-sm text-center'>{t('check.status.ready_' + order.data.type)}</p>
                                 {order.data.status === OrderStatus.ready
                                     ? <p className='w-0 h-0 overflow-hidden'>{t('check.status.current')}</p>
                                     : null}
@@ -244,7 +251,7 @@ export default function PageCheck(): JSX.Element {
                                 <FontAwesomeIcon
                                     icon={order.data.status === OrderStatus.pickedUp ? faFaceSmile : faFaceSmileR}
                                     className='text-4xl mb-1' />
-                                <p className='text-sm text-center'>{t('check.status.pickedUp')}</p>
+                                <p className='text-sm text-center'>{t('check.status.pickedUp_' + order.data.type)}</p>
                                 {order.data.status === OrderStatus.pickedUp
                                     ? <p className='w-0 h-0 overflow-hidden'>{t('check.status.current')}</p>
                                     : null}
@@ -280,9 +287,14 @@ export default function PageCheck(): JSX.Element {
                         <p className='text-gray-400 text-xs mb-2'>{t('check.totalPrice')}</p>
                         <p className='font-display font-bold text-4xl mb-5'>¥{order.data.totalPrice}</p>
 
+                        <p className='text-gray-400 text-xs mb-2'>{t('check.orderType')}</p>
+                        <p className='font-display font-bold text-4xl mb-5'>{t(`order.type.${order.data.type}`)}</p>
+
+                        {order.data.type === OrderType.delivery ? <p className='text-gray-400 text-xs mb-2'>{t('check.deliveryRoom')}</p> : null}
+                        {order.data.type === OrderType.delivery ? <p className='font-display font-bold text-4xl mb-5'>{order.data.deliveryRoom}</p> : null}
+
                         <p className='text-gray-400 text-xs mb-2'>{t('check.products')}</p>
-                        {order.data.items.map((item: OrderedItemSchema) => <ComponentOrderedItem key={item.id}
-                            item={item} />)}
+                        {order.data.items.map((item: OrderedItemSchema) => <ComponentOrderedItem key={item.id} item={item} />)}
                     </div>
                 </div>
             </div>

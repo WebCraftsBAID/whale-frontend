@@ -1,8 +1,8 @@
 import { Trans, useTranslation } from 'react-i18next'
 import ComponentIconText from '../../common/ComponentIconText.tsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleExclamation, faClock, faClose, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
-import type { OptionTypeSchema, OrderedItemSchema, OrderSchema } from '../../../data/dataTypes.ts'
+import { faCircleExclamation, faClock, faClose, faMugHot, faTriangleExclamation, faTruck } from '@fortawesome/free-solid-svg-icons'
+import { OrderType, type OptionTypeSchema, type OrderedItemSchema, type OrderSchema } from '../../../data/dataTypes.ts'
 import ComponentOrderedItem from './ComponentOrderedItem.tsx'
 import { useShoppingCart } from '../../../data/shoppingCart.tsx'
 import { useMutation, useQuery } from '@tanstack/react-query'
@@ -16,6 +16,7 @@ import ComponentLoading from '../../common/ComponentLoading.tsx'
 import ComponentError from '../../common/ComponentError.tsx'
 import { useNavigate } from 'react-router-dom'
 import { type PersistentStorage, usePersistentStorage } from '../../../data/persistentStorage.tsx'
+import { useState } from 'react'
 
 export default function ComponentOrderConfirmModal({
     open,
@@ -24,6 +25,9 @@ export default function ComponentOrderConfirmModal({
     const { t } = useTranslation()
     const navigate = useNavigate()
     const persistentStorage: PersistentStorage = usePersistentStorage()
+    const [orderType, setOrderType] = useState(OrderType.pickUp)
+    const [deliveryRoom, setDeliveryRoom] = useState('')
+    const [deliveryRoomError, setDeliveryRoomError] = useState('')
 
     const orderCreate = useMutation({
         mutationFn: async (data: OrderCreateSchema) => await order(data, persistentStorage.getToken()!),
@@ -48,6 +52,12 @@ export default function ComponentOrderConfirmModal({
     })
 
     function submit(): void {
+        setDeliveryRoomError('')
+        if (deliveryRoom.length !== 3 || Number.isNaN(parseInt(deliveryRoom))) {
+            setDeliveryRoomError(t('order.confirm.roomError'))
+            return
+        }
+
         const createItems: OrderedItemCreateSchema[] = []
 
         for (const item of items) {
@@ -59,6 +69,8 @@ export default function ComponentOrderConfirmModal({
         }
 
         orderCreate.mutate({
+            type: orderType,
+            deliveryRoom,
             items: createItems
         })
     }
@@ -79,13 +91,36 @@ export default function ComponentOrderConfirmModal({
                                 <div className='flex items-center mb-5'>
                                     <h1 className='text-3xl font-bold font-display flex-grow'>{t('order.confirm.title')}</h1>
                                     <button
-                                className='rounded-full w-10 h-10 hover:bg-gray-50 flex-shrink transition-colors duration-100'
-                                onClick={() => {
-                                    close()
-                                }}>
+                                        className='rounded-full w-10 h-10 hover:bg-gray-50 flex-shrink transition-colors duration-100'
+                                        onClick={() => {
+                                            close()
+                                        }}>
                                         <FontAwesomeIcon icon={faClose} className='text-xl' />
                                     </button>
                                 </div>
+
+                                <div className='mb-5 flex w-full'>
+                                    <button onClick={() => { setOrderType(OrderType.pickUp) }}
+                                        className={`lg:mr-3 w-1/2 flex items-center justify-center px-3 py-5 rounded-l-3xl lg:rounded-3xl ${orderType === OrderType.pickUp ? 'bg-accent-yellow-bg' : 'bg-gray-50 hover:bg-accent-yellow-bg'} transition-colors duration-100`}>
+                                        <FontAwesomeIcon icon={faMugHot} className='text-accent-red text-2xl lg:text-3xl mr-3' />
+                                        <p className='text-lg lg:text-xl font-display'>{t('order.type.pickUp')}</p>
+                                    </button>
+                                    <button onClick={() => { setOrderType(OrderType.delivery) }}
+                                        className={`w-1/2 flex items-center justify-center px-3 py-5 rounded-r-3xl lg:rounded-3xl ${orderType === OrderType.delivery ? 'bg-accent-yellow-bg' : 'bg-gray-50 hover:bg-accent-yellow-bg'} transition-colors duration-100`}>
+                                        <FontAwesomeIcon icon={faTruck} className='text-accent-orange text-2xl lg:text-3xl mr-3' />
+                                        <p className='text-lg lg:text-xl font-display'>{t('order.type.delivery')}</p>
+                                    </button>
+                                </div>
+
+                                {orderType === OrderType.delivery
+                                    ? <div className='mb-5'>
+                                        <p className='text-gray-400 text-xs mb-2'>{t('order.confirm.deliveryInformation')}</p>
+                                        <div className='mb-1 rounded-full bg-accent-yellow-bg p-2'>
+                                            <input placeholder={t('order.confirm.room')} type='text' className='w-full bg-transparent' value={deliveryRoom} onChange={(e) => { setDeliveryRoom(e.target.value) }} />
+                                        </div>
+                                        <p className='mb-2 text-xs text-accent-red'>{deliveryRoomError}</p>
+                                    </div>
+                                    : null}
 
                                 <p className='text-gray-400 text-xs mb-2'>{t('order.confirm.importantInformation')}</p>
                                 <div className='mb-3'>
@@ -95,44 +130,44 @@ export default function ComponentOrderConfirmModal({
                                         {estimate.isPending ? t('order.confirm.waitLoading') : null}
                                         {estimate.data != null
                                             ? <Trans i18nKey={'order.confirm.waitTime'}
-                                                     count={(estimate.data as OrderEstimateSchema).time + getTotalItems() * 2}
-                                                     components={{ 1: <strong></strong> }} />
+                                                count={(estimate.data as OrderEstimateSchema).time + getTotalItems() * 2}
+                                                components={{ 1: <strong></strong> }} />
                                             : null}
                                     </ComponentIconText>
                                 </div>
                                 <div className='mb-3'>
                                     <ComponentIconText
-                                icon={<FontAwesomeIcon icon={faTriangleExclamation} className='text-yellow-400' />}>
+                                        icon={<FontAwesomeIcon icon={faTriangleExclamation} className='text-yellow-400' />}>
                                         {t('order.confirm.abuse')}
                                     </ComponentIconText>
                                 </div>
                                 <div className='mb-5'>
                                     <ComponentIconText
-                                icon={<FontAwesomeIcon icon={faCircleExclamation} className='text-accent-orange' />}>
+                                        icon={<FontAwesomeIcon icon={faCircleExclamation} className='text-accent-orange' />}>
                                         <Trans i18nKey={'order.confirm.payment'}
-                                               components={{
-                                                   1: <strong></strong>,
-                                                   2: <u></u>
-                                               }} />
+                                            components={{
+                                                1: <strong></strong>,
+                                                2: <u></u>
+                                            }} />
                                     </ComponentIconText>
                                 </div>
 
                                 <p className='text-gray-400 text-xs mb-2'>{t('order.confirm.orders')}</p>
                                 <div className='mb-12 lg:mb-0'>
                                     {items.map((item: OrderedItemSchema) => <ComponentOrderedItem key={item.id}
-                                                                                                  item={item} />)}
+                                        item={item} />)}
                                 </div>
                             </div>
 
                             <div className='fixed lg:sticky w-full bg-gray-100 bottom-0 flex'>
                                 <div className='flex-grow p-4'>
                                     <p className='text-lg font-display'><Trans i18nKey='order.confirm.total'
-                                                                               count={getTotalPrice().toString()} /></p>
+                                        count={getTotalPrice().toString()} /></p>
                                 </div>
 
                                 <button className='flex-shrink lg:rounded-br-3xl transition-colors duration-100
                      flex bg-accent-orange-bg hover:bg-amber-100 py-3 px-8 justify-center items-center'
-                                        onClick={submit}>
+                                    onClick={submit}>
                                     <p className='font-display'>{t('order.confirm.confirm')}</p>
                                 </button>
                             </div>

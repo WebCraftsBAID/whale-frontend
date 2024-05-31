@@ -15,7 +15,7 @@
     "backgroundText": "Whale Cafe",
     "startOrdering": "开始点单",
     "pickUp": {
-      "name": "自取",
+      "name": "点单",
       "description": "免排队点单"
     },
     "history": {
@@ -28,17 +28,27 @@
     },
     "currentOrderCard": {
       "name": "当前订单",
-      "notStarted_one": "正在等待开始制作，<1>大约需等待 {{count}} 分钟。<1>",
-      "notStarted_other": "正在等待开始制作，<1>大约需等待 {{count}} 分钟。<1>",
-      "inProgress_one": "正在制作，<1>大约需等待 {{count}} 分钟。<1>",
-      "inProgress_other": "正在制作，<1>大约需等待 {{count}} 分钟。<1>",
-      "ready": "制作完成，请尽快取餐。<1>请携带平板现场付款。</1>",
-      "pickedUp": "已取餐，感谢您光临白鲸咖啡馆!"
+      "notStarted_pickUp_one": "正在等待开始制作，<1>大约需等待 {{count}} 分钟。<1>",
+      "notStarted_pickUp_other": "正在等待开始制作，<1>大约需等待 {{count}} 分钟。<1>",
+      "inProgress_pickUp_one": "正在制作，<1>大约需等待 {{count}} 分钟。<1>",
+      "inProgress_pickUp_other": "正在制作，<1>大约需等待 {{count}} 分钟。<1>",
+      "ready_pickUp": "制作完成，请尽快取餐。<1>请携带平板现场付款。</1>",
+      "pickedUp_pickUp": "已取餐，感谢您光临白鲸咖啡馆!",
+      "notStarted_delivery_one": "正在等待开始制作，<1>大约需等待 {{count}} 分钟。<1>",
+      "notStarted_delivery_other": "正在等待开始制作，<1>大约需等待 {{count}} 分钟。<1>",
+      "inProgress_delivery_one": "正在制作，<1>大约需等待 {{count}} 分钟。<1>",
+      "inProgress_delivery_other": "正在制作，<1>大约需等待 {{count}} 分钟。<1>",
+      "ready_delivery": "制作完成，正在配送中。<1>您将会取餐时付款。</1>",
+      "pickedUp_delivery": "已取餐，感谢您光临白鲸咖啡馆!"
     }
   },
   "order": {
     "item": {
       "pick": "选规格"
+    },
+    "type": {
+      "pickUp": "自取",
+      "delivery": "外送"
     },
     "shoppingCart": "购物车",
     "empty": "喝些什么?",
@@ -49,6 +59,9 @@
     "back": "返回",
     "confirm": {
       "title": "确认点单",
+      "deliveryInformation": "外送信息",
+      "room": "外送房间号",
+      "roomError": "必须填写 3 位外送房间号",
       "importantInformation": "重要信息",
       "waitError": "暂时无法加载点单等待时间信息。",
       "waitLoading": "现在点单需要等待约 ... 分钟。",
@@ -62,15 +75,21 @@
     }
   },
   "check": {
+    "orderType": "订单类型",
+    "deliveryRoom": "外送房间号",
     "estimateOrders_one": "前方排队 <1>{{count}}</1> 单",
     "estimateOrders_other": "前方排队 <1>{{count}}</1> 单",
     "estimateTime_one": "需要等待约 <1>{{count}}</1> 分钟",
     "estimateTime_other": "需要等待约 <1>{{count}}</1> 分钟",
     "status": {
-      "notStarted": "待备餐",
-      "inProgress": "备餐中",
-      "ready": "待取餐",
-      "pickedUp": "已取餐",
+      "notStarted_pickUp": "待备餐",
+      "inProgress_pickUp": "备餐中",
+      "ready_pickUp": "待取餐",
+      "pickedUp_pickUp": "已取餐",
+      "notStarted_delivery": "待备餐",
+      "inProgress_delivery": "备餐中",
+      "ready_delivery": "配送中",
+      "pickedUp_delivery": "已取餐",
       "current": "(目前状态)"
     },
     "message": {
@@ -82,8 +101,10 @@
     "cancelLoading": "...",
     "cancelFailed": "无法取消订单",
     "cancelConfirm": "确认?",
-    "ready": "制作完成，请尽快取餐。请准备好现场付款。",
-    "pickedUp": "感谢光临白鲸咖啡馆!",
+    "ready_pickUp": "制作完成，请尽快取餐。请准备好现场付款。",
+    "ready_delivery": "制作完成，正在配送中。您将会取餐时付款。",
+    "pickedUp_pickUp": "感谢光临白鲸咖啡馆!",
+    "pickedUp_delivery": "感谢光临白鲸咖啡馆!",
     "totalPrice": "应付款项",
     "modal": {
       "title": "查询订单",
@@ -115,10 +136,14 @@
   },
   "history": {
     "status": {
-      "notStarted": "正在等待开始制作...",
-      "inProgress": "正在制作...",
-      "ready": "制作完成，请取餐!",
-      "pickedUp": "订单已结束"
+      "notStarted_pickUp": "正在等待开始制作...",
+      "inProgress_pickUp": "正在制作...",
+      "ready_pickUp": "制作完成，请取餐!",
+      "pickedUp_pickUp": "订单已结束",
+      "notStarted_delivery": "正在等待开始制作...",
+      "inProgress_delivery": "正在制作...",
+      "ready_delivery": "制作完成，正在配送...",
+      "pickedUp_delivery": "订单已结束"
     },
     "loadMore": "加载更多"
   },
@@ -157,6 +182,8 @@
     "amountCharge": "应收款项",
     "orderTime": "客户已等待",
     "orderBy": "点单客户",
+    "orderType": "订单类型",
+    "deliveryRoom": "外送房间号",
     "itemOrdered": "订单产品",
     "shopOpen": "正在接受订单",
     "shopClosed": "未开始接受订单",

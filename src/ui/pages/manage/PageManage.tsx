@@ -12,9 +12,10 @@ import {
     faFaceSmile,
     faHourglass,
     faHourglassHalf,
-    faMugSaucer
+    faMugSaucer,
+    faTruck
 } from '@fortawesome/free-solid-svg-icons'
-import { type OrderSchema, OrderStatus } from '../../../data/dataTypes'
+import { type OrderSchema, OrderStatus, OrderType } from '../../../data/dataTypes'
 import ComponentOrderedItem from '../order/ComponentOrderedItem'
 
 export default function PageManage(): JSX.Element {
@@ -159,40 +160,50 @@ export default function PageManage(): JSX.Element {
                                 <button onClick={() => { changeStatus.mutate(OrderStatus.notStarted) }}
                                     className={`px-4 py-8 mr-5 rounded-2xl flex w-1/4 h-full flex-col justify-center items-center ${selectedOrder.status === OrderStatus.notStarted ? 'text-accent-orange bg-gray-50' : 'text-gray-500 bg-gray-100'}`}>
                                     <FontAwesomeIcon icon={faHourglass} className='text-6xl mb-2' />
-                                    <p className='font-display text-lg'>{t('check.status.notStarted')}</p>
+                                    <p className='font-display text-lg'>{t('check.status.notStarted_' + selectedOrder.type)}</p>
                                 </button>
                                 <button onClick={() => { changeStatus.mutate(OrderStatus.inProgress) }}
                                     className={`px-4 py-8 mr-5 rounded-2xl flex w-1/4 h-full flex-col justify-center items-center ${selectedOrder.status === OrderStatus.inProgress ? 'text-blue-500 bg-gray-50' : 'text-gray-500 bg-gray-100'}`}>
                                     <FontAwesomeIcon icon={faHourglassHalf} className='text-6xl mb-2' />
-                                    <p className='font-display text-lg'>{t('check.status.inProgress')}</p>
+                                    <p className='font-display text-lg'>{t('check.status.inProgress_' + selectedOrder.type)}</p>
                                 </button>
                                 <button onClick={() => { changeStatus.mutate(OrderStatus.ready) }}
                                     className={`px-4 py-8 mr-5 rounded-2xl flex w-1/4 h-full flex-col justify-center items-center ${selectedOrder.status === OrderStatus.ready ? 'text-green-400 bg-gray-50' : 'text-gray-500 bg-gray-100'}`}>
-                                    <FontAwesomeIcon icon={faCircleCheck} className='text-6xl mb-2' />
-                                    <p className='font-display text-lg'>{t('check.status.ready')}</p>
+                                    <FontAwesomeIcon icon={selectedOrder.type === OrderType.delivery ? faTruck : faCircleCheck} className='text-6xl mb-2' />
+                                    <p className='font-display text-lg'>{t('check.status.ready_' + selectedOrder.type)}</p>
                                 </button>
                                 <button onClick={() => { changeStatus.mutate(OrderStatus.pickedUp) }}
                                     className={`px-4 py-8 rounded-2xl flex w-1/4 h-full flex-col justify-center items-center ${selectedOrder.status === OrderStatus.pickedUp ? 'text-yellow-400 bg-gray-50' : 'text-gray-500 bg-gray-100'}`}>
                                     <FontAwesomeIcon icon={faFaceSmile} className='text-6xl mb-2' />
-                                    <p className='font-display text-lg'>{t('check.status.pickedUp')}</p>
+                                    <p className='font-display text-lg'>{t('check.status.pickedUp_' + selectedOrder.type)}</p>
                                 </button>
                             </div>
 
                             <div className='flex mb-5'>
-                                <div className='w-1/4'>
+                                <div className='w-1/3'>
                                     <p className='font-display text-lg mb-3'>{t('manage.amountCharge')}</p>
                                     <p className='font-display text-5xl font-bold'>¥{selectedOrder.totalPrice}</p>
                                 </div>
-                                <div className='w-1/4'>
+                                <div className='w-1/3'>
                                     <p className='font-display text-lg mb-3'>{t('manage.orderTime')}</p>
-                                    <p className='font-display text-5xl font-bold'>{(selectedOrder.status === OrderStatus.ready || selectedOrder.status === OrderStatus.pickedUp) ? t('manage.done') : msToTime(currentTime)}</p>
+                                    <p className='font-display text-5xl font-bold'>{(selectedOrder.status === OrderStatus.ready || selectedOrder.status === OrderStatus.pickedUp || (selectedOrder.type === OrderType.delivery)) ? t('manage.done') : msToTime(currentTime)}</p>
                                 </div>
-                                <div className='w-1/4'>
+                                <div className='w-1/3'>
                                     <p className='font-display text-lg mb-3'>{t('manage.orderBy')}</p>
                                     <p className='font-display text-5xl font-bold'>{selectedOrder.user.name}</p>
                                 </div>
+                            </div>
+                            <div className='flex mb-3'>
+                                <div className='w-1/3'>
+                                    <p className='font-display text-lg mb-3'>{t('manage.orderType')}</p>
+                                    <p className='font-display text-5xl font-bold'>{t('order.type.' + selectedOrder.type)}</p>
+                                </div>
+                                <div className='w-1/3'>
+                                    <p className='font-display text-lg mb-3'>{t('manage.deliveryRoom')}</p>
+                                    <p className='font-display text-5xl font-bold'>{selectedOrder.type === OrderType.delivery ? selectedOrder.deliveryRoom : 'N/A'}</p>
+                                </div>
                                 <button
-                                    className='w-1/4 rounded-3xl bg-accent-red hover:bg-red-500 p-8 font-display font-bold text-3xl text-white'
+                                    className='w-1/3 rounded-3xl bg-accent-red hover:bg-red-500 p-8 font-display font-bold text-3xl text-white'
                                     onClick={cancel}>
                                     {cancelConfirm ? t('check.cancelConfirm') : t('check.cancel')}
                                 </button>
