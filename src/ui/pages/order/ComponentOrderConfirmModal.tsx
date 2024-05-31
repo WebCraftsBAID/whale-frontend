@@ -53,7 +53,7 @@ export default function ComponentOrderConfirmModal({
 
     function submit(): void {
         setDeliveryRoomError('')
-        if (deliveryRoom.length !== 3 || Number.isNaN(parseInt(deliveryRoom))) {
+        if (orderType === OrderType.delivery && (deliveryRoom.length !== 3 || Number.isNaN(parseInt(deliveryRoom)))) {
             setDeliveryRoomError(t('order.confirm.roomError'))
             return
         }
