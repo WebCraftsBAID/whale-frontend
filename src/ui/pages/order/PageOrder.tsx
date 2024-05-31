@@ -6,7 +6,7 @@ import ComponentShoppingCart from './ComponentShoppingCart.tsx'
 import { useEffect, useState } from 'react'
 import ComponentOrderConfirmModal from './ComponentOrderConfirmModal.tsx'
 import { useQuery } from '@tanstack/react-query'
-import { getCategories } from '../../../data/api.ts'
+import { getCategories, getSettings } from '../../../data/api.ts'
 import ComponentError from '../../common/ComponentError.tsx'
 import ComponentLoading from '../../common/ComponentLoading.tsx'
 import { type CategorySchema, type ItemTypeSchema } from '../../../data/dataTypes.ts'
@@ -16,6 +16,8 @@ import { type PersistentStorage, usePersistentStorage } from '../../../data/pers
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import ComponentTopBar from '../../common/ComponentTopBar.tsx'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
 export default function PageOrder(): JSX.Element {
     const { t } = useTranslation()
@@ -31,18 +33,53 @@ export default function PageOrder(): JSX.Element {
         queryFn: getCategories
     })
 
+    const getShopOpen = useQuery({
+        queryKey: ['get-shop-open'],
+        queryFn: async () => await getSettings('shop-open')
+    })
+
     useEffect(() => {
         if (persistentStorage.getToken() == null) {
             navigate('/login/oauth2/_order')
         }
     }, [])
 
-    if (categories.isError) {
+    if (categories.isError || getShopOpen.isError) {
         return <AnimatedPage><ComponentError detail={categories} screen={true} /></AnimatedPage>
     }
 
-    if (categories.isPending) {
+    if (categories.isPending || getShopOpen.isPending) {
         return <AnimatedPage><ComponentLoading screen={true} /></AnimatedPage>
+    }
+
+    if (getShopOpen.data === '0' || typeof getShopOpen.data === 'object') {
+        return <AnimatedPage>
+            <div className='flex justify-center items-center w-screen h-screen bg-gray-50'>
+                <div className='p-8 w-full h-full lg:w-1/2 xl:w-1/3 2xl:w-1/4 lg:h-auto bg-white rounded-3xl'>
+                    <div className='flex items-center mb-16'>
+                        <button onClick={() => {
+                            navigate('/')
+                        }} className='rounded-full p-1 hover:bg-gray-200 transition-colors duration-100 w-8 h-8 mr-3'>
+                            <FontAwesomeIcon icon={faArrowLeft} className='text-gray-800 text-lg' />
+                        </button>
+                        <p className='font-display'>{t('name')}</p>
+                    </div>
+                    <h1 className='font-display text-3xl font-bold mb-1'>{t('order.notOpenTitle')}</h1>
+                    <p className='text-sm mb-5'>
+                        {t('order.notOpenDescription')}
+                    </p>
+
+                    <button
+                        className='w-full rounded-full bg-blue-500 hover:bg-blue-600 hover:shadow-lg
+                 transition-colors duration-100 p-2 font-display text-white mb-8'
+                        onClick={() => {
+                            navigate('/')
+                        }}>
+                        {t('order.back')}
+                    </button>
+                </div>
+            </div>
+        </AnimatedPage>
     }
 
     const resultedCategories = categories.data as CategorySchema[]
@@ -68,7 +105,7 @@ export default function PageOrder(): JSX.Element {
 
                     <div className='h-full' style={{ flexShrink: '0' }}>
                         <ComponentCategories categories={resultedCategories}
-                                             ids={resultedCategories.map(category => `category-m-${category.id}`)} />
+                            ids={resultedCategories.map(category => `category-m-${category.id}`)} />
                     </div>
                     <div className='flex-grow h-full overflow-y-auto p-5'>
                         <h1 className='text-2xl font-display font-bold mb-5'>{t('navbar.order')}</h1>
@@ -98,7 +135,7 @@ export default function PageOrder(): JSX.Element {
             <div className='hidden lg:flex h-screen flex-col'>
                 <div className='flex-shrink'>
                     <ComponentCategories categories={resultedCategories}
-                                         ids={resultedCategories.map(category => `category-d-${category.id}`)} />
+                        ids={resultedCategories.map(category => `category-d-${category.id}`)} />
                 </div>
                 <div className='flex flex-grow min-h-0 relative'>
                     <div
@@ -112,8 +149,8 @@ export default function PageOrder(): JSX.Element {
                         <h1 className='text-4xl mb-8 font-display font-bold'>{t('navbar.order')}</h1>
 
                         {resultedCategories.map(category => <div key={category.id}
-                                                                 className='mb-8'
-                                                                 id={`category-d-${category.id}`}>
+                            className='mb-8'
+                            id={`category-d-${category.id}`}>
                             <ComponentCategory category={category} pickItem={(item) => {
                                 setPickItem(item)
                             }} />

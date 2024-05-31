@@ -44,6 +44,9 @@
     "empty": "喝些什么?",
     "order": "下单",
     "add": "添加",
+    "notOpenTitle": "点单未开放",
+    "notOpenDescription": "点单尚未开放，请等待开放后再试。",
+    "back": "返回",
     "confirm": {
       "title": "确认点单",
       "importantInformation": "重要信息",
@@ -155,6 +158,10 @@
     "orderTime": "客户已等待",
     "orderBy": "点单客户",
     "itemOrdered": "订单产品",
+    "shopOpen": "正在接受订单",
+    "shopClosed": "未开始接受订单",
+    "toggleShopOpen": "开店",
+    "toggleShopClose": "闭店",
     "done": "已完成!"
   },
   "stats": {

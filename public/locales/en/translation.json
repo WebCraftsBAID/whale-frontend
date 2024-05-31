@@ -44,6 +44,9 @@
     "empty": "Fancy drinking something?",
     "order": "Order",
     "add": "Add",
+    "notOpenTitle": "Ordering Unavailable",
+    "notOpenDescription": "Ordering is currently closed. Please wait until the shop reopens.",
+    "back": "Back",
     "confirm": {
       "title": "Confirm Your Order",
       "importantInformation": "Important Information",
@@ -155,6 +158,10 @@
     "orderTime": "Client Waited For",
     "orderBy": "Ordered By",
     "itemOrdered": "Items Ordered",
+    "shopOpen": "Ready for Ordering",
+    "shopClosed": "Ordering Closed",
+    "toggleShopOpen": "Enable Ordering",
+    "toggleShopClose": "Disable Ordering",
     "done": "Done!"
   },
   "stats": {

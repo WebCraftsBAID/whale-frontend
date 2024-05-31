@@ -11,7 +11,7 @@ export default function ComponentTopBar(): JSX.Element {
         <div className='p-2 lg:p-4 bg-gray-100 border-b border-gray-300 border-solid flex w-full items-center'>
             <div className='flex-shrink mr-2'>
                 <button onClick={() => {
-                    navigate(-1)
+                    navigate('/')
                 }} className='rounded-full p-1 hover:bg-gray-200 transition-colors duration-100 w-8 h-8'>
                     <FontAwesomeIcon icon={faArrowLeft} className='text-gray-800 text-lg' />
                 </button>

@@ -114,6 +114,10 @@ export async function getSettings(key: string): Promise<string | GenericError> {
     return await get('settings', new Map([['key', key]]))
 }
 
+export async function setSettings(key: string, value: string, token: string): Promise<string | GenericError> {
+    return await get('settings/update', new Map([['key', key], ['value', value]]), token)
+}
+
 export async function getOrder(id: number): Promise<OrderSchema | GenericError> {
     return await get('order', new Map([['id', id.toString()]]))
 }
