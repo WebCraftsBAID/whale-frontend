@@ -215,5 +215,21 @@
     "todayOrders": "本自然日订单 (数量)",
     "todayCups": "本自然日杯 (数量)",
     "weekRevenue": "本自然周总收入 (CN¥)"
+  },
+  "a11y": {
+    "back": "返回主页",
+    "error": "发生了一个错误",
+    "loading": "加载中",
+    "close": "关闭",
+    "option": "选项",
+    "selection": "选择",
+    "price": "现价",
+    "previousPrice": "原价",
+    "add": "增加一个",
+    "remove": "减少一个",
+    "viewItems": "查看已选产品",
+    "totalItems": "总杯数",
+    "totalPrice": "总价格",
+    "skipToMain": "跳转到主内容"
   }
 }

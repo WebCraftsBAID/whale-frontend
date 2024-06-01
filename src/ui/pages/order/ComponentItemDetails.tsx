@@ -26,17 +26,19 @@ function ComponentOption({
     selected: Map<number, number>
     setSelected: (newItem: number) => void
 }): JSX.Element {
+    const { t } = useTranslation()
     return (
         <div>
-            <p className='text-gray-500 text-sm mb-2'>{optionType.name}</p>
+            <p className='text-gray-500 text-sm mb-2'><span
+                className='text-[0]'>{t('a11y.option')}</span> {optionType.name}</p>
             <div className='flex'>
                 {optionType.items.map(item => {
-                    // console.log('selected ' + selected + ' item ' + item.id + ' ' + item.name)
                     return <button onClick={() => {
                         setSelected(item.id)
                     }} key={item.id}
                                    className={`${selected.get(optionType.id) === item.id ? 'bg-black text-white font-bold' : 'bg-gray-100'} rounded-full mr-3 
                             transition-colors duration-100 px-3 py-1`}>
+                        <p className='text-[0]'>{t('a11y.selection')}</p>
                         <p className='text-sm'>{item.name}</p>
                     </button>
                 }
@@ -103,16 +105,17 @@ export default function ComponentItemDetails({
                     rounded-full w-10 h-10 hover:bg-gray-50 transition-colors duration-100'
                     onClick={() => {
                         close()
-                    }}>
+                    }}
+                    aria-label={t('a11y.close')}>
                     <FontAwesomeIcon icon={faClose} className='text-xl' />
                 </button>
 
-                <img alt='Product Image' src={item?.image}
+                <img alt={`Image of ${item?.name}`} src={item?.image}
                      className='object-cover h-48 lg:h-56 xl:h-72 w-full rounded-3xl mb-8' />
 
                 <div className='flex flex-col lg:flex-row lg:items-center mb-5'>
                     <p className='text-2xl lg:text-3xl xl:text-4xl font-bold font-display mb-2 lg:mb-0 lg:mr-5'>{item?.name}</p>
-                    <div className='flex'>
+                    <div className='flex' role='status'>
                         {item?.tags.map(tag =>
                             <div key={tag.id} style={{ backgroundColor: tag.color }}
                                  className={`py-1 px-2 lg:px-3 rounded-full mr-2 ${shouldUseWhiteText(tag.color) ? 'text-white' : 'text-black'}`}>

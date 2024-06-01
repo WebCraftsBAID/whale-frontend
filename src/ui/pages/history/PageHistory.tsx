@@ -59,7 +59,7 @@ export default function PageHistory(): JSX.Element {
                     <ComponentTopBar />
                 </div>
 
-                <div className='flex flex-col flex-grow h-full min-h-0 overflow-y-auto relative px-6'>
+                <div id='main' className='flex flex-col flex-grow h-full min-h-0 overflow-y-auto relative px-6'>
                     <h1 className='text-2xl font-display font-bold my-5'>{t('navbar.history')}</h1>
 
                     {query.data.pages.map((page, i) => (
@@ -86,7 +86,7 @@ export default function PageHistory(): JSX.Element {
                 <div className='flex-shrink'>
                     <ComponentTopBar />
                 </div>
-                <div className='flex flex-grow min-h-0 flex-col h-full overflow-y-auto p-12'>
+                <div id='main' className='flex flex-grow min-h-0 flex-col h-full overflow-y-auto p-12'>
                     <h1 className='text-4xl mb-8 font-display font-bold'>{t('navbar.history')}</h1>
 
                     <div className='w-full 2xl:w-2/3 mb-3'>
@@ -112,6 +112,7 @@ export default function PageHistory(): JSX.Element {
 
                     {query.isFetchingNextPage
                         ? <div className='flex justify-center items-center mb-3'><FontAwesomeIcon icon={faSpinner}
+                                                                                                  aria-label={t('a11y.loading')}
                                                                                                   className='text-4xl text-gray-400'
                                                                                                   spin={true} /></div>
                         : null}

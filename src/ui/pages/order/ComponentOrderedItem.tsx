@@ -1,15 +1,18 @@
 import { type OrderedItemSchema } from '../../../data/dataTypes.ts'
 import { frontendCalculate, moneyRound } from '../../../utils.ts'
+import { useTranslation } from 'react-i18next'
 
 export default function ComponentOrderedItem({
     item,
     changeAmount
 }: { item: OrderedItemSchema, changeAmount: ((amount: number) => void) | null }): JSX.Element {
+    const { t } = useTranslation()
+
     return (
         <div className='flex items-center p-4 rounded-xl'>
             <div className='mr-5 flex-shrink'>
                 <img src={item.itemType.image} alt={`Picture of ${item.itemType.name}`}
-                    className='rounded-full w-16 lg:w-24 aspect-square object-cover' />
+                     className='rounded-full w-16 lg:w-24 aspect-square object-cover' />
             </div>
             <div className='flex-grow'>
                 <div className='w-full mb-1'>
@@ -25,9 +28,10 @@ export default function ComponentOrderedItem({
                         : <div className='flex-shrink flex items-center'>
                             <button className='bg-black p-1 aspect-square w-6 h-6 mr-2 font-bold hover:bg-gray-900 text-lg rounded-full
                                         transition-colors duration-100 font-display text-white flex justify-center items-center'
-                                onClick={() => {
-                                    changeAmount(-1)
-                                }}>
+                                    aria-label={t('a11y.remove')}
+                                    onClick={() => {
+                                        changeAmount(-1)
+                                    }}>
                                 -
                             </button>
                             <div
@@ -36,9 +40,10 @@ export default function ComponentOrderedItem({
                             </div>
                             <button className='bg-black p-1 aspect-square w-6 h-6 ml-2 font-bold hover:bg-gray-900 text-lg rounded-full
                                         transition-colors duration-100 font-display text-white flex justify-center items-center'
-                                onClick={() => {
-                                    changeAmount(1)
-                                }}>
+                                    aria-label={t('a11y.add')}
+                                    onClick={() => {
+                                        changeAmount(1)
+                                    }}>
                                 +
                             </button>
                         </div>}

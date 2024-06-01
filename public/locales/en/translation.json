@@ -215,5 +215,21 @@
     "todayOrders": "Today's Orders (Count)",
     "todayCups": "Today's Cups (Count)",
     "weekRevenue": "Calendar Week Revenue (CN¥)"
+  },
+  "a11y": {
+    "back": "Navigate Home",
+    "error": "An error occurred",
+    "loading": "Loading",
+    "close": "Close",
+    "option": "Option",
+    "selection": "Selection",
+    "price": "Price",
+    "previousPrice": "Previous Price",
+    "add": "Add One",
+    "remove": "Remove One",
+    "viewItems": "View Items",
+    "totalItems": "Total Items",
+    "totalPrice": "Total Price",
+    "skipToMain": "Skip to Main Content"
   }
 }

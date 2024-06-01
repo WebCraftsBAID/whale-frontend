@@ -89,3 +89,18 @@ input {
 input:focus {
     outline: none !important;
 }
+
+.skip-to-main {
+    margin-right: 1rem;
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.skip-to-main:focus {
+    position: static;
+    background-color: white;
+    width: auto;
+    height: auto;
+}

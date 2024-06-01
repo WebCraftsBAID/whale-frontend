@@ -55,8 +55,8 @@ export default function PageAccount(): JSX.Element {
                 <div className='flex-shrink'>
                     <ComponentTopBar />
                 </div>
-                <div
-                    className='flex flex-grow min-h-0 flex-col h-full overflow-y-auto px-6 lg:px-24 xl:px-48 2xl:px-96 py-6 lg:pt-12 pb-36 lg:pb-12'>
+                <div id='main'
+                     className='flex flex-grow min-h-0 flex-col h-full overflow-y-auto px-6 lg:px-24 xl:px-48 2xl:px-96 py-6 lg:pt-12 pb-36 lg:pb-12'>
                     <h1 className='flex-shrink text-2xl lg:text-4xl mb-8 font-display font-bold'>{t('navbar.account')}</h1>
 
                     <div className='flex flex-grow flex-col'>

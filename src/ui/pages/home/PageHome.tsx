@@ -31,7 +31,8 @@ export default function PageHome(): JSX.Element {
             </div>
 
             <div className='hidden lg:block bg-accent-latte'>
-                <div className='absolute select-none w-screen top-0 left-0 h-[30vh] flex justify-center items-center'>
+                <div className='absolute select-none w-screen top-0 left-0 h-[30vh] flex justify-center items-center'
+                     aria-hidden={true}>
                     <p className='text-[7rem] xl:text-[10rem] bg-clip-text text-transparent from-[#401f1022] to-[#401f1000] bg-gradient-to-b
                                     font-bold font-display'>{t('home.backgroundText')}</p>
                 </div>
@@ -46,7 +47,8 @@ export default function PageHome(): JSX.Element {
                     </div>
 
                     <div className='flex justify-center items-center z-10'>
-                        <img src={desktopDeco} alt='' className='rounded-3xl w-64 xl:w-72 object-cover h-80 xl:h-96' />
+                        <img src={desktopDeco} role='presentation' alt=''
+                             className='rounded-3xl w-64 xl:w-72 object-cover h-80 xl:h-96' />
                     </div>
                 </div>
 

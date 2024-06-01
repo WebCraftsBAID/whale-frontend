@@ -3,7 +3,7 @@ import ad2 from './assets/ad2.webp'
 import { useEffect, useRef, useState } from 'react'
 
 export default function ComponentAd(): JSX.Element {
-    const ads = [ad1, ad2]
+    const ads = [[ad1, 'Demo Ad 1'], [ad2, 'Demo Ad 2']]
 
     const [index, setIndex] = useState(0)
     const timeoutRef = useRef(-1)
@@ -29,8 +29,8 @@ export default function ComponentAd(): JSX.Element {
             <div className='whitespace-nowrap transition-all duration-500 ease-in-out h-full'
                  style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}>
                 {ads.map((src, index) =>
-                    <img className='inline-block h-full object-cover w-full ' src={src} key={index}
-                         alt='Advertisement' />)}
+                    <img className='inline-block h-full object-cover w-full ' src={src[0]} key={index}
+                         alt={src[1]} />)}
             </div>
 
             <div className='absolute w-full bottom-0 text-center p-3'>

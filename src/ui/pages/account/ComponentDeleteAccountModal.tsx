@@ -29,7 +29,8 @@ export default function ComponentDeleteAccountModal({ open, close, deletable }: 
     return (
         <>
             <div className={`w-screen h-screen absolute justify-center items-center flex bg-gray-500/30
-                  top-0 left-0 z-[60] transition-opacity duration-200 ${open ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+                  top-0 left-0 z-[60] transition-opacity duration-200 ${open ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                 role='dialog'>
                 <div
                     className='z-[70] bg-white lg:shadow-lg lg:rounded-3xl w-full lg:w-1/2 2xl:w-1/3 h-full lg:h-auto overflow-y-auto'>
                     <div className='p-8 pt-12 lg:p-12'>
@@ -37,6 +38,7 @@ export default function ComponentDeleteAccountModal({ open, close, deletable }: 
                             <h1 className='text-3xl font-bold font-display flex-grow'>{t('account.deleteConfirm.title')}</h1>
                             <button
                                 className='rounded-full w-10 h-10 hover:bg-gray-50 flex-shrink transition-colors duration-100'
+                                aria-label={t('a11y.close')}
                                 onClick={() => {
                                     close()
                                 }}>

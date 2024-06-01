@@ -57,26 +57,31 @@ export default function PageOrder(): JSX.Element {
             <div className='flex justify-center items-center w-screen h-screen bg-gray-50'>
                 <div className='p-8 w-full h-full lg:w-1/2 xl:w-1/3 2xl:w-1/4 lg:h-auto bg-white rounded-3xl'>
                     <div className='flex items-center mb-16'>
+                        <a className='skip-to-main' href='#main'>{t('a11y.skipToMain')}</a>
                         <button onClick={() => {
                             navigate('/')
-                        }} className='rounded-full p-1 hover:bg-gray-200 transition-colors duration-100 w-8 h-8 mr-3'>
+                        }} className='rounded-full p-1 hover:bg-gray-200 transition-colors duration-100 w-8 h-8 mr-3'
+                                aria-label={t('a11y.back')}>
                             <FontAwesomeIcon icon={faArrowLeft} className='text-gray-800 text-lg' />
                         </button>
                         <p className='font-display'>{t('name')}</p>
                     </div>
-                    <h1 className='font-display text-3xl font-bold mb-1'>{t('order.notOpenTitle')}</h1>
-                    <p className='text-sm mb-5'>
-                        {t('order.notOpenDescription')}
-                    </p>
 
-                    <button
-                        className='w-full rounded-full bg-blue-500 hover:bg-blue-600 hover:shadow-lg
-                 transition-colors duration-100 p-2 font-display text-white mb-8'
-                        onClick={() => {
-                            navigate('/')
-                        }}>
-                        {t('order.back')}
-                    </button>
+                    <div id='main'>
+                        <h1 className='font-display text-3xl font-bold mb-1'>{t('order.notOpenTitle')}</h1>
+                        <p className='text-sm mb-5'>
+                            {t('order.notOpenDescription')}
+                        </p>
+
+                        <button
+                            className='w-full rounded-full bg-blue-500 hover:bg-blue-600 hover:shadow-lg
+                     transition-colors duration-100 p-2 font-display text-white mb-8'
+                            onClick={() => {
+                                navigate('/')
+                            }}>
+                            {t('order.back')}
+                        </button>
+                    </div>
                 </div>
             </div>
         </AnimatedPage>
@@ -105,9 +110,9 @@ export default function PageOrder(): JSX.Element {
 
                     <div className='h-full' style={{ flexShrink: '0' }}>
                         <ComponentCategories categories={resultedCategories}
-                            ids={resultedCategories.map(category => `category-m-${category.id}`)} />
+                                             ids={resultedCategories.map(category => `category-m-${category.id}`)} />
                     </div>
-                    <div className='flex-grow h-full overflow-y-auto p-5'>
+                    <div className='flex-grow h-full overflow-y-auto p-5' id='main'>
                         <h1 className='text-2xl font-display font-bold mb-5'>{t('navbar.order')}</h1>
 
                         <div className='h-40 mb-8'>
@@ -135,7 +140,7 @@ export default function PageOrder(): JSX.Element {
             <div className='hidden lg:flex h-screen flex-col'>
                 <div className='flex-shrink'>
                     <ComponentCategories categories={resultedCategories}
-                        ids={resultedCategories.map(category => `category-d-${category.id}`)} />
+                                         ids={resultedCategories.map(category => `category-d-${category.id}`)} />
                 </div>
                 <div className='flex flex-grow min-h-0 relative'>
                     <div
@@ -145,12 +150,12 @@ export default function PageOrder(): JSX.Element {
                         }} />
                     </div>
 
-                    <div className='w-1/2 border-r border-gray-300 border-solid h-full overflow-y-auto p-16'>
+                    <div className='w-1/2 border-r border-gray-300 border-solid h-full overflow-y-auto p-16' id='main'>
                         <h1 className='text-4xl mb-8 font-display font-bold'>{t('navbar.order')}</h1>
 
                         {resultedCategories.map(category => <div key={category.id}
-                            className='mb-8'
-                            id={`category-d-${category.id}`}>
+                                                                 className='mb-8'
+                                                                 id={`category-d-${category.id}`}>
                             <ComponentCategory category={category} pickItem={(item) => {
                                 setPickItem(item)
                             }} />
