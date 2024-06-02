@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { type PersistentStorage, usePersistentStorage } from '../../../data/persistentStorage'
 import { useNavigate } from 'react-router-dom'
 import AnimatedPage from '../../../AnimatedPage'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import ComponentTopBar from '../../common/ComponentTopBar'
 import { useQuery } from '@tanstack/react-query'
 import { getMe, getMeStatistics } from '../../../data/api'
@@ -110,7 +110,19 @@ export default function PageAccount(): JSX.Element {
 
                         <button onClick={() => { persistentStorage.setToken(null); navigate('/') }} className='rounded-full w-48 py-2 px-5 font-display bg-accent-yellow-bg hover:bg-accent-orange-bg transition-colors duration-100 mb-3'>{t('account.logOut')}</button>
 
-                        <button onClick={() => { setOpen(true) }} className='rounded-full text-white w-48 py-2 px-5 font-display bg-accent-red hover:bg-red-500 transition-colors duration-100 mb-3'>{t('account.deleteAccount')}</button>
+                        <button onClick={() => {
+                            setOpen(true)
+                        }}
+                                className='rounded-full text-white w-48 py-2 px-5 font-display bg-accent-red hover:bg-red-500 transition-colors duration-100 mb-5'>{t('account.deleteAccount')}</button>
+
+                        <p className='text-xs text-gray-500 mb-1'>{t('account.about')}</p>
+                        <hr className='w-full border-gray-200 mb-3' />
+
+                        <p className='text-sm mb-3'>
+                            <Trans i18nKey='account.credits' components={{
+                                1: <a className='underline' href='https://github.com/BAIDWebDev/whale-docker' />
+                            }} />
+                        </p>
                     </div>
                 </div>
             </div>
