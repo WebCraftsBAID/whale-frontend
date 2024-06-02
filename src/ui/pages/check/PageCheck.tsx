@@ -91,7 +91,7 @@ export default function PageCheck(): JSX.Element {
                     <ComponentTopBar />
                 </div>
 
-                <div id='main'>
+                <div id='main' className='h-full'>
                     <div className='flex-grow p-8 pt-16'>
                         <div className='flex flex-col items-center'>
                             <h1 className='text-6xl font-bold font-display mb-3'>{order.data.number}</h1>
@@ -201,7 +201,7 @@ export default function PageCheck(): JSX.Element {
                 <div className='flex-shrink'>
                     <ComponentTopBar />
                 </div>
-                <div id='main'>
+                <div id='main' className='h-full'>
                     <div className='flex flex-grow min-h-0'>
                         <div
                         className='w-1/2 border-r border-gray-300 border-solid p-16 h-full overflow-y-auto relative flex flex-col justify-center items-center'>

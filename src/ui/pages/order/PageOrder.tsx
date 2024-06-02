@@ -67,7 +67,7 @@ export default function PageOrder(): JSX.Element {
                         <p className='font-display'>{t('name')}</p>
                     </div>
 
-                    <div id='main'>
+                    <div id='main' className='h-full'>
                         <h1 className='font-display text-3xl font-bold mb-1'>{t('order.notOpenTitle')}</h1>
                         <p className='text-sm mb-5'>
                             {t('order.notOpenDescription')}
