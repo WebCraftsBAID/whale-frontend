@@ -54,7 +54,7 @@ export default function PageHistory(): JSX.Element {
 
     return (
         <AnimatedPage>
-            <div className='lg:hidden flex flex-col h-screen'>
+            <div className='lg:hidden flex flex-col h-screen bg-accent-latte'>
                 <div className='flex-shrink'>
                     <ComponentTopBar />
                 </div>
@@ -82,7 +82,7 @@ export default function PageHistory(): JSX.Element {
                 <ComponentBottomNav />
             </div>
 
-            <div className='hidden lg:flex h-screen flex-col'>
+            <div className='hidden lg:flex h-screen flex-col bg-accent-latte'>
                 <div className='flex-shrink'>
                     <ComponentTopBar />
                 </div>
@@ -112,9 +112,9 @@ export default function PageHistory(): JSX.Element {
 
                     {query.isFetchingNextPage
                         ? <div className='flex justify-center items-center mb-3'><FontAwesomeIcon icon={faSpinner}
-                                                                                                  aria-label={t('a11y.loading')}
-                                                                                                  className='text-4xl text-gray-400'
-                                                                                                  spin={true} /></div>
+                            aria-label={t('a11y.loading')}
+                            className='text-4xl text-gray-400'
+                            spin={true} /></div>
                         : null}
 
                     {query.hasNextPage && !query.isFetchingNextPage
@@ -122,7 +122,7 @@ export default function PageHistory(): JSX.Element {
                             <button onClick={() => {
                                 void query.fetchNextPage()
                             }}
-                                    className='rounded-full py-2 px-5 font-display bg-accent-yellow-bg hover:bg-accent-orange-bg transition-colors duration-100'>{t('history.loadMore')}</button>
+                                className='rounded-full py-2 px-5 font-display bg-accent-yellow-bg hover:bg-accent-orange-bg transition-colors duration-100'>{t('history.loadMore')}</button>
                         </div>
                         : null
                     }

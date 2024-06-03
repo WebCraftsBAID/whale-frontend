@@ -10,7 +10,7 @@
     "account": "Me"
   },
   "home": {
-    "title": "Welcome to<1/>Whale Cafe!",
+    "title": "Welcome to<1 />Whale Cafe!",
     "description": "All of your purchases aid charity causes.",
     "backgroundText": "Whale Cafe",
     "startOrdering": "Start Ordering",

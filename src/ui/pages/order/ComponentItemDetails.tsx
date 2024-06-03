@@ -36,7 +36,7 @@ function ComponentOption({
                     return <button onClick={() => {
                         setSelected(item.id)
                     }} key={item.id}
-                                   className={`${selected.get(optionType.id) === item.id ? 'bg-black text-white font-bold' : 'bg-gray-100'} rounded-full mr-3 
+                        className={`${selected.get(optionType.id) === item.id ? 'bg-black text-white font-bold' : 'bg-gray-100'} rounded-full mr-3 
                             transition-colors duration-100 px-3 py-1`}>
                         <p className='text-[0]'>{t('a11y.selection')}</p>
                         <p className='text-sm'>{item.name}</p>
@@ -98,7 +98,7 @@ export default function ComponentItemDetails({
     }
 
     return (
-        <div className='w-screen h-screen lg:h-full lg:w-full bg-white relative'>
+        <div className='w-screen h-screen lg:h-full lg:w-full bg-accent-latte relative'>
             <div className='p-8 lg:p-12 xl:p-24'>
                 <button
                     className='absolute right-12 top-12 bg-white
@@ -111,14 +111,14 @@ export default function ComponentItemDetails({
                 </button>
 
                 <img alt={`Image of ${item?.name}`} src={item?.image}
-                     className='object-cover h-48 lg:h-56 xl:h-72 w-full rounded-3xl mb-8' />
+                    className='object-cover h-48 lg:h-56 xl:h-72 w-full rounded-3xl mb-8' />
 
                 <div className='flex flex-col lg:flex-row lg:items-center mb-5'>
                     <p className='text-2xl lg:text-3xl xl:text-4xl font-bold font-display mb-2 lg:mb-0 lg:mr-5'>{item?.name}</p>
                     <div className='flex' role='status'>
                         {item?.tags.map(tag =>
                             <div key={tag.id} style={{ backgroundColor: tag.color }}
-                                 className={`py-1 px-2 lg:px-3 rounded-full mr-2 ${shouldUseWhiteText(tag.color) ? 'text-white' : 'text-black'}`}>
+                                className={`py-1 px-2 lg:px-3 rounded-full mr-2 ${shouldUseWhiteText(tag.color) ? 'text-white' : 'text-black'}`}>
                                 <p className='font-display font-bold text-xs lg:text-sm'>{tag.name}</p>
                             </div>)}
                     </div>
@@ -132,16 +132,16 @@ export default function ComponentItemDetails({
                 {item?.options.map(option =>
                     <div key={option.id} className='mb-3'>
                         <ComponentOption optionType={option}
-                                         selected={options}
-                                         setSelected={(newItem) => {
-                                             setOptions(prevOptions => new Map(prevOptions).set(option.id, newItem))
-                                         }} />
+                            selected={options}
+                            setSelected={(newItem) => {
+                                setOptions(prevOptions => new Map(prevOptions).set(option.id, newItem))
+                            }} />
                     </div>
                 )}
             </div>
 
             <div className='fixed w-full lg:w-auto lg:mx-12 xl:mx-24 lg:sticky
-                            bottom-0 lg:bottom-8 bg-gray-100 mt-8 flex lg:rounded-full items-center'>
+                            bottom-0 lg:bottom-8 bg-accent-yellow-bg mt-8 flex lg:rounded-full items-center shadow-lg'>
                 <div className='flex-grow flex items-center h-12 p-7'>
                     <p className='font-display'>¥{totalPrice.toString()}</p>
                 </div>
@@ -160,7 +160,7 @@ export default function ComponentItemDetails({
                 </div>
                 <button className='flex-shrink lg:rounded-r-full transition-colors duration-100
                      flex bg-accent-orange-bg hover:bg-amber-100 py-5 px-8 justify-center items-center'
-                        onClick={add}>
+                    onClick={add}>
                     <p className='font-display'>{t('order.add')}</p>
                 </button>
             </div>

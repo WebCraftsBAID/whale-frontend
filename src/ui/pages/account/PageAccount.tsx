@@ -56,7 +56,7 @@ export default function PageAccount(): JSX.Element {
                     <ComponentTopBar />
                 </div>
                 <div id='main'
-                     className='flex flex-grow min-h-0 flex-col h-full overflow-y-auto px-6 lg:px-24 xl:px-48 2xl:px-96 py-6 lg:pt-12 pb-36 lg:pb-12'>
+                    className='flex flex-grow min-h-0 flex-col h-full overflow-y-auto px-6 lg:px-24 xl:px-48 2xl:px-96 py-6 lg:pt-12 pb-36 lg:pb-12 bg-accent-latte'>
                     <h1 className='flex-shrink text-2xl lg:text-4xl mb-8 font-display font-bold'>{t('navbar.account')}</h1>
 
                     <div className='flex flex-grow flex-col'>
@@ -113,7 +113,7 @@ export default function PageAccount(): JSX.Element {
                         <button onClick={() => {
                             setOpen(true)
                         }}
-                                className='rounded-full text-white w-48 py-2 px-5 font-display bg-accent-red hover:bg-red-500 transition-colors duration-100 mb-5'>{t('account.deleteAccount')}</button>
+                            className='rounded-full text-white w-48 py-2 px-5 font-display bg-accent-red hover:bg-red-500 transition-colors duration-100 mb-5'>{t('account.deleteAccount')}</button>
 
                         <p className='text-xs text-gray-500 mb-1'>{t('account.about')}</p>
                         <hr className='w-full border-gray-200 mb-3' />

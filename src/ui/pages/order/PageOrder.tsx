@@ -61,7 +61,7 @@ export default function PageOrder(): JSX.Element {
                         <button onClick={() => {
                             navigate('/')
                         }} className='rounded-full p-1 hover:bg-gray-200 transition-colors duration-100 w-8 h-8 mr-3'
-                                aria-label={t('a11y.back')}>
+                            aria-label={t('a11y.back')}>
                             <FontAwesomeIcon icon={faArrowLeft} className='text-gray-800 text-lg' />
                         </button>
                         <p className='font-display'>{t('name')}</p>
@@ -100,7 +100,7 @@ export default function PageOrder(): JSX.Element {
                     <ComponentTopBar />
                 </div>
 
-                <div className='flex flex-grow min-h-0 relative'>
+                <div className='flex flex-grow min-h-0 relative bg-accent-latte'>
                     <div
                         className={`absolute z-[200] top-0 left-0 w-full h-full transition-opacity duration-100 ${pickItem == null ? 'opacity-0 pointer-events-none' : ''}`}>
                         <ComponentItemDetails item={pickItem} close={() => {
@@ -110,7 +110,7 @@ export default function PageOrder(): JSX.Element {
 
                     <div className='h-full' style={{ flexShrink: '0' }}>
                         <ComponentCategories categories={resultedCategories}
-                                             ids={resultedCategories.map(category => `category-m-${category.id}`)} />
+                            ids={resultedCategories.map(category => `category-m-${category.id}`)} />
                     </div>
                     <div className='flex-grow h-full overflow-y-auto p-5' id='main'>
                         <h1 className='text-2xl font-display font-bold mb-5'>{t('navbar.order')}</h1>
@@ -140,9 +140,9 @@ export default function PageOrder(): JSX.Element {
             <div className='hidden lg:flex h-screen flex-col'>
                 <div className='flex-shrink'>
                     <ComponentCategories categories={resultedCategories}
-                                         ids={resultedCategories.map(category => `category-d-${category.id}`)} />
+                        ids={resultedCategories.map(category => `category-d-${category.id}`)} />
                 </div>
-                <div className='flex flex-grow min-h-0 relative'>
+                <div className='flex flex-grow min-h-0 relative bg-accent-latte'>
                     <div
                         className={`absolute top-0 left-0 overflow-y-scroll w-[calc(50%_-_1px)] max-h-full transition-opacity duration-100 ${pickItem == null ? 'opacity-0 pointer-events-none' : ''}`}>
                         <ComponentItemDetails item={pickItem} close={() => {
@@ -154,8 +154,8 @@ export default function PageOrder(): JSX.Element {
                         <h1 className='text-4xl mb-8 font-display font-bold'>{t('navbar.order')}</h1>
 
                         {resultedCategories.map(category => <div key={category.id}
-                                                                 className='mb-8'
-                                                                 id={`category-d-${category.id}`}>
+                            className='mb-8'
+                            id={`category-d-${category.id}`}>
                             <ComponentCategory category={category} pickItem={(item) => {
                                 setPickItem(item)
                             }} />
