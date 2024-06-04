@@ -232,6 +232,7 @@
     "viewItems": "查看已选产品",
     "totalItems": "总杯数",
     "totalPrice": "总价格",
-    "skipToMain": "跳转到主内容"
+    "skipToMain": "跳转到主内容",
+    "testing": "测试模式: 您的订单不会被处理或保存。一些功能可能无法使用。"
   }
 }

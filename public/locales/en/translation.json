@@ -232,6 +232,7 @@
     "viewItems": "View Items",
     "totalItems": "Total Items",
     "totalPrice": "Total Price",
-    "skipToMain": "Skip to Main Content"
+    "skipToMain": "Skip to Main Content",
+    "testing": "TESTING MODE: YOUR ORDERS WILL NOT BE PROCESSED OR SAVED. SOME FEATURES MAY NOT WORK."
   }
 }
