@@ -86,7 +86,7 @@ export default function PageCheck(): JSX.Element {
 
     return (
         <AnimatedPage>
-            <div className='lg:hidden flex flex-col h-screen'>
+            <div className='lg:hidden flex flex-col h-screen bg-accent-latte'>
                 <div className='flex-shrink'>
                     <ComponentTopBar />
                 </div>
@@ -99,21 +99,21 @@ export default function PageCheck(): JSX.Element {
                                 ? <>
                                     <p className='text-sm text-center'>
                                         <Trans i18nKey='check.estimateOrders' count={estimate.data.orders}
-                                               components={{ 1: <strong></strong> }} />
+                                            components={{ 1: <strong></strong> }} />
                                     </p>
                                     <p className='text-sm mb-5 text-center'>
                                         <Trans i18nKey='check.estimateTime' count={estimate.data.time}
-                                               components={{ 1: <strong></strong> }} />
+                                            components={{ 1: <strong></strong> }} />
                                     </p></>
                                 : <p className='text-sm mb-5 text-center'>{t(`check.${order.data.status}_${order.data.type}`)}</p>}
                         </div>
 
                         <div className='flex mb-5 justify-center'>
                             <div
-                            className={`flex flex-col items-center mr-3 ${order.data.status !== OrderStatus.notStarted ? 'text-gray-400' : 'text-accent-orange'}`}>
+                                className={`flex flex-col items-center mr-3 ${order.data.status !== OrderStatus.notStarted ? 'text-gray-400' : 'text-accent-orange'}`}>
                                 <FontAwesomeIcon
-                                icon={order.data.status === OrderStatus.notStarted ? faHourglass : faHourglassR}
-                                className='text-4xl mb-1' />
+                                    icon={order.data.status === OrderStatus.notStarted ? faHourglass : faHourglassR}
+                                    className='text-4xl mb-1' />
                                 <p className='text-xs text-center'>{t('check.status.notStarted_' + order.data.type)}</p>
                                 {order.data.status === OrderStatus.notStarted
                                     ? <p className='w-0 h-0 overflow-hidden'>{t('check.status.current')}</p>
@@ -121,10 +121,10 @@ export default function PageCheck(): JSX.Element {
                             </div>
 
                             <div
-                            className={`flex flex-col items-center mr-3 ${order.data.status !== OrderStatus.inProgress ? 'text-gray-400' : 'text-blue-500'}`}>
+                                className={`flex flex-col items-center mr-3 ${order.data.status !== OrderStatus.inProgress ? 'text-gray-400' : 'text-blue-500'}`}>
                                 <FontAwesomeIcon
-                                icon={order.data.status === OrderStatus.inProgress ? faHourglassHalf : faHourglassHalfR}
-                                className='text-4xl mb-1' />
+                                    icon={order.data.status === OrderStatus.inProgress ? faHourglassHalf : faHourglassHalfR}
+                                    className='text-4xl mb-1' />
                                 <p className='text-xs text-center'>{t('check.status.inProgress_' + order.data.type)}</p>
                                 {order.data.status === OrderStatus.inProgress
                                     ? <p className='w-0 h-0 overflow-hidden'>{t('check.status.current')}</p>
@@ -132,10 +132,10 @@ export default function PageCheck(): JSX.Element {
                             </div>
 
                             <div
-                            className={`flex flex-col items-center mr-3 ${order.data.status !== OrderStatus.ready ? 'text-gray-400' : 'text-green-400'}`}>
+                                className={`flex flex-col items-center mr-3 ${order.data.status !== OrderStatus.ready ? 'text-gray-400' : 'text-green-400'}`}>
                                 <FontAwesomeIcon
-                                icon={order.data.type === OrderType.delivery ? faTruck : (order.data.status === OrderStatus.ready ? faCircleCheck : faCircleCheckR)}
-                                className='text-4xl mb-1' />
+                                    icon={order.data.type === OrderType.delivery ? faTruck : (order.data.status === OrderStatus.ready ? faCircleCheck : faCircleCheckR)}
+                                    className='text-4xl mb-1' />
                                 <p className='text-xs text-center'>{t('check.status.ready_' + order.data.type)}</p>
                                 {order.data.status === OrderStatus.ready
                                     ? <p className='w-0 h-0 overflow-hidden'>{t('check.status.current')}</p>
@@ -143,10 +143,10 @@ export default function PageCheck(): JSX.Element {
                             </div>
 
                             <div
-                            className={`flex flex-col items-center ${order.data.status !== OrderStatus.pickedUp ? 'text-gray-400' : 'text-yellow-400'}`}>
+                                className={`flex flex-col items-center ${order.data.status !== OrderStatus.pickedUp ? 'text-gray-400' : 'text-yellow-400'}`}>
                                 <FontAwesomeIcon
-                                icon={order.data.status === OrderStatus.pickedUp ? faFaceSmile : faFaceSmileR}
-                                className='text-4xl mb-1' />
+                                    icon={order.data.status === OrderStatus.pickedUp ? faFaceSmile : faFaceSmileR}
+                                    className='text-4xl mb-1' />
                                 <p className='text-xs text-center'>{t('check.status.pickedUp_' + order.data.type)}</p>
                                 {order.data.status === OrderStatus.pickedUp
                                     ? <p className='w-0 h-0 overflow-hidden'>{t('check.status.current')}</p>
@@ -156,14 +156,14 @@ export default function PageCheck(): JSX.Element {
 
                         <div className='mb-3 w-full'>
                             <ComponentIconText
-                            icon={<FontAwesomeIcon icon={faTriangleExclamation} className='text-yellow-400' />}>
+                                icon={<FontAwesomeIcon icon={faTriangleExclamation} className='text-yellow-400' />}>
                                 {t('check.message.orderNumber')}
                             </ComponentIconText>
                         </div>
 
                         <div className='mb-5 w-full'>
                             <ComponentIconText
-                            icon={<FontAwesomeIcon icon={faTriangleExclamation} className='text-yellow-400' />}>
+                                icon={<FontAwesomeIcon icon={faTriangleExclamation} className='text-yellow-400' />}>
                                 {t('check.message.pay')}
                             </ComponentIconText>
                         </div>
@@ -183,11 +183,11 @@ export default function PageCheck(): JSX.Element {
 
                         <p className='text-gray-400 text-xs mb-2'>{t('check.products')}</p>
                         {order.data.items.map((item: OrderedItemSchema) => <ComponentOrderedItem key={item.id}
-                                                                                                 item={item} />)}
+                            item={item} />)}
 
                         {order.data.status === OrderStatus.notStarted
                             ? <button onClick={cancel}
-                                      className={`mt-5 p-2 w-full rounded-full font-bold font-display transition-colors duration-100 ${orderCancel.isError || typeof orderCancel.data === 'object' || orderCancel.isPending ? 'bg-gray-300 text-gray-400' : 'bg-accent-red hover:bg-red-500 text-white'}`}>
+                                className={`mt-5 p-2 w-full rounded-full font-bold font-display transition-colors duration-100 ${orderCancel.isError || typeof orderCancel.data === 'object' || orderCancel.isPending ? 'bg-gray-300 text-gray-400' : 'bg-accent-red hover:bg-red-500 text-white'}`}>
                                 {orderCancel.isPending ? t('check.cancelLoading') : null}
                                 {orderCancel.isIdle ? (cancelConfirm ? t('check.cancelConfirm') : t('check.cancel')) : null}
                                 {orderCancel.isError || typeof orderCancel.data === 'object' ? t('check.cancelFailed') : null}
@@ -197,7 +197,7 @@ export default function PageCheck(): JSX.Element {
                 </div>
             </div>
 
-            <div className='hidden lg:flex h-screen flex-col'>
+            <div className='hidden lg:flex h-screen flex-col bg-accent-latte'>
                 <div className='flex-shrink'>
                     <ComponentTopBar />
                 </div>
@@ -209,11 +209,11 @@ export default function PageCheck(): JSX.Element {
                             ? <>
                                 <p className='text-xl mb-1 text-center'>
                                     <Trans i18nKey='check.estimateOrders' count={estimate.data.orders}
-                                           components={{ 1: <strong></strong> }} />
+                                        components={{ 1: <strong></strong> }} />
                                 </p>
                                 <p className='text-xl mb-8 text-center'>
                                     <Trans i18nKey='check.estimateTime' count={estimate.data.time}
-                                           components={{ 1: <strong></strong> }} />
+                                        components={{ 1: <strong></strong> }} />
                                 </p>
                             </>
                             : <p className='text-xl mb-8 text-center'>{t(`check.${order.data.status}_${order.data.type}`)}</p>}
@@ -281,7 +281,7 @@ export default function PageCheck(): JSX.Element {
 
                             {order.data.status === OrderStatus.notStarted
                                 ? <button onClick={cancel}
-                                          className={`p-2 w-full rounded-full font-bold font-display transition-colors duration-100 ${orderCancel.isError || typeof orderCancel.data === 'object' || orderCancel.isPending ? 'bg-gray-300 text-gray-400' : 'bg-accent-red hover:bg-red-500 text-white'}`}>
+                                    className={`p-2 w-full rounded-full font-bold font-display transition-colors duration-100 ${orderCancel.isError || typeof orderCancel.data === 'object' || orderCancel.isPending ? 'bg-gray-300 text-gray-400' : 'bg-accent-red hover:bg-red-500 text-white'}`}>
                                     {orderCancel.isPending ? t('check.cancelLoading') : null}
                                     {orderCancel.isIdle ? (cancelConfirm ? t('check.cancelConfirm') : t('check.cancel')) : null}
                                     {orderCancel.isError || typeof orderCancel.data === 'object' ? t('check.cancelFailed') : null}
@@ -305,7 +305,7 @@ export default function PageCheck(): JSX.Element {
 
                         <p className='text-gray-400 text-xs mb-2'>{t('check.products')}</p>
                         {order.data.items.map((item: OrderedItemSchema) => <ComponentOrderedItem key={item.id}
-                                                                                                 item={item} />)}
+                            item={item} />)}
                     </div>
                 </div>
             </div>

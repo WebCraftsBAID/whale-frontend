@@ -8,14 +8,14 @@ export default function ComponentTopBar(): JSX.Element {
     const { t } = useTranslation()
 
     return (
-        <div className='p-2 lg:p-4 bg-gray-100 border-b border-gray-300 border-solid flex w-full items-center'>
+        <div className='p-2 lg:p-4 bg-accent-brown text-white border-b border-gray-900 border-solid flex w-full items-center'>
             <a className='skip-to-main' href='#main'>{t('a11y.skipToMain')}</a>
             <div className='flex-shrink mr-2'>
                 <button onClick={() => {
                     navigate('/')
-                }} className='rounded-full p-1 hover:bg-gray-200 transition-colors duration-100 w-8 h-8'
-                        aria-label={t('a11y.back')}>
-                    <FontAwesomeIcon icon={faArrowLeft} className='text-gray-800 text-lg' />
+                }} className='rounded-full p-1 hover:bg-yellow-900 transition-colors duration-100 w-8 h-8'
+                    aria-label={t('a11y.back')}>
+                    <FontAwesomeIcon icon={faArrowLeft} className='text-white text-lg' />
                 </button>
             </div>
             <div className='flex-grow'>
