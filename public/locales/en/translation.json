@@ -61,7 +61,7 @@
       "title": "Confirm Your Order",
       "deliveryInformation": "Delivery Information",
       "room": "Room",
-      "roomError": "Enter a 3-digit room number",
+      "roomError": "Enter a proper room number",
       "importantInformation": "Important Information",
       "waitError": "Failed to load wait time information.",
       "waitLoading": "You will be waiting for approximately ... minutes.",

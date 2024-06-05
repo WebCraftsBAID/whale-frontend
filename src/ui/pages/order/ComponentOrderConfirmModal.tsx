@@ -60,7 +60,8 @@ export default function ComponentOrderConfirmModal({
 
     function submit(): void {
         setDeliveryRoomError('')
-        if (orderType === OrderType.delivery && (deliveryRoom.length !== 3 || Number.isNaN(parseInt(deliveryRoom)))) {
+        if (orderType === OrderType.delivery && (deliveryRoom.length !== 3 || Number.isNaN(parseInt(deliveryRoom)) ||
+            parseInt(deliveryRoom[0]) < 1 || parseInt(deliveryRoom[0]) > 4 || parseInt(deliveryRoom[1]) > 2)) {
             setDeliveryRoomError(t('order.confirm.roomError'))
             return
         }
@@ -86,7 +87,7 @@ export default function ComponentOrderConfirmModal({
         <>
             <div className={`w-screen h-screen absolute justify-center items-center flex bg-gray-500/30
                   top-0 left-0 z-[60] transition-opacity duration-200 ${open ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-                 role='dialog'>
+                role='dialog'>
                 <div
                     className='z-[70] bg-white lg:shadow-lg lg:rounded-3xl w-full lg:w-1/2 2xl:w-1/3 h-full lg:max-h-[80%] 2xl:max-h-[50%] overflow-y-auto'>
 
@@ -110,12 +111,12 @@ export default function ComponentOrderConfirmModal({
 
                                 <div className='mb-5 flex w-full'>
                                     <button onClick={() => { setOrderType(OrderType.pickUp) }}
-                                            className={`lg:mr-3 w-1/2 flex items-center justify-center px-3 py-5 rounded-l-3xl lg:rounded-3xl ${orderType === OrderType.pickUp ? 'bg-accent-yellow-bg' : 'bg-gray-50 hover:bg-accent-yellow-bg'} transition-colors duration-100`}>
+                                        className={`lg:mr-3 w-1/2 flex items-center justify-center px-3 py-5 rounded-l-3xl lg:rounded-3xl ${orderType === OrderType.pickUp ? 'bg-accent-yellow-bg' : 'bg-gray-50 hover:bg-accent-yellow-bg'} transition-colors duration-100`}>
                                         <FontAwesomeIcon icon={faMugHot} className='text-accent-red text-2xl lg:text-3xl mr-3' />
                                         <p className='text-lg lg:text-xl font-display'>{t('order.type.pickUp')}</p>
                                     </button>
                                     <button onClick={() => { setOrderType(OrderType.delivery) }}
-                                            className={`w-1/2 flex items-center justify-center px-3 py-5 rounded-r-3xl lg:rounded-3xl ${orderType === OrderType.delivery ? 'bg-accent-yellow-bg' : 'bg-gray-50 hover:bg-accent-yellow-bg'} transition-colors duration-100`}>
+                                        className={`w-1/2 flex items-center justify-center px-3 py-5 rounded-r-3xl lg:rounded-3xl ${orderType === OrderType.delivery ? 'bg-accent-yellow-bg' : 'bg-gray-50 hover:bg-accent-yellow-bg'} transition-colors duration-100`}>
                                         <FontAwesomeIcon icon={faTruck} className='text-accent-orange text-2xl lg:text-3xl mr-3' />
                                         <p className='text-lg lg:text-xl font-display'>{t('order.type.delivery')}</p>
                                     </button>
@@ -126,11 +127,11 @@ export default function ComponentOrderConfirmModal({
                                         <p className='text-gray-400 text-xs mb-2'>{t('order.confirm.deliveryInformation')}</p>
                                         <div className='mb-1 rounded-full bg-accent-yellow-bg p-2'>
                                             <input placeholder={t('order.confirm.room')}
-                                                   aria-label={t('order.confirm.room')} type='text'
-                                                   className='w-full bg-transparent' value={deliveryRoom}
-                                                   onChange={(e) => {
-                                                       setDeliveryRoom(e.target.value)
-                                                   }} />
+                                                aria-label={t('order.confirm.room')} type='text'
+                                                className='w-full bg-transparent' value={deliveryRoom}
+                                                onChange={(e) => {
+                                                    setDeliveryRoom(e.target.value)
+                                                }} />
                                         </div>
                                         <p className='mb-2 text-xs text-accent-red'>{deliveryRoomError}</p>
                                     </div>
@@ -144,8 +145,8 @@ export default function ComponentOrderConfirmModal({
                                         {estimate.isPending ? t('order.confirm.waitLoading') : null}
                                         {estimate.data != null
                                             ? <Trans i18nKey={'order.confirm.waitTime'}
-                                                     count={(estimate.data as OrderEstimateSchema).time + getTotalItems() * 2}
-                                                     components={{ 1: <strong></strong> }} />
+                                                count={(estimate.data as OrderEstimateSchema).time + getTotalItems() * 2}
+                                                components={{ 1: <strong></strong> }} />
                                             : null}
                                     </ComponentIconText>
                                 </div>
@@ -159,29 +160,29 @@ export default function ComponentOrderConfirmModal({
                                     <ComponentIconText
                                         icon={<FontAwesomeIcon icon={faCircleExclamation} className='text-accent-orange' />}>
                                         <Trans i18nKey={'order.confirm.payment'}
-                                               components={{
-                                                   1: <strong></strong>,
-                                                   2: <u></u>
-                                               }} />
+                                            components={{
+                                                1: <strong></strong>,
+                                                2: <u></u>
+                                            }} />
                                     </ComponentIconText>
                                 </div>
 
                                 <p className='text-gray-400 text-xs mb-2'>{t('order.confirm.orders')}</p>
                                 <div className='mb-12 lg:mb-0'>
                                     {items.map((item: OrderedItemSchema) => <ComponentOrderedItem key={item.id}
-                                                                                                  item={item} />)}
+                                        item={item} />)}
                                 </div>
                             </div>
 
                             <div className='fixed lg:sticky w-full bg-gray-100 bottom-0 flex'>
                                 <div className='flex-grow p-4'>
                                     <p className='text-lg font-display'><Trans i18nKey='order.confirm.total'
-                                                                               count={getTotalPrice().toString()} /></p>
+                                        count={getTotalPrice().toString()} /></p>
                                 </div>
 
                                 <button className='flex-shrink lg:rounded-br-3xl transition-colors duration-100
                      flex bg-accent-orange-bg hover:bg-amber-100 py-3 px-8 justify-center items-center'
-                                        onClick={submit}>
+                                    onClick={submit}>
                                     <p className='font-display'>{t('order.confirm.confirm')}</p>
                                 </button>
                             </div>
