@@ -101,6 +101,10 @@ export default function PageAccount(): JSX.Element {
                             className='text-sm mb-1'>{t('account.onSiteOrdering')}</p>
                             <button onClick={onSiteOrdering} className='rounded-full w-48 py-2 px-5 font-display bg-accent-yellow-bg hover:bg-accent-orange-bg transition-colors duration-100 mb-3'>{t('account.onSiteOrdering')}</button></>}
 
+                        {(Boolean(me.data.permissions.includes('admin.manage'))) && <><p
+                            className='text-sm mb-1'>{t('account.contentManagement')}</p>
+                            <a href='/nc/' className='rounded-full w-48 py-2 px-5 font-display bg-accent-yellow-bg hover:bg-accent-orange-bg transition-colors duration-100 mb-3'>{t('account.contentManagement')}</a></>}
+
                         {(Boolean(me.data.permissions.includes('admin.statistics'))) && <><p
                             className='text-sm mb-1'>{t('account.statisticsManagement')}</p>
                             <button onClick={() => { navigate('/statistics') }} className='rounded-full w-48 py-2 px-5 font-display bg-accent-yellow-bg hover:bg-accent-orange-bg transition-colors duration-100 mb-3'>{t('account.statisticsManagement')}</button></>}
