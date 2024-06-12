@@ -124,7 +124,7 @@ export default function PageManage(): JSX.Element {
                         {availableOrders.isSuccess
                             ? availableOrders.data.map(order =>
                                 <button key={order.id} onClick={() => { setSelectedOrder(order) }}
-                                        className={`p-3 rounded-2xl w-full text-left bg-white mb-3 hover:bg-gray-50 ${selectedOrder?.id === order.id ? 'shadow-lg text-accent-orange' : ''} transition-colors duration-100`}>
+                                    className={`p-3 rounded-2xl w-full text-left bg-white mb-3 hover:bg-gray-50 ${selectedOrder?.id === order.id ? 'shadow-lg text-accent-orange' : ''} transition-colors duration-100`}>
                                     <p className='font-display font-bold text-xl'>{order.number}</p>
                                 </button>
                             )
@@ -142,7 +142,7 @@ export default function PageManage(): JSX.Element {
                             : <>
                                 <p className='flex-grow mr-3'>{getShopOpen.data === '1' ? t('manage.shopOpen') : t('manage.shopClosed')}</p>
                                 <button onClick={toggleShopOpen}
-                                        className='rounded-full font-display bg-accent-yellow-bg hover:bg-accent-orange-bg transition-colors duration-100 px-4 py-2'>{getShopOpen.data === '1' ? t('manage.toggleShopClose') : t('manage.toggleShopOpen')}</button>
+                                    className='rounded-full font-display bg-accent-yellow-bg hover:bg-accent-orange-bg transition-colors duration-100 px-4 py-2'>{getShopOpen.data === '1' ? t('manage.toggleShopClose') : t('manage.toggleShopOpen')}</button>
                             </>}
                     </div>
                 </div>
@@ -158,22 +158,22 @@ export default function PageManage(): JSX.Element {
                             <p className='font-display text-lg mb-3'>{t('manage.updateStatus')}</p>
                             <div className='w-full rounded-3xl flex mb-8'>
                                 <button onClick={() => { changeStatus.mutate(OrderStatus.notStarted) }}
-                                        className={`px-4 py-8 mr-5 rounded-2xl flex w-1/4 h-full flex-col justify-center items-center ${selectedOrder.status === OrderStatus.notStarted ? 'text-accent-orange bg-gray-50' : 'text-gray-500 bg-gray-100'}`}>
+                                    className={`px-4 py-8 mr-5 rounded-2xl flex w-1/4 h-full flex-col justify-center items-center ${selectedOrder.status === OrderStatus.notStarted ? 'text-accent-orange bg-gray-50' : 'text-gray-500 bg-gray-100'}`}>
                                     <FontAwesomeIcon icon={faHourglass} className='text-6xl mb-2' />
                                     <p className='font-display text-lg'>{t('check.status.notStarted_' + selectedOrder.type)}</p>
                                 </button>
                                 <button onClick={() => { changeStatus.mutate(OrderStatus.inProgress) }}
-                                        className={`px-4 py-8 mr-5 rounded-2xl flex w-1/4 h-full flex-col justify-center items-center ${selectedOrder.status === OrderStatus.inProgress ? 'text-blue-500 bg-gray-50' : 'text-gray-500 bg-gray-100'}`}>
+                                    className={`px-4 py-8 mr-5 rounded-2xl flex w-1/4 h-full flex-col justify-center items-center ${selectedOrder.status === OrderStatus.inProgress ? 'text-blue-500 bg-gray-50' : 'text-gray-500 bg-gray-100'}`}>
                                     <FontAwesomeIcon icon={faHourglassHalf} className='text-6xl mb-2' />
                                     <p className='font-display text-lg'>{t('check.status.inProgress_' + selectedOrder.type)}</p>
                                 </button>
                                 <button onClick={() => { changeStatus.mutate(OrderStatus.ready) }}
-                                        className={`px-4 py-8 mr-5 rounded-2xl flex w-1/4 h-full flex-col justify-center items-center ${selectedOrder.status === OrderStatus.ready ? 'text-green-400 bg-gray-50' : 'text-gray-500 bg-gray-100'}`}>
+                                    className={`px-4 py-8 mr-5 rounded-2xl flex w-1/4 h-full flex-col justify-center items-center ${selectedOrder.status === OrderStatus.ready ? 'text-green-400 bg-gray-50' : 'text-gray-500 bg-gray-100'}`}>
                                     <FontAwesomeIcon icon={selectedOrder.type === OrderType.delivery ? faTruck : faCircleCheck} className='text-6xl mb-2' />
                                     <p className='font-display text-lg'>{t('check.status.ready_' + selectedOrder.type)}</p>
                                 </button>
                                 <button onClick={() => { changeStatus.mutate(OrderStatus.pickedUp) }}
-                                        className={`px-4 py-8 rounded-2xl flex w-1/4 h-full flex-col justify-center items-center ${selectedOrder.status === OrderStatus.pickedUp ? 'text-yellow-400 bg-gray-50' : 'text-gray-500 bg-gray-100'}`}>
+                                    className={`px-4 py-8 rounded-2xl flex w-1/4 h-full flex-col justify-center items-center ${selectedOrder.status === OrderStatus.pickedUp ? 'text-yellow-400 bg-gray-50' : 'text-gray-500 bg-gray-100'}`}>
                                     <FontAwesomeIcon icon={faFaceSmile} className='text-6xl mb-2' />
                                     <p className='font-display text-lg'>{t('check.status.pickedUp_' + selectedOrder.type)}</p>
                                 </button>
@@ -190,7 +190,7 @@ export default function PageManage(): JSX.Element {
                                 </div>
                                 <div className='w-1/3'>
                                     <p className='font-display text-lg mb-3'>{t('manage.orderBy')}</p>
-                                    <p className='font-display text-5xl font-bold'>{selectedOrder.user.name}</p>
+                                    <p className='font-display text-5xl font-bold'>{selectedOrder.user?.name ?? t('manage.onSite')}</p>
                                 </div>
                             </div>
                             <div className='flex mb-3'>

@@ -57,6 +57,7 @@
     "notOpenTitle": "Ordering Unavailable",
     "notOpenDescription": "Ordering is currently closed. Please wait until the shop reopens.",
     "back": "Back",
+    "exitOnSite": "Exit On-Site Ordering",
     "confirm": {
       "title": "Confirm Your Order",
       "deliveryInformation": "Delivery Information",
@@ -158,6 +159,7 @@
     "viewHistory": "View History",
     "orderManagement": "Manage Orders",
     "statisticsManagement": "Manage Statistics",
+    "onSiteOrdering": "On Site Ordering",
     "totalSpent": "Total Spent",
     "totalOrders": "Total Orders",
     "totalCups": "Total Cups",
@@ -184,6 +186,7 @@
     "amountCharge": "Amount to Charge",
     "orderTime": "Client Waited For",
     "orderBy": "Ordered By",
+    "onSite": "On Site",
     "orderType": "Order Type",
     "deliveryRoom": "Delivery Room",
     "itemOrdered": "Items Ordered",

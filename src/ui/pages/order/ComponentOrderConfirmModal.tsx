@@ -49,6 +49,7 @@ export default function ComponentOrderConfirmModal({
         items,
         getTotalPrice,
         getTotalItems,
+        getOnSiteOrderMode,
         clear
     } = useShoppingCart()
 
@@ -79,15 +80,15 @@ export default function ComponentOrderConfirmModal({
         orderCreate.mutate({
             type: orderType,
             deliveryRoom,
-            items: createItems
+            items: createItems,
+            onSiteOrder: getOnSiteOrderMode()
         })
     }
 
     return (
         <>
             <div className={`w-screen h-screen absolute justify-center items-center flex bg-gray-500/30
-                  top-0 left-0 z-[60] transition-opacity duration-200 ${open ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-                role='dialog'>
+                  top-0 left-0 z-[60] transition-opacity duration-200 ${open ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} role='dialog'>
                 <div
                     className='z-[70] bg-white lg:shadow-lg lg:rounded-3xl w-full lg:w-1/2 2xl:w-1/3 h-full lg:max-h-[80%] 2xl:max-h-[50%] overflow-y-auto'>
 
@@ -109,18 +110,20 @@ export default function ComponentOrderConfirmModal({
                                     </button>
                                 </div>
 
-                                <div className='mb-5 flex w-full'>
-                                    <button onClick={() => { setOrderType(OrderType.pickUp) }}
-                                        className={`lg:mr-3 w-1/2 flex items-center justify-center px-3 py-5 rounded-l-3xl lg:rounded-3xl ${orderType === OrderType.pickUp ? 'bg-accent-yellow-bg' : 'bg-gray-50 hover:bg-accent-yellow-bg'} transition-colors duration-100`}>
-                                        <FontAwesomeIcon icon={faMugHot} className='text-accent-red text-2xl lg:text-3xl mr-3' />
-                                        <p className='text-lg lg:text-xl font-display'>{t('order.type.pickUp')}</p>
-                                    </button>
-                                    <button onClick={() => { setOrderType(OrderType.delivery) }}
-                                        className={`w-1/2 flex items-center justify-center px-3 py-5 rounded-r-3xl lg:rounded-3xl ${orderType === OrderType.delivery ? 'bg-accent-yellow-bg' : 'bg-gray-50 hover:bg-accent-yellow-bg'} transition-colors duration-100`}>
-                                        <FontAwesomeIcon icon={faTruck} className='text-accent-orange text-2xl lg:text-3xl mr-3' />
-                                        <p className='text-lg lg:text-xl font-display'>{t('order.type.delivery')}</p>
-                                    </button>
-                                </div>
+                                {getOnSiteOrderMode() as boolean
+                                    ? null
+                                    : <div className='mb-5 flex w-full'>
+                                        <button onClick={() => { setOrderType(OrderType.pickUp) }}
+                                            className={`lg:mr-3 w-1/2 flex items-center justify-center px-3 py-5 rounded-l-3xl lg:rounded-3xl ${orderType === OrderType.pickUp ? 'bg-accent-yellow-bg' : 'bg-gray-50 hover:bg-accent-yellow-bg'} transition-colors duration-100`}>
+                                            <FontAwesomeIcon icon={faMugHot} className='text-accent-red text-2xl lg:text-3xl mr-3' />
+                                            <p className='text-lg lg:text-xl font-display'>{t('order.type.pickUp')}</p>
+                                        </button>
+                                        <button onClick={() => { setOrderType(OrderType.delivery) }}
+                                            className={`w-1/2 flex items-center justify-center px-3 py-5 rounded-r-3xl lg:rounded-3xl ${orderType === OrderType.delivery ? 'bg-accent-yellow-bg' : 'bg-gray-50 hover:bg-accent-yellow-bg'} transition-colors duration-100`}>
+                                            <FontAwesomeIcon icon={faTruck} className='text-accent-orange text-2xl lg:text-3xl mr-3' />
+                                            <p className='text-lg lg:text-xl font-display'>{t('order.type.delivery')}</p>
+                                        </button>
+                                    </div>}
 
                                 {orderType === OrderType.delivery
                                     ? <div className='mb-5'>
