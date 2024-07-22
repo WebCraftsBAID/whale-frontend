@@ -5,13 +5,13 @@ This is the frontend for the ordering system for BAID's Whale Cafe. Built with R
 ## Get Started
 
 To run in production, follow the tutorial under
-[BAIDWebDev](https://github.com/BAIDWebDev)/[**whale-docker**](https://github.com/BAIDWebDev/whale-docker).
+[WebCraftsBAID](https://github.com/WebCraftsBAID)/[**whale-docker**](https://github.com/WebCraftsBAID/whale-docker).
 
 To run in development:
 
 * Ensure that you have node.js and npm available.
 * Follow the tutorial under
-  [BAIDWebDev](https://github.com/BAIDWebDev)/[**whale-backend**](https://github.com/BAIDWebDev/whale-backend) to run
+  [WebCraftsBAID](https://github.com/WebCraftsBAID)/[**whale-backend**](https://github.com/WebCraftsBAID/whale-backend) to run
   the backend development server.
 * Copy `.env.example` to `.env`, and change `VITE_API_HOST` accordingly. Typically, you will change it
   to `http://localhost:8000`.
