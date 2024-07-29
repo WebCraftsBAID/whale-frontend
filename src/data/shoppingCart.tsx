@@ -9,6 +9,8 @@ export interface ShoppingCart {
     setItemAmount: (localId: number, newAmount: number) => boolean
     getTotalItems: () => number
     getTotalPrice: () => Decimal
+    getOnSiteOrderMode: () => boolean
+    setOnSiteOrderMode: (mode: boolean) => void
     clear: () => void
 }
 
@@ -17,6 +19,7 @@ export const useShoppingCart = (): any => useContext(ShoppingCartContext)
 
 export function ShoppingCartProvider({ children }: { children: ReactNode }): JSX.Element {
     const [items, setItems] = useState<OrderedItemSchema[]>([])
+    const [onSiteMode, setOnSiteMode] = useState(false)
 
     function addItem(itemType: ItemTypeSchema, appliedOptions: OptionItemSchema[], amount: number): OrderedItemSchema {
         const item: OrderedItemSchema = {
@@ -93,6 +96,14 @@ export function ShoppingCartProvider({ children }: { children: ReactNode }): JSX
         setItems([])
     }
 
+    function getOnSiteOrderMode(): boolean {
+        return onSiteMode
+    }
+
+    function setOnSiteOrderMode(mode: boolean): void {
+        setOnSiteMode(mode)
+    }
+
     return (
         <ShoppingCartContext.Provider value={{
             items,
@@ -101,7 +112,9 @@ export function ShoppingCartProvider({ children }: { children: ReactNode }): JSX
             setItemAmount,
             getTotalItems,
             getTotalPrice,
-            clear
+            clear,
+            getOnSiteOrderMode,
+            setOnSiteOrderMode
         }}>
             {children}
         </ShoppingCartContext.Provider>

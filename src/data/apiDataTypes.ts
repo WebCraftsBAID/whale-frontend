@@ -14,6 +14,7 @@ export interface OrderCreateSchema {
     type: OrderType
     deliveryRoom: string | null
     items: OrderedItemCreateSchema[]
+    onSiteOrder: boolean
 }
 
 export interface OrderEstimateSchema {

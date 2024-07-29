@@ -10,9 +10,11 @@ import ComponentLoading from '../../common/ComponentLoading'
 import ComponentError from '../../common/ComponentError'
 import ComponentDeleteAccountModal from './ComponentDeleteAccountModal'
 import ComponentBottomNav from '../../common/ComponentBottomNav.tsx'
+import { type ShoppingCart, useShoppingCart } from '../../../data/shoppingCart.tsx'
 
 export default function PageAccount(): JSX.Element {
     const persistentStorage: PersistentStorage = usePersistentStorage()
+    const shoppingCart: ShoppingCart = useShoppingCart()
     const navigate = useNavigate()
     const { t } = useTranslation()
 
@@ -34,6 +36,11 @@ export default function PageAccount(): JSX.Element {
         queryKey: ['user-statistics-from-token'],
         queryFn: async () => (persistentStorage.getToken() == null ? null : await getMeStatistics(persistentStorage.getToken()!))
     })
+
+    function onSiteOrdering(): void {
+        shoppingCart.setOnSiteOrderMode(true)
+        navigate('/order')
+    }
 
     if (me.isPending || me.data == null || meStatistics.isPending || meStatistics.data == null) {
         return <ComponentLoading screen={true} />
@@ -89,6 +96,14 @@ export default function PageAccount(): JSX.Element {
                         {(Boolean(me.data.permissions.includes('admin.manage'))) && <><p
                             className='text-sm mb-1'>{t('account.orderManagement')}</p>
                             <button onClick={() => { navigate('/manage') }} className='rounded-full w-48 py-2 px-5 font-display bg-accent-yellow-bg hover:bg-accent-orange-bg transition-colors duration-100 mb-3'>{t('account.orderManagement')}</button></>}
+
+                        {(Boolean(me.data.permissions.includes('admin.manage'))) && <><p
+                            className='text-sm mb-1'>{t('account.onSiteOrdering')}</p>
+                            <button onClick={onSiteOrdering} className='rounded-full w-48 py-2 px-5 font-display bg-accent-yellow-bg hover:bg-accent-orange-bg transition-colors duration-100 mb-3'>{t('account.onSiteOrdering')}</button></>}
+
+                        {(Boolean(me.data.permissions.includes('admin.manage'))) && <><p
+                            className='text-sm mb-1'>{t('account.contentManagement')}</p>
+                            <a href='/nc/' className='rounded-full w-48 py-2 px-5 font-display bg-accent-yellow-bg hover:bg-accent-orange-bg transition-colors duration-100 mb-3'>{t('account.contentManagement')}</a></>}
 
                         {(Boolean(me.data.permissions.includes('admin.statistics'))) && <><p
                             className='text-sm mb-1'>{t('account.statisticsManagement')}</p>

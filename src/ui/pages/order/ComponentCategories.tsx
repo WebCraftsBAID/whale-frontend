@@ -3,12 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { useTranslation } from 'react-i18next'
 import { type CategorySchema } from '../../../data/dataTypes.ts'
+import { type ShoppingCart, useShoppingCart } from '../../../data/shoppingCart.tsx'
 
 export default function ComponentCategories({
     categories,
     ids
 }:
     { categories: CategorySchema[], ids: string[] }): JSX.Element {
+    const shoppingCart: ShoppingCart = useShoppingCart()
     const navigate = useNavigate()
     const { t } = useTranslation()
 
@@ -42,7 +44,16 @@ export default function ComponentCategories({
                             <p>{category.name}</p>
                         </button>)}
                 </div>
-            </div>
-        </div>
+                <div className='flex-shrink h-full'>
+                    {shoppingCart.getOnSiteOrderMode()
+                        ? <button onClick={() => {
+                            shoppingCart.setOnSiteOrderMode(false)
+                        }} className='p-5 hover:bg-yellow-900 duration-100 transition-colors h-full'>
+                            <p>{t('order.exitOnSite')}</p>
+                        </button>
+                        : null}
+                </div>
+            </div >
+        </div >
     )
 }
